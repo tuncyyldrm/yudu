@@ -114,8 +114,8 @@ items = arr.data.map(c => ({ name: c.name, value: c.population }));
     let timerStart = null;
 
     // Ses efektleri (kısa bip)
-    const audioCorrect = new Audio("data:audio/wav;base64,UklGRiQAAABXQVZFZm10IBAAAAABAAEAQB8AAEAfAAABAAgAZGF0YQgAAA=="); // very short silent sound placeholder
-    const audioWrong = new Audio("data:audio/wav;base64,UklGRhwAAABXQVZFZm10IBAAAAABAAEAQB8AAEAfAAABAAgAZGF0YQgAAAAAAACAgICAgP//f39/f39/f39/f39/f39/f39/f39/f39/f39/f39/f39/f39/f39/");
+    const audioCorrect = new Audio("sound/ding.mp3"); // very short silent sound placeholder
+    const audioWrong = new Audio("sound/error.mp3");
 
     function applyTheme() {
       if (darkMode) {
