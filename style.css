@@ -1,0 +1,190 @@
+  :root {
+    --bg-light: #f4f4f4;
+    --text-light: #222;
+    --card-light: #fff;
+    --timer-bg: #e0e0e0;
+    --timer-fill: #4caf50; /* Yeşil zamanlayıcı */
+    --btn-higher-bg: #4caf50; /* Yeşil */
+    --btn-higher-hover: #388e3c;
+    --btn-lower-bg: #f44336; /* Kırmızı */
+    --btn-lower-hover: #d32f2f;
+    --btn-secondary: #555; /* Başla/Yeniden Başla butonu */
+    --btn-secondary-hover: #333;
+  }
+  [data-theme="dark"] {
+    --bg-light: #121212;
+    --text-light: #f1f1f1;
+    --card-light: #1e1e1e;
+    --timer-bg: #333;
+    --timer-fill: #3db74e;
+    --btn-higher-bg: #3db74e;
+    --btn-higher-hover: #2a8e34;
+    --btn-lower-bg: #e75656;
+    --btn-lower-hover: #b63737;
+    --btn-secondary: #888;
+    --btn-secondary-hover: #666;
+  }
+  * {
+    box-sizing: border-box;
+  }
+  body {
+    font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+    background-color: var(--bg-light);
+    color: var(--text-light);
+    margin: 0; padding: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    min-height: 100vh;
+    transition: background-color 0.3s, color 0.3s;
+  }
+
+    a {
+      display: inline-block;
+      padding: 15px 30px;
+      margin: 10px;
+      background-color: #2196f3;
+      color: white;
+      text-decoration: none;
+      font-size: 1.2rem;
+      border-radius: 10px;
+    }
+    a:hover {
+      background-color: #1976d2;
+    }
+
+  .container {
+    max-width: 480px;
+    width: 100%;
+    text-align: center;
+  }
+  h2 {
+    margin-bottom: 1rem;
+  }
+  .card {
+    background: var(--card-light);
+    border-radius: 12px;
+    padding: 20px;
+    margin: 12px 0;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    transition: background-color 0.3s, color 0.3s;
+  }
+  .card.correct {
+    border: 3px solid var(--btn-higher-bg);
+    animation: correctAnim 0.5s ease forwards;
+  }
+  .card.wrong {
+    border: 3px solid var(--btn-lower-bg);
+    animation: wrongAnim 0.5s ease forwards;
+  }
+  @keyframes correctAnim {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.07); }
+    100% { transform: scale(1); }
+  }
+  @keyframes wrongAnim {
+    0% { transform: translateX(0); }
+    20% { transform: translateX(-10px); }
+    40% { transform: translateX(10px); }
+    60% { transform: translateX(-10px); }
+    80% { transform: translateX(10px); }
+    100% { transform: translateX(0); }
+  }
+  .value {
+    font-weight: bold;
+    font-size: 1.4rem;
+    margin-top: 8px;
+  }
+  .value.hidden {
+    color: gray;
+  }
+  .options {
+    margin: 20px 0;
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    flex-wrap: wrap;
+  }
+  button {
+    cursor: pointer;
+    padding: 12px 28px;
+    font-size: 1.1rem;
+    border: none;
+    border-radius: 8px;
+    color: white;
+    transition: background-color 0.3s;
+  }
+  button:disabled {
+    background-color: #999 !important;
+    cursor: not-allowed;
+    color: #ddd;
+  }
+  button#btnHigher {
+    background-color: var(--btn-higher-bg);
+  }
+  button#btnHigher:hover:not(:disabled) {
+    background-color: var(--btn-higher-hover);
+  }
+  button#btnLower {
+    background-color: var(--btn-lower-bg);
+  }
+  button#btnLower:hover:not(:disabled) {
+    background-color: var(--btn-lower-hover);
+  }
+  button.btn-secondary {
+    background-color: var(--btn-secondary);
+    margin-top: 10px;
+  }
+  button.btn-secondary:hover {
+    background-color: var(--btn-secondary-hover);
+  }
+  .score {
+    font-size: 1.25rem;
+    margin-top: 12px;
+  }
+  #gameOver {
+    display: none;
+    margin-top: 30px;
+  }
+  #gameOver p {
+    font-size: 1.3rem;
+  }
+  @media (max-width: 480px) {
+    .options button {
+      flex: 1 1 100%;
+      margin: 6px 0;
+    }
+  }
+  .theme-toggle {
+    position: fixed;
+    top: 12px;
+    right: 12px;
+    background: var(--btn-secondary);
+    color: white;
+    border: none;
+    border-radius: 6px;
+    padding: 6px 12px;
+    cursor: pointer;
+    font-size: 1rem;
+    z-index: 999;
+  }
+  /* Zamanlayıcı */
+  #timer {
+    height: 12px;
+    background: var(--timer-bg);
+    border-radius: 6px;
+    overflow: hidden;
+    margin: 10px auto 20px auto;
+    max-width: 320px;
+  }
+  #timer-fill {
+    height: 100%;
+    background: var(--timer-fill);
+    width: 100%;
+    transition: width 0.1s linear;
+  }
+  #introText {
+    font-size: 1rem;
+    margin: 20px 0;
+    color: var(--text-light);
+  }

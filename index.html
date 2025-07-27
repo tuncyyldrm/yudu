@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8" />
+<meta name="theme-color" content="#ffcd21">
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link rel="stylesheet" href="style.css" />
+<link rel="manifest" href="manifest.json">
+<link rel="icon" href="assets/icon-192.png">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-capable" content="yes">
+  <title>YÜDÜ - Ana Sayfa</title>
+
+</head>
+<body>
+  <button class="theme-toggle" id="toggleThemeBtn" aria-label="Tema değiştir">🌙</button>
+  <h1>YÜDÜ - Yüksek mi, Düşük mü?</h1>
+<a href="ulke.html">🌍 Ülke Oyunu <span id="bestUlke" style="color:white; font-size:0.9rem;"></span></a>
+<a href="sehir.html">🏙️ Şehir Oyunu <span id="bestSehir" style="color:white; font-size:0.9rem;"></span></a>
+
+
+<script>
+
+    let darkMode = localStorage.getItem('darkMode') === 'true';
+    const toggleThemeBtn = document.getElementById('toggleThemeBtn');
+    function applyTheme() {
+      if (darkMode) {
+        document.documentElement.setAttribute('data-theme', 'dark');
+        toggleThemeBtn.textContent = '☀️';
+      } else {
+        document.documentElement.setAttribute('data-theme', 'light');
+        toggleThemeBtn.textContent = '🌙';
+      }
+      localStorage.setItem('darkMode', darkMode);
+    }
+    toggleThemeBtn.addEventListener('click', () => {
+      darkMode = !darkMode;
+      applyTheme();
+    });
+	
+    applyTheme();
+function showBestScores() {
+  const bestUlke = localStorage.getItem('highScoreUlke') || 0;
+  const bestSehir = localStorage.getItem('highScoreSehir') || 0;
+
+  document.getElementById('bestUlke').textContent = bestUlke > 0 ? `(En iyi: ${bestUlke})` : '';
+  document.getElementById('bestSehir').textContent = bestSehir > 0 ? `(En iyi: ${bestSehir})` : '';
+}
+
+showBestScores();
+
+  if ("serviceWorker" in navigator) {
+    navigator.serviceWorker.register("/service-worker.js")
+      .then(() => console.log("✅ Service Worker kayıt edildi"))
+      .catch((err) => console.error("❌ Hata:", err));
+  }
+</script>
+</body>
+</html>
