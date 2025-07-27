@@ -278,17 +278,20 @@ function showResult(isCorrect) {
 function copyShare() {
   const score = finalScore?.textContent?.trim() || "0";
 
-  // Oyun başlığını belirle
-  const page = window.location.pathname.split("/").pop();
+  // Sayfa yolunu küçük harf yapıp kontrol et
+  const pathname = window.location.pathname.toLowerCase();
   let gameTitle = "YÜDÜ: Genel Oyun";
 
-  if (page.includes("ulke")) {
+  if (pathname.includes("ulke")) {
     gameTitle = "YÜDÜ: Ülke Tahmini";
-  } else if (page.includes("sehir")) {
+  } else if (pathname.includes("sehir")) {
     gameTitle = "YÜDÜ: Şehir Tahmini";
   }
 
-  const mainUrl = window.location.origin;
+  // Sabit ana URL - kendi projenin URL'sini buraya yaz
+  const mainUrl = "https://yu-du.vercel.app";
+
+  // Paylaşım metni
   const shareText = `${gameTitle} oyununda ${score} puan yaptım! Sen de dene: ${mainUrl}`;
 
   const isMobile = /Mobi|Android/i.test(navigator.userAgent);
@@ -296,16 +299,16 @@ function copyShare() {
   if (isMobile && navigator.share) {
     navigator.share({
       title: gameTitle,
-      text: `Skorum: ${score}. Hadi sen de dene!`,
+      text: shareText,
       url: mainUrl
     }).catch(() => {
       fallbackCopyToClipboard(shareText);
     });
   } else {
     fallbackCopyToClipboard(shareText);
-    
   }
 }
+
 
 function fallbackCopyToClipboard(text) {
   if (navigator.clipboard) {
