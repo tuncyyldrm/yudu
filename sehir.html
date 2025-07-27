@@ -59,7 +59,7 @@
 <script>
   async function fetchCities() {
     const response = await fetch(
-      'https://turkiyeapi.dev/api/v1/provinces?&fields=name,population'
+      'datasets/ulke.json'
     );
     if (!response.ok) {
       throw new Error('API isteği başarısız oldu');
