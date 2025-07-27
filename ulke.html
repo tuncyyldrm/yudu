@@ -278,7 +278,6 @@ function showResult(isCorrect) {
 function copyShare() {
   const score = finalScore?.textContent?.trim() || "0";
 
-  // Sayfa yolunu küçük harf yapıp kontrol et
   const pathname = window.location.pathname.toLowerCase();
   let gameTitle = "YÜDÜ: Genel Oyun";
 
@@ -288,10 +287,8 @@ function copyShare() {
     gameTitle = "YÜDÜ: Şehir Tahmini";
   }
 
-  // Sabit ana URL - kendi projenin URL'sini buraya yaz
   const mainUrl = "https://yu-du.vercel.app";
 
-  // Paylaşım metni
   const shareText = `${gameTitle} oyununda ${score} puan yaptım! Sen de dene: ${mainUrl}`;
 
   const isMobile = /Mobi|Android/i.test(navigator.userAgent);
@@ -300,7 +297,7 @@ function copyShare() {
     navigator.share({
       title: gameTitle,
       text: shareText,
-      url: mainUrl
+      // url: mainUrl  // Burayı kaldırdık, URL zaten text içinde var
     }).catch(() => {
       fallbackCopyToClipboard(shareText);
     });
@@ -308,7 +305,6 @@ function copyShare() {
     fallbackCopyToClipboard(shareText);
   }
 }
-
 
 function fallbackCopyToClipboard(text) {
   if (navigator.clipboard) {
