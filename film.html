@@ -73,13 +73,14 @@ async function fetchFilms() {
 
   const data = await response.json();
 
-  // data doğrudan film dizisi olduğunu varsayıyoruz
+  // Türkçe ad varsa onu kullan, yoksa İngilizce adı göster
   return data.map(film => ({
-    name: `${film.title} (${film.year})`,
-    value: parseFloat(film.rating), // IMDb puanı
+    name: `${film.title_tr || film.title} (${film.year})`,
+    value: parseFloat(film.rating),
     poster: film.image || ""
   }));
 }
+
 
 let items = [];
 
