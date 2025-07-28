@@ -59,7 +59,7 @@
 <script>
   async function fetchCities() {
     const response = await fetch(
-      'https://turkiyeapi.dev/api/v1/provinces?&fields=name,population'
+      'datasets/Film.json'
     );
     if (!response.ok) {
       throw new Error('API isteği başarısız oldu');
@@ -114,8 +114,8 @@ items = arr.data.map(c => ({ name: c.name, value: c.population }));
     let timerStart = null;
 
     // Ses efektleri (kısa bip)
-    const audioCorrect = new Audio("data:audio/wav;base64,UklGRiQAAABXQVZFZm10IBAAAAABAAEAQB8AAEAfAAABAAgAZGF0YQgAAA=="); // very short silent sound placeholder
-    const audioWrong = new Audio("data:audio/wav;base64,UklGRhwAAABXQVZFZm10IBAAAAABAAEAQB8AAEAfAAABAAgAZGF0YQgAAAAAAACAgICAgP//f39/f39/f39/f39/f39/f39/f39/f39/f39/f39/f39/f39/f39/");
+    const audioCorrect = new Audio("sound/ding.mp3"); // very short silent sound placeholder
+    const audioWrong = new Audio("sound/error.mp3");
 
     function applyTheme() {
       if (darkMode) {
@@ -257,17 +257,17 @@ function showResult(isCorrect) {
 function copyShare() {
   const score = finalScore?.textContent?.trim() || "0";
 
-  // Oyun başlığını belirle
-  const page = window.location.pathname.split("/").pop();
+  const pathname = window.location.pathname.toLowerCase();
   let gameTitle = "YÜDÜ: Genel Oyun";
 
-  if (page.includes("ulke")) {
+  if (pathname.includes("ulke")) {
     gameTitle = "YÜDÜ: Ülke Tahmini";
-  } else if (page.includes("Film")) {
+  } else if (pathname.includes("Film")) {
     gameTitle = "YÜDÜ: Film Tahmini";
   }
 
-  const mainUrl = window.location.origin;
+  const mainUrl = "https://yu-du.vercel.app";
+
   const shareText = `${gameTitle} oyununda ${score} puan yaptım! Sen de dene: ${mainUrl}`;
 
   const isMobile = /Mobi|Android/i.test(navigator.userAgent);
@@ -275,14 +275,13 @@ function copyShare() {
   if (isMobile && navigator.share) {
     navigator.share({
       title: gameTitle,
-      text: `Skorum: ${score}. Hadi sen de dene!`,
-      url: mainUrl
+      text: shareText,
+      // url: mainUrl  // Burayı kaldırdık, URL zaten text içinde var
     }).catch(() => {
       fallbackCopyToClipboard(shareText);
     });
   } else {
     fallbackCopyToClipboard(shareText);
-    
   }
 }
 
@@ -315,7 +314,7 @@ function legacyCopyToClipboard(text) {
       throw new Error("Kopyalama başarısız");
     }
   } catch (e) {
-    alert("Kopyalama desteklenmiyor. Lütfen aşağıdaki metni manuel kopyalayın:\n\n" + text);
+    
   }
 
   document.body.removeChild(textArea);
