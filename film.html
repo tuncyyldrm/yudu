@@ -63,23 +63,23 @@
 
 
 <script>
-async function fetchCities() {
-  const response = await fetch("datasets/Film.json");
+async function fetchFilms() {
+  const response = await fetch("datasets/film.json");
 
   if (!response.ok) {
-    throw new Error('API isteği başarısız oldu');
+    throw new Error('Film verisi yüklenemedi');
   }
 
   const data = await response.json();
 
-  const countryData = data.map(country => ({
-    name: country.translations?.tur?.common || "Bilinmiyor",
-    value: country.population || 0,
-    flag: country.flags?.png || null
+  return data.map(film => ({
+    name: film.name,
+    value: film.value,
+    extra: film.extra,
+    image: film.image
   }));
-
-  return countryData;
 }
+
 
 
   let items = [];
