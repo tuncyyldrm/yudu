@@ -1,0 +1,62 @@
+[
+  {
+    "name": "The Shawshank Redemption",
+    "value": 9.3,
+    "extra": "IMDb Puanı",
+    "image": "https://image.tmdb.org/t/p/w500/q6y0Go1tsGEsmtFryDOJo3dEmqu.jpg"
+  },
+  {
+    "name": "The Godfather",
+    "value": 9.2,
+    "extra": "IMDb Puanı",
+    "image": "https://image.tmdb.org/t/p/w500/3bhkrj58Vtu7enYsRolD1fZdja1.jpg"
+  },
+  {
+    "name": "The Dark Knight",
+    "value": 9.0,
+    "extra": "IMDb Puanı",
+    "image": "https://image.tmdb.org/t/p/w500/qJ2tW6WMUDux911r6m7haRef0WH.jpg"
+  },
+  {
+    "name": "12 Angry Men",
+    "value": 9.0,
+    "extra": "IMDb Puanı",
+    "image": "https://image.tmdb.org/t/p/w500/ppd84D2i9W8jXmsyInGyihiSyqz.jpg"
+  },
+  {
+    "name": "Schindler's List",
+    "value": 9.0,
+    "extra": "IMDb Puanı",
+    "image": "https://image.tmdb.org/t/p/w500/sF1U4EUQS8YHUYjNl3pMGNIQyr0.jpg"
+  },
+  {
+    "name": "The Lord of the Rings: The Return of the King",
+    "value": 8.9,
+    "extra": "IMDb Puanı",
+    "image": "https://image.tmdb.org/t/p/w500/rCzpDGLbOoPwLjy3OAm5NUPOTrC.jpg"
+  },
+  {
+    "name": "Pulp Fiction",
+    "value": 8.9,
+    "extra": "IMDb Puanı",
+    "image": "https://image.tmdb.org/t/p/w500/dM2w364MScsjFf8pfMbaWUcWrR.jpg"
+  },
+  {
+    "name": "Forrest Gump",
+    "value": 8.8,
+    "extra": "IMDb Puanı",
+    "image": "https://image.tmdb.org/t/p/w500/saHP97rTPS5eLmrLQEcANmKrsFl.jpg"
+  },
+  {
+    "name": "Fight Club",
+    "value": 8.8,
+    "extra": "IMDb Puanı",
+    "image": "https://image.tmdb.org/t/p/w500/bptfVGEQuv6vDTIMVCHjJ9Dz8PX.jpg"
+  },
+  {
+    "name": "Inception",
+    "value": 8.8,
+    "extra": "IMDb Puanı",
+    "image": "https://image.tmdb.org/t/p/w500/edv5CZvWj09upOsy2Y6IwDhK8bt.jpg"
+  }
+]
