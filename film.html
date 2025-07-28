@@ -14,21 +14,21 @@
 <body>
   <button class="theme-toggle" id="toggleThemeBtn" aria-label="Tema değiştir">🌙</button>
 
-  <main class="container" role="main" aria-live="polite">
+  <div class="container" role="main" aria-live="polite">
     <h2>YÜDÜ - Film Yüksek mi Düşük mü?</h2>
 
-    <section id="introText">
+    <div id="introText">
       Bu oyun, verilen iki filmden ikinci filmin IMDb puanının birincisinden daha yüksek mi yoksa daha düşük mü olduğunu tahmin etme oyunudur.<br>
       Zaman sınırlıdır, doğru tahmin etmeye çalış!
-    </section>
+    </div>
 
-    <article class="card" id="card1" aria-label="Birinci film" style="display:none;">
+    <div class="card" id="card1" aria-label="Birinci film" style="display:none;">
       <div id="item1Name" class="item-name">
-        <img id="item1Flag" src="" alt="Film posteri" style="width:40px; height:auto; vertical-align:middle; border-radius:4px; margin-right:8px;" />
+        <img id="item1Poster" src="" alt="Film posteri" style="width:40px; height:auto; vertical-align:middle; border-radius:4px; margin-right:8px;">
         <span id="item1Text">...</span>
       </div>
-      <div id="item1Value" class="value" aria-live="polite">?</div>
-    </article>
+      <div id="item1Value" class="value">?</div>
+    </div>
 
     <div id="timer" aria-label="Kalan süre" style="display:none;">
       <div id="timer-fill"></div>
@@ -39,13 +39,13 @@
       <button id="btnLower" onclick="checkGuess('lower')" disabled>Daha Düşük</button>
     </div>
 
-    <article class="card" id="card2" aria-label="İkinci film" style="display:none;">
+    <div class="card" id="card2" aria-label="İkinci film" style="display:none;">
       <div id="item2Name" class="item-name">
-        <img id="item2Flag" src="" alt="Film posteri" style="width:40px; height:auto; vertical-align:middle; border-radius:4px; margin-right:8px;" />
+        <img id="item2Poster" src="" alt="Film posteri" style="width:40px; height:auto; vertical-align:middle; border-radius:4px; margin-right:8px;">
         <span id="item2Text">...</span>
       </div>
-      <div id="item2Value" class="value hidden" aria-live="polite">?</div>
-    </article>
+      <div id="item2Value" class="value hidden">?</div>
+    </div>
 
     <div class="best-score">En iyi skor: <span id="bestScoreFilm">0</span></div>
     <div id="scoreText" style="display:none;">Skor: 0</div>
@@ -53,303 +53,307 @@
     <button id="btnAnasayfa" class="btn-secondary" onclick="window.location.href='index.html'">Anasayfa</button>
     <button id="btnStart" class="btn-secondary" onclick="startGame()">Oyuna Başla</button>
 
-    <section id="gameOver" role="alert" style="display:none;">
+    <div id="gameOver" role="alert" style="display:none;">
       <p>Oyun Bitti! Toplam Skorun: <strong id="finalScore">0</strong></p>
       <button class="btn-secondary" id="btnRestart" onclick="startGame()">Yeniden Başla</button>
       <button class="btn-secondary" id="btnShare" onclick="copyShare()">Skorunu Paylaş</button>
       <button id="btnAnasayfa" class="btn-secondary" onclick="window.location.href='index.html'">Anasayfa</button>
-    </section>
-  </main>
+    </div>
+  </div>
 
 <script>
-  // Film verisini dışarıdan yükle
-  async function fetchFilms() {
-    try {
-      const response = await fetch("datasets/film.json");
-      if (!response.ok) throw new Error("Film verisi yüklenemedi");
-      const json = await response.json();
-      // Senin verdiğin JSON yapısında root altında dizi var, ona göre ayarla:
-      // Eğer filmler json.root ise:
-      return json.root.map(film => ({
-        name: `${film.title} (${film.year})`,
-        value: parseFloat(film.rating),
-        extra: "IMDb Puanı",
-        image: film.image
-      }));
-    } catch (e) {
-      alert("Veri alınamadı, internet bağlantınızı kontrol edin.");
-      return [];
-    }
+async function fetchFilms() {
+  const response = await fetch("datasets/film.json");
+
+  if (!response.ok) {
+    throw new Error('Film verisi yüklenemedi');
   }
 
-  let items = [];
-  async function initData() {
+  const data = await response.json();
+
+  // data doğrudan film dizisi olduğunu varsayıyoruz
+  return data.map(film => ({
+    name: `${film.title} (${film.year})`,
+    value: parseFloat(film.rating), // IMDb puanı
+    poster: film.image || ""
+  }));
+}
+
+let items = [];
+
+async function initData() {
+  try {
     items = await fetchFilms();
-    if (items.length > 0) {
-      console.log("Film verisi yüklendi:", items.length, "film");
-    }
+    console.log('Film verisi yüklendi', items);
+  } catch (e) {
+    console.error(e);
+    alert('Film verisi alınamadı, internet bağlantınızı kontrol edin.');
   }
-  initData();
+}
 
-  let score = 0;
-  let currentPair = [];
-  let usedPairs = new Set();
-  let buttonsDisabled = false;
-  let darkMode = localStorage.getItem('darkMode') === 'true';
+initData();
 
-  const card1 = document.getElementById('card1');
-  const card2 = document.getElementById('card2');
-  const item1Name = document.getElementById('item1Name');
-  const item1Value = document.getElementById('item1Value');
-  const item2Name = document.getElementById('item2Name');
-  const item2Value = document.getElementById('item2Value');
-  const scoreText = document.getElementById('scoreText');
-  const gameOverDiv = document.getElementById('gameOver');
-  const finalScore = document.getElementById('finalScore');
-  const btnHigher = document.getElementById('btnHigher');
-  const btnLower = document.getElementById('btnLower');
-  const btnStart = document.getElementById('btnStart');
-  const btnAnasayfa = document.getElementById('btnAnasayfa');
-  const btnRestart = document.getElementById('btnRestart');
-  const btnShare = document.getElementById('btnShare');
-  const toggleThemeBtn = document.getElementById('toggleThemeBtn');
-  const timerBar = document.getElementById('timer-fill');
+let score = 0;
+let currentPair = [];
+let usedPairs = new Set();
+let buttonsDisabled = false;
+let darkMode = localStorage.getItem('darkMode') === 'true';
 
-  const TIMER_DURATION = 7000; // 7 saniye
-  let timerInterval = null;
-  let timerStart = null;
+const card1 = document.getElementById('card1');
+const card2 = document.getElementById('card2');
+const item1Text = document.getElementById('item1Text');
+const item1Poster = document.getElementById('item1Poster');
+const item1Value = document.getElementById('item1Value');
+const item2Text = document.getElementById('item2Text');
+const item2Poster = document.getElementById('item2Poster');
+const item2Value = document.getElementById('item2Value');
+const scoreText = document.getElementById('scoreText');
+const gameOverDiv = document.getElementById('gameOver');
+const finalScore = document.getElementById('finalScore');
+const btnHigher = document.getElementById('btnHigher');
+const btnLower = document.getElementById('btnLower');
+const btnStart = document.getElementById('btnStart');
+const btnAnasayfa = document.getElementById('btnAnasayfa');
+const toggleThemeBtn = document.getElementById('toggleThemeBtn');
+const timerBar = document.getElementById('timer-fill');
 
-  // Ses efektleri
-  const audioCorrect = new Audio("sound/ding.mp3");
-  const audioWrong = new Audio("sound/error.mp3");
+const TIMER_DURATION = 7000;
+let timerInterval = null;
+let timerStart = null;
 
-  // Tema fonksiyonları
-  function applyTheme() {
-    if (darkMode) {
-      document.documentElement.setAttribute('data-theme', 'dark');
-      toggleThemeBtn.textContent = '☀️';
-    } else {
-      document.documentElement.setAttribute('data-theme', 'light');
-      toggleThemeBtn.textContent = '🌙';
-    }
-    localStorage.setItem('darkMode', darkMode);
+const audioCorrect = new Audio("sound/ding.mp3");
+const audioWrong = new Audio("sound/error.mp3");
+
+function applyTheme() {
+  if (darkMode) {
+    document.documentElement.setAttribute('data-theme', 'dark');
+    toggleThemeBtn.textContent = '☀️';
+  } else {
+    document.documentElement.setAttribute('data-theme', 'light');
+    toggleThemeBtn.textContent = '🌙';
   }
-  toggleThemeBtn.addEventListener('click', () => {
-    darkMode = !darkMode;
-    applyTheme();
-  });
+  localStorage.setItem('darkMode', darkMode);
+}
+toggleThemeBtn.addEventListener('click', () => {
+  darkMode = !darkMode;
   applyTheme();
+});
+applyTheme();
 
-  // Rastgele film çifti seç
-  function getRandomPair() {
-    if (usedPairs.size >= items.length * (items.length -1) / 2) {
-      usedPairs.clear();
-    }
-    let i1, i2, key;
+function getRandomPair() {
+  if (usedPairs.size >= items.length * (items.length - 1) / 2) {
+    usedPairs.clear();
+  }
+  let i1, i2, key;
+  do {
+    i1 = Math.floor(Math.random() * items.length);
     do {
-      i1 = Math.floor(Math.random() * items.length);
-      do {
-        i2 = Math.floor(Math.random() * items.length);
-      } while (i2 === i1);
-      key = i1 < i2 ? `${i1}-${i2}` : `${i2}-${i1}`;
-    } while (usedPairs.has(key));
-    usedPairs.add(key);
-    return [items[i1], items[i2]];
-  }
+      i2 = Math.floor(Math.random() * items.length);
+    } while (i2 === i1);
+    key = i1 < i2 ? `${i1}-${i2}` : `${i2}-${i1}`;
+  } while (usedPairs.has(key));
+  usedPairs.add(key);
+  return [items[i1], items[i2]];
+}
 
-  function setCardsVisibility(showSecondValue) {
-    if (showSecondValue) {
-      item2Value.classList.remove('hidden');
-    } else {
-      item2Value.classList.add('hidden');
-      item2Value.textContent = '?';
-    }
-  }
-
-  function disableButtons(val) {
-    btnHigher.disabled = val;
-    btnLower.disabled = val;
-    buttonsDisabled = val;
-  }
-
-  function updateScore() {
-    scoreText.textContent = `Skor: ${score}`;
-  }
-
-  function resetTimer() {
-    clearInterval(timerInterval);
-    timerBar.style.width = '100%';
-    timerStart = Date.now();
-
-    timerInterval = setInterval(() => {
-      const elapsed = Date.now() - timerStart;
-      const percent = Math.max(0, 100 - (elapsed / TIMER_DURATION) * 100);
-      timerBar.style.width = percent + '%';
-
-      if (percent <= 0) {
-        clearInterval(timerInterval);
-        if (!buttonsDisabled) {
-          disableButtons(true);
-          showResult(false);
-          updateHighScoreFilm(score);
-        }
-      }
-    }, 50);
-  }
-
-  function nextRound() {
-    setCardsVisibility(false);
-    currentPair = getRandomPair();
-
-    document.getElementById('item1Text').textContent = currentPair[0].name;
-    document.getElementById('item1Flag').src = currentPair[0].image;
-    document.getElementById('item1Flag').alt = currentPair[0].name + " posteri";
-    item1Value.textContent = currentPair[0].value.toLocaleString();
-
-    document.getElementById('item2Text').textContent = currentPair[1].name;
-    document.getElementById('item2Flag').src = currentPair[1].image;
-    document.getElementById('item2Flag').alt = currentPair[1].name + " posteri";
+function setCardsVisibility(showSecondValue) {
+  if (showSecondValue) {
+    item2Value.classList.remove('hidden');
+  } else {
+    item2Value.classList.add('hidden');
     item2Value.textContent = '?';
-
-    card1.classList.remove('correct', 'wrong');
-    card2.classList.remove('correct', 'wrong');
-
-    disableButtons(false);
-    gameOverDiv.style.display = 'none';
-
-    resetTimer();
   }
+}
 
-  function showResult(isCorrect) {
-    setCardsVisibility(true);
-    const val1 = currentPair[0].value;
-    const val2 = currentPair[1].value;
+function disableButtons(val) {
+  btnHigher.disabled = val;
+  btnLower.disabled = val;
+  buttonsDisabled = val;
+}
 
-    if (isCorrect) {
-      score++;
-      updateScore();
-      card2.classList.add('correct');
-      audioCorrect.play().catch(() => {});
-      setTimeout(nextRound, 1200);
-    } else {
-      card2.classList.add('wrong');
-      audioWrong.play().catch(() => {});
-      finalScore.textContent = score;
-      updateHighScoreFilm(score);
+function updateScore() {
+  scoreText.textContent = `Skor: ${score}`;
+}
 
-      // Oyun sonu görünümü
-      card1.style.display = 'none';
-      card2.style.display = 'none';
-      document.getElementById('timer').style.display = 'none';
-      document.querySelector('.options').style.display = 'none';
-      scoreText.style.display = 'none';
-      gameOverDiv.style.display = 'block';
+function resetTimer() {
+  clearInterval(timerInterval);
+  timerBar.style.width = '100%';
+  timerStart = Date.now();
 
-      score = 0;
-      updateScore();
+  timerInterval = setInterval(() => {
+    const elapsed = Date.now() - timerStart;
+    const percent = Math.max(0, 100 - (elapsed / TIMER_DURATION) * 100);
+    timerBar.style.width = percent + '%';
+
+    if (percent <= 0) {
+      clearInterval(timerInterval);
+      if (!buttonsDisabled) {
+        disableButtons(true);
+        showResult(false);
+        updateHighScoreFilm(score);
+      }
     }
-  }
+  }, 50);
+}
 
-  function checkGuess(choice) {
-    if (buttonsDisabled) return;
-    disableButtons(true);
-    clearInterval(timerInterval);
+function nextRound() {
+  setCardsVisibility(false);
+  currentPair = getRandomPair();
 
-    const val1 = currentPair[0].value;
-    const val2 = currentPair[1].value;
+  item1Text.textContent = currentPair[0].name;
+  item1Poster.src = currentPair[0].poster;
+  item1Poster.alt = currentPair[0].name + " posteri";
+  item1Value.textContent = currentPair[0].value.toFixed(1);
 
-    const correct = (choice === 'higher' && val2 > val1) || (choice === 'lower' && val2 < val1);
-    showResult(correct);
-  }
+  item2Text.textContent = currentPair[1].name;
+  item2Poster.src = currentPair[1].poster;
+  item2Poster.alt = currentPair[1].name + " posteri";
+  item2Value.textContent = '?';
 
-  function copyShare() {
-    const score = finalScore?.textContent?.trim() || "0";
-    const mainUrl = "https://yu-du.vercel.app";
-    const shareText = `YÜDÜ: Film Tahmini oyununda ${score} puan yaptım! Sen de dene: ${mainUrl}`;
+  card1.classList.remove('correct', 'wrong');
+  card2.classList.remove('correct', 'wrong');
 
-    const isMobile = /Mobi|Android/i.test(navigator.userAgent);
+  disableButtons(false);
+  gameOverDiv.style.display = 'none';
 
-    if (isMobile && navigator.share) {
-      navigator.share({
-        title: "YÜDÜ: Film Tahmini",
-        text: shareText
-      }).catch(() => {
-        fallbackCopyToClipboard(shareText);
-      });
-    } else {
-      fallbackCopyToClipboard(shareText);
-    }
-  }
+  resetTimer();
+}
 
-  function fallbackCopyToClipboard(text) {
-    if (navigator.clipboard) {
-      navigator.clipboard.writeText(text).then(() => {
-        alert("Paylaşım panoya kopyalandı!");
-      }).catch(() => {
-        legacyCopyToClipboard(text);
-      });
-    } else {
-      legacyCopyToClipboard(text);
-    }
-  }
+function showResult(isCorrect) {
+  setCardsVisibility(true);
+  const val1 = currentPair[0].value;
+  const val2 = currentPair[1].value;
 
-  function legacyCopyToClipboard(text) {
-    const textArea = document.createElement("textarea");
-    textArea.value = text;
-    textArea.style.position = "fixed";
-    textArea.style.left = "-9999px";
-    document.body.appendChild(textArea);
-    textArea.focus();
-    textArea.select();
-    try {
-      document.execCommand('copy');
-      alert("Mesaj panoya kopyalandı!");
-    } catch (e) {}
-    document.body.removeChild(textArea);
-  }
+  if (isCorrect) {
+    score++;
+    updateScore();
+    card2.classList.add('correct');
+    audioCorrect.play().catch(() => {});
+    setTimeout(nextRound, 1200);
+  } else {
+    card2.classList.add('wrong');
+    audioWrong.play().catch(() => {});
+    
+    finalScore.textContent = score;
+    updateHighScoreFilm(score);
 
-  function startGame() {
-    if (items.length < 2) {
-      alert("Veri henüz yüklenmedi. Lütfen sayfayı yeniden yükleyin.");
-      return;
-    }
-    document.getElementById('introText').style.display = 'none';
-    btnStart.style.display = 'none';
-    btnAnasayfa.style.display = 'none';
-
-    card1.style.display = 'block';
-    card2.style.display = 'block';
-    document.getElementById('timer').style.display = 'block';
-    document.querySelector('.options').style.display = 'flex';
-    scoreText.style.display = 'block';
-    gameOverDiv.style.display = 'none';
+    // Oyun bitişi görünümü
+    card1.style.display = 'none';
+    card2.style.display = 'none';
+    document.getElementById('timer').style.display = 'none';
+    document.querySelector('.options').style.display = 'none';
+    scoreText.style.display = 'none';
+    gameOverDiv.style.display = 'block';
 
     score = 0;
     updateScore();
-    nextRound();
   }
+}
 
-  function updateHighScoreFilm(currentScore) {
-    const best = localStorage.getItem('highScoreFilm') || 0;
-    if (currentScore > best) {
-      localStorage.setItem('highScoreFilm', currentScore);
-      document.getElementById('bestScoreFilm').textContent = currentScore;
-    }
+function checkGuess(choice) {
+  if (buttonsDisabled) return;
+  disableButtons(true);
+  clearInterval(timerInterval);
+
+  const val1 = currentPair[0].value;
+  const val2 = currentPair[1].value;
+
+  const correct = (choice === 'higher' && val2 > val1) || (choice === 'lower' && val2 < val1);
+  showResult(correct);
+}
+
+function copyShare() {
+  const score = finalScore?.textContent?.trim() || "0";
+
+  const gameTitle = "YÜDÜ: Film Tahmini";
+  const mainUrl = "https://yu-du.vercel.app";
+
+  const shareText = `${gameTitle} oyununda ${score} puan yaptım! Sen de dene: ${mainUrl}`;
+
+  const isMobile = /Mobi|Android/i.test(navigator.userAgent);
+
+  if (isMobile && navigator.share) {
+    navigator.share({
+      title: gameTitle,
+      text: shareText,
+    }).catch(() => {
+      fallbackCopyToClipboard(shareText);
+    });
+  } else {
+    fallbackCopyToClipboard(shareText);
   }
+}
 
-  function displayBestFilmScore() {
-    const best = localStorage.getItem('highScoreFilm') || 0;
-    document.getElementById('bestScoreFilm').textContent = best;
+function fallbackCopyToClipboard(text) {
+  if (navigator.clipboard) {
+    navigator.clipboard.writeText(text).then(() => {
+      alert("Paylaşım panoya kopyalandı!");
+    }).catch(() => {
+      legacyCopyToClipboard(text);
+    });
+  } else {
+    legacyCopyToClipboard(text);
   }
+}
 
-  displayBestFilmScore();
+function legacyCopyToClipboard(text) {
+  const textArea = document.createElement("textarea");
+  textArea.value = text;
+  textArea.style.position = "fixed";
+  textArea.style.left = "-9999px";
+  document.body.appendChild(textArea);
+  textArea.focus();
+  textArea.select();
 
-  // Service worker varsa kaydet
-  if ("serviceWorker" in navigator) {
-    navigator.serviceWorker.register("/service-worker.js")
-      .then(() => console.log("✅ Service Worker kayıt edildi"))
-      .catch((err) => console.error("❌ Hata:", err));
+  try {
+    document.execCommand('copy');
+    alert("Mesaj panoya kopyalandı!");
+  } catch (e) {}
+
+  document.body.removeChild(textArea);
+}
+
+function startGame() {
+  if (items.length < 2) {
+    alert("Film verisi henüz yüklenmedi. Lütfen sayfayı yeniden yükleyin.");
+    return;
   }
+  document.getElementById('introText').style.display = 'none';
+  btnStart.style.display = 'none';
+  btnAnasayfa.style.display = 'none';
+
+  card1.style.display = 'block';
+  card2.style.display = 'block';
+  document.getElementById('timer').style.display = 'block';
+  document.querySelector('.options').style.display = 'flex';
+  scoreText.style.display = 'block';
+  gameOverDiv.style.display = 'none';
+
+  score = 0;
+  updateScore();
+  nextRound();
+}
+
+function updateHighScoreFilm(currentScore) {
+  const best = localStorage.getItem('highScoreFilm') || 0;
+  if (currentScore > best) {
+    localStorage.setItem('highScoreFilm', currentScore);
+    document.getElementById('bestScoreFilm').textContent = currentScore;
+  }
+}
+
+function displayBestFilmScore() {
+  const best = localStorage.getItem('highScoreFilm') || 0;
+  document.getElementById('bestScoreFilm').textContent = best;
+}
+
+displayBestFilmScore();
+
+if ("serviceWorker" in navigator) {
+  navigator.serviceWorker.register("/service-worker.js")
+    .then(() => console.log("✅ Service Worker kayıt edildi"))
+    .catch((err) => console.error("❌ Hata:", err));
+}
 </script>
 </body>
 </html>
