@@ -18,12 +18,15 @@
     <h2>YÜDÜ - Film Yüksek mi Düşük mü?</h2>
 
     <div id="introText">
-      Bu oyun, verilen iki Filmden ikinci şehrin nüfusunun birincisinden daha yüksek mi yoksa daha düşük mü olduğunu tahmin etme oyunudur.<br>
+      Bu oyun, verilen iki Filmden ikinci Film nüfusunun birincisinden daha yüksek mi yoksa daha düşük mü olduğunu tahmin etme oyunudur.<br>
       Zaman sınırlıdır, doğru tahmin etmeye çalış!
     </div>
 
     <div class="card" id="card1" aria-label="Birinci öğe" style="display:none;">
-      <div id="item1Name">...</div>
+<div id="item1Name" class="item-name">
+  <img id="item1Flag" src="" alt="Bayrak" style="width:40px; height:auto; vertical-align:middle; border-radius:4px; margin-right:8px;">
+  <span id="item1Text">...</span>
+</div>
       <div id="item1Value" class="value">?</div>
     </div>
 
@@ -37,11 +40,14 @@
     </div>
 
     <div class="card" id="card2" aria-label="İkinci öğe" style="display:none;">
-      <div id="item2Name">...</div>
+<div id="item2Name" class="item-name">
+  <img id="item2Flag" src="" alt="Bayrak" style="width:40px; height:auto; vertical-align:middle; border-radius:4px; margin-right:8px;">
+  <span id="item2Text">...</span>
+</div>
       <div id="item2Value" class="value hidden">?</div>
     </div>
 
-<div class="best-score">En iyi skor: <span id="bestScoreUlke">0</span></div>
+<div class="best-score">En iyi skor: <span id="bestScoreFilm">0</span></div>
 <div id="scoreText" style="display:none;">Skor: 0</div>
 
     <button id="btnAnasayfa" class="btn-secondary" onclick="window.location.href='index.html'">Anasayfa</button>
@@ -57,31 +63,37 @@
 
 
 <script>
-  async function fetchCities() {
-    const response = await fetch(
-      'datasets/Film.json'
-    );
-    if (!response.ok) {
-      throw new Error('API isteği başarısız oldu');
-    }
-    const data = await response.json();
-    return data; // [{ name, population, ... }, ...]
+async function fetchCities() {
+  const response = await fetch("datasets/Film.json");
+
+  if (!response.ok) {
+    throw new Error('API isteği başarısız oldu');
   }
+
+  const data = await response.json();
+
+  const countryData = data.map(country => ({
+    name: country.translations?.tur?.common || "Bilinmiyor",
+    value: country.population || 0,
+    flag: country.flags?.png || null
+  }));
+
+  return countryData;
+}
+
 
   let items = [];
 
-  async function initData() {
-    try {
-const arr = await fetchCities();
-items = arr.data.map(c => ({ name: c.name, value: c.population }));
-
-      console.log('API verisi başarıyla yüklendi', items);
-      // Ardından oyun başlatma işlemini buraya ekleyebilirsin
-    } catch (e) {
-      console.error(e);
-      alert('Veri alınamadı, internet bağlantısını kontrol et.');
-    }
+async function initData() {
+  try {
+    items = await fetchCities();
+    console.log('API verisi başarıyla yüklendi', items);
+  } catch (e) {
+    console.error(e);
+    alert('Veri alınamadı, internet bağlantısını kontrol et.');
   }
+}
+
 
   initData();
 
@@ -91,6 +103,8 @@ items = arr.data.map(c => ({ name: c.name, value: c.population }));
     let usedPairs = new Set();
     let buttonsDisabled = false;
     let darkMode = localStorage.getItem('darkMode') === 'true';
+
+	
 
     const card1 = document.getElementById('card1');
     const card2 = document.getElementById('card2');
@@ -116,7 +130,7 @@ items = arr.data.map(c => ({ name: c.name, value: c.population }));
     // Ses efektleri (kısa bip)
     const audioCorrect = new Audio("sound/ding.mp3"); // very short silent sound placeholder
     const audioWrong = new Audio("sound/error.mp3");
-
+	
     function applyTheme() {
       if (darkMode) {
         document.documentElement.setAttribute('data-theme', 'dark');
@@ -182,8 +196,8 @@ items = arr.data.map(c => ({ name: c.name, value: c.population }));
           if (!buttonsDisabled) {
             disableButtons(true);
             showResult(false);
-			updatehighScoreFilm(score);
-			
+			updateHighScoreFilm(score);
+
           }
         }
       }, 50);
@@ -193,11 +207,18 @@ items = arr.data.map(c => ({ name: c.name, value: c.population }));
       setCardsVisibility(false);
       currentPair = getRandomPair();
 
-      item1Name.textContent = currentPair[0].name;
-      item1Value.textContent = currentPair[0].value.toLocaleString();
+document.getElementById('item1Text').textContent = currentPair[0].name;
+document.getElementById('item1Flag').src = currentPair[0].flag;
+document.getElementById('item1Flag').alt = currentPair[0].name + " bayrağı";
 
-      item2Name.textContent = currentPair[1].name;
-      item2Value.textContent = '?';
+item1Value.textContent = currentPair[0].value.toLocaleString();
+
+document.getElementById('item2Text').textContent = currentPair[1].name;
+document.getElementById('item2Flag').src = currentPair[1].flag;
+document.getElementById('item2Flag').alt = currentPair[1].name + " bayrağı";
+
+item2Value.textContent = '?';
+
 
       card1.classList.remove('correct', 'wrong');
       card2.classList.remove('correct', 'wrong');
@@ -226,7 +247,7 @@ function showResult(isCorrect) {
     finalScore.textContent = score;
 
     // ⬇️ Buraya ekleyelim — skor sıfırlanmadan önce
-    updatehighScoreFilm(score);
+    updateHighScoreFilm(score);
 
     // Oyun öğelerini gizle
     card1.style.display = 'none';
@@ -260,10 +281,10 @@ function copyShare() {
   const pathname = window.location.pathname.toLowerCase();
   let gameTitle = "YÜDÜ: Genel Oyun";
 
-  if (pathname.includes("ulke")) {
-    gameTitle = "YÜDÜ: Ülke Tahmini";
-  } else if (pathname.includes("Film")) {
+  if (pathname.includes("Film")) {
     gameTitle = "YÜDÜ: Film Tahmini";
+  } else if (pathname.includes("sehir")) {
+    gameTitle = "YÜDÜ: Şehir Tahmini";
   }
 
   const mainUrl = "https://yu-du.vercel.app";
@@ -342,20 +363,20 @@ function startGame() {
       nextRound();
     }
 
-function updatehighScoreFilm(currentScore) {
+function updateHighScoreFilm(currentScore) {
   const best = localStorage.getItem('highScoreFilm') || 0;
   if (currentScore > best) {
     localStorage.setItem('highScoreFilm', currentScore);
-	document.getElementById('bestScoreUlke').textContent = currentScore;
+	document.getElementById('bestScoreFilm').textContent = currentScore;
 
   }
 }
-function displayBestUlkeScore() {
+function displayBestFilmScore() {
   const best = localStorage.getItem('highScoreFilm') || 0;
-  document.getElementById('bestScoreUlke').textContent = best;
+  document.getElementById('bestScoreFilm').textContent = best;
 }
 
-displayBestUlkeScore();
+displayBestFilmScore();
 
     applyTheme();
     // startGame(); // Açılışta oyun başlamasın, kullanıcı başla butonuna basınca başlasın
