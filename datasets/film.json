@@ -1,7 +1,8 @@
 [
     {
-		"title_tr": "Esaretin Bedeli",
-		"title": "The Shawshank Redemption",
+        "rank": 1,
+	"title_tr": "Esaretin Bedeli",
+	"title": "The Shawshank Redemption",
         "description": "Hapishanede yıllar geçiren iki mahkum, küçük iyiliklerle teselli ve sonunda kurtuluş bulur.",
         "image": "https://m.media-amazon.com/images/M/MV5BMDFkYTc0MGEtZmNhMC00ZDIzLWFmNTEtODM1ZmRlYWMwMWFmXkEyXkFqcGdeQXVyMTMxODk2OTU@._V1_QL75_UX380_CR0,1,380,562_.jpg",
         "big_image": "https://m.media-amazon.com/images/M/MV5BMDFkYTc0MGEtZmNhMC00ZDIzLWFmNTEtODM1ZmRlYWMwMWFmXkEyXkFqcGdeQXVyMTMxODk2OTU@",
@@ -14,9 +15,9 @@
         "imdb_link": "https://www.imdb.com/title/tt0111161"
     },
     {
-        "rank": 2,
-		"title_tr": "Baba",
-		"title": "The Godfather",
+	"rank": 2,
+	"title_tr": "Baba",
+	"title": "The Godfather",
         "description": "New York'ta bir suç imparatorluğunun yaşlanan lideri, iktidarı isteksiz en küçük oğluna devreder.",
         "image": "https://m.media-amazon.com/images/M/MV5BM2MyNjYxNmUtYTAwNi00MTYxLWJmNWYtYzZlODY3ZTk3OTFlXkEyXkFqcGdeQXVyNzkwMjQ5NzM@._V1_QL75_UY562_CR8,0,380,562_.jpg",
         "big_image": "https://m.media-amazon.com/images/M/MV5BM2MyNjYxNmUtYTAwNi00MTYxLWJmNWYtYzZlODY3ZTk3OTFlXkEyXkFqcGdeQXVyNzkwMjQ5NzM@._V1_QL75_UY562_CR8,0,380,562_.jpg",
@@ -29,10 +30,10 @@
         "imdb_link": "https://www.imdb.com/title/tt0068646"
     },
     {
-        "rank": 3,
-		"title_tr": "Kara Şövalye",
-		"title": "The Dark Knight",
-        "description": "Joker, Gotham halkına kaos ve korku salarken Batman, adalet için fiziksel ve psikolojik sınırlarını zorlar.",
+	"rank": 3,
+	"title_tr": "Kara Şövalye",
+	"title": "The Dark Knight",
+	"description": "Joker, Gotham halkına kaos ve korku salarken Batman, adalet için fiziksel ve psikolojik sınırlarını zorlar.",
         "image": "https://m.media-amazon.com/images/M/MV5BMTMxNTMwODM0NF5BMl5BanBnXkFtZTcwODAyMTk2Mw@@._V1_QL75_UX380_CR0,0,380,562_.jpg",
         "big_image": "https://m.media-amazon.com/images/M/MV5BMTMxNTMwODM0NF5BMl5BanBnXkFtZTcwODAyMTk2Mw@@._V1_QL75_UX380_CR0,0,380,562_.jpg",
         "genre": ["Aksiyon", "Suç", "Dram"],
@@ -44,9 +45,9 @@
         "imdb_link": "https://www.imdb.com/title/tt0468569"
     },
     {
-        "rank": 4,
-		"title_tr": "Baba 2",
-		"title": "The Godfather Part II",
+	"rank": 4,
+	"title_tr": "Baba 2",
+	"title": "The Godfather Part II",
         "description": "Genç Vito Corleone'nin 1920'lerdeki yükselişi ve oğlu Michael'ın suç imparatorluğunu genişletmesi paralelinde anlatılır.",
         "image": "https://m.media-amazon.com/images/M/MV5BMWMwMGQzZTItY2JlNC00OWZiLWIyMDctNDk2ZDQ2YjRjMWQ0XkEyXkFqcGdeQXVyNzkwMjQ5NzM@._V1_QL75_UY562_CR7,0,380,562_.jpg",
         "big_image": "https://m.media-amazon.com/images/M/MV5BMWMwMGQzZTItY2JlNC00OWZiLWIyMDctNDk2ZDQ2YjRjMWQ0XkEyXkFqcGdeQXVyNzkwMjQ5NzM@._V1_QL75_UY562_CR7,0,380,562_.jpg",
@@ -59,9 +60,9 @@
         "imdb_link": "https://www.imdb.com/title/tt0071562"
     },
     {
-        "rank": 5,
-		"title_tr": "12 Öfkeli Adam",
-		"title": "12 Angry Men",
+	"rank": 5,
+	"title_tr": "12 Öfkeli Adam",
+	"title": "12 Angry Men",
         "description": "New York'ta bir cinayet davasında jüri, şüpheci bir üyenin baskısıyla acele karar vermek yerine kanıtları dikkatle inceler.",
         "image": "https://m.media-amazon.com/images/M/MV5BMWU4N2FjNzYtNTVkNC00NzQ0LTg0MjAtYTJlMjFhNGUxZDFmXkEyXkFqcGdeQXVyNjc1NTYyMjg@._V1_QL75_UX380_CR0,11,380,562_.jpg",
         "big_image": "https://m.media-amazon.com/images/M/MV5BMWU4N2FjNzYtNTVkNC00NzQ0LTg0MjAtYTJlMjFhNGUxZDFmXkEyXkFqcGdeQXVyNjc1NTYyMjg@._V1_QL75_UX380_CR0,11,380,562_.jpg",
@@ -74,9 +75,9 @@
         "imdb_link": "https://www.imdb.com/title/tt0050083"
     },
     {
-        "rank": 6,
-		"title_tr": "Schindler'in Listesi",
-		"title": "Schindler's List",
+	"rank": 6,
+	"title_tr": "Schindler'in Listesi",
+	"title": "Schindler's List",
         "description": "II. Dünya Savaşı'nda Nazi zulmüne tanık olan bir iş adamı, Yahudi işçilerini kurtarmak için harekete geçer.",
         "image": "https://m.media-amazon.com/images/M/MV5BNDE4OTMxMTctNmRhYy00NWE2LTg3YzItYTk3M2UwOTU5Njg4XkEyXkFqcGdeQXVyNjU0OTQ0OTY@._V1_QL75_UX380_CR0,4,380,562_.jpg",
         "big_image": "https://m.media-amazon.com/images/M/MV5BNDE4OTMxMTctNmRhYy00NWE2LTg3YzItYTk3M2UwOTU5Njg4XkEyXkFqcGdeQXVyNjU0OTQ0OTY@._V1_QL75_UX380_CR0,4,380,562_.jpg",
@@ -89,9 +90,9 @@
         "imdb_link": "https://www.imdb.com/title/tt0108052"
     },
     {
-        "rank": 7,
-		"title_tr": "Yüzüklerin Efendisi: Kralın Dönüşü",
-		"title": "The Lord of the Rings: The Return of the King",
+	"rank": 7,
+	"title_tr": "Yüzüklerin Efendisi: Kralın Dönüşü",
+	"title": "The Lord of the Rings: The Return of the King",
         "description": "Gandalf ve Aragorn, Frodo ile Sam'in Tek Yüzük'ü yok etme görevinde Sauron'un dikkatini dağıtmak için savaşır.",
         "image": "https://m.media-amazon.com/images/M/MV5BNzA5ZDNlZWMtM2NhNS00NDJjLTk4NDItYTRmY2EwMWZlMTY3XkEyXkFqcGdeQXVyNzkwMjQ5NzM@._V1_QL75_UX380_CR0,0,380,562_.jpg",
         "big_image": "https://m.media-amazon.com/images/M/MV5BNzA5ZDNlZWMtM2NhNS00NDJjLTk4NDItYTRmY2EwMWZlMTY3XkEyXkFqcGdeQXVyNzkwMjQ5NzM@._V1_QL75_UX380_CR0,0,380,562_.jpg",
@@ -104,9 +105,9 @@
         "imdb_link": "https://www.imdb.com/title/tt0167260"
     },
     {
-        "rank": 8,
-		"title_tr": "Ucuz Roman",
-		"title": "Pulp Fiction",
+	"rank": 8,
+	"title_tr": "Ucuz Roman",
+	"title": "Pulp Fiction",
         "description": "İki tetikçi, bir boksör, bir gangster ve karısı ile bir diner soygununun hikayeleri şiddet ve kurtuluş temasında kesişir.",
         "image": "https://m.media-amazon.com/images/M/MV5BNGNhMDIzZTUtNTBlZi00MTRlLWFjM2ItYzViMjE3YzI5MjljXkEyXkFqcGdeQXVyNzkwMjQ5NzM@._V1_QL75_UY562_CR3,0,380,562_.jpg",
         "big_image": "https://m.media-amazon.com/images/M/MV5BNGNhMDIzZTUtNTBlZi00MTRlLWFjM2ItYzViMjE3YzI5MjljXkEyXkFqcGdeQXVyNzkwMjQ5NzM@._V1_QL75_UY562_CR3,0,380,562_.jpg",
@@ -119,9 +120,9 @@
         "imdb_link": "https://www.imdb.com/title/tt0110912"
     },
     {
-        "rank": 9,
-		"title_tr": "Yüzüklerin Efendisi: Yüzük Kardeşliği",
-		"title": "The Lord of the Rings: The Fellowship of the Ring",
+	"rank": 9,
+	"title_tr": "Yüzüklerin Efendisi: Yüzük Kardeşliği",
+	"title": "The Lord of the Rings: The Fellowship of the Ring",
         "description": "Shire'lı mütevazı bir Hobbit ve sekiz arkadaşı, Tek Yüzük'ü yok etmek ve Orta Dünya'yı kurtarmak için yola çıkar.",
         "image": "https://m.media-amazon.com/images/M/MV5BN2EyZjM3NzUtNWUzMi00MTgxLWI0NTctMzY4M2VlOTdjZWRiXkEyXkFqcGdeQXVyNDUzOTQ5MjY@._V1_QL75_UX380_CR0,1,380,562_.jpg",
         "big_image": "https://m.media-amazon.com/images/M/MV5BN2EyZjM3NzUtNWUzMi00MTgxLWI0NTctMzY4M2VlOTdjZWRiXkEyXkFqcGdeQXVyNDUzOTQ5MjY@",
@@ -134,9 +135,9 @@
         "imdb_link": "https://www.imdb.com/title/tt0120737"
     },
     {
-        "rank": 10,
-		"title_tr": "İyi, Kötü ve Çirkin",
-		"title": "The Good, the Bad and the Ugly",
+	"rank": 10,
+	"title_tr": "İyi, Kötü ve Çirkin",
+	"title": "The Good, the Bad and the Ugly",
         "description": "Bir mezarlığa gömülü altın için yarışan iki adam, üçüncü birine karşı zoraki ittifak kurar.",
         "image": "https://m.media-amazon.com/images/M/MV5BNjJlYmNkZGItM2NhYy00MjlmLTk5NmQtNjg1NmM2ODU4OTMwXkEyXkFqcGdeQXVyMjUzOTY1NTc@._V1_QL75_UX380_CR0,4,380,562_.jpg",
         "big_image": "https://m.media-amazon.com/images/M/MV5BNjJlYmNkZGItM2NhYy00MjlmLTk5NmQtNjg1NmM2ODU4OTMwXkEyXkFqcGdeQXVyMjUzOTY1NTc@._V1_QL75_UX380_CR0,4,380,562_.jpg",
@@ -149,9 +150,9 @@
         "imdb_link": "https://www.imdb.com/title/tt0060196"
     },
     {
-        "rank": 11,
-		"title_tr": "Forrest Gump",
-		"title": "Forrest Gump",
+	"rank": 11,
+	"title_tr": "Forrest Gump",
+	"title": "Forrest Gump",
         "description": "IQ'su 75 olan Alabama'lı bir adamın gözünden Kennedy suikastı, Vietnam Savaşı ve Watergate skandalı gibi tarihi olaylar.",
         "image": "https://m.media-amazon.com/images/M/MV5BNWIwODRlZTUtY2U3ZS00Yzg1LWJhNzYtMmZiYmEyNmU1NjMzXkEyXkFqcGdeQXVyMTQxNzMzNDI@._V1_QL75_UY562_CR4,0,380,562_.jpg",
         "big_image": "https://m.media-amazon.com/images/M/MV5BNWIwODRlZTUtY2U3ZS00Yzg1LWJhNzYtMmZiYmEyNmU1NjMzXkEyXkFqcGdeQXVyMTQxNzMzNDI@._V1_QL75_UY562_CR4,0,380,562_.jpg",
@@ -164,9 +165,9 @@
         "imdb_link": "https://www.imdb.com/title/tt0109830"
     },
     {
-        "rank": 12,
-		"title_tr": "Dövüş Kulübü",
-		"title": "Fight Club",
+	"rank": 12,
+	"title_tr": "Dövüş Kulübü",
+	"title": "Fight Club",
         "description": "Uykusuzluk çeken bir ofis çalışanı ve sabun üreticisi, yeraltı dövüş kulübü kurarak beklenmedik bir yolculuğa çıkar.",
         "image": "https://m.media-amazon.com/images/M/MV5BNDIzNDU0YzEtYzE5Ni00ZjlkLTk5ZjgtNjM3NWE4YzA3Nzk3XkEyXkFqcGdeQXVyMjUzOTY1NTc@._V1_QL75_UX380_CR0,1,380,562_.jpg",
         "big_image": "https://m.media-amazon.com/images/M/MV5BNDIzNDU0YzEtYzE5Ni00ZjlkLTk5ZjgtNjM3NWE4YzA3Nzk3XkEyXkFqcGdeQXVyMjUzOTY1NTc@",
@@ -180,8 +181,8 @@
     },
     {
         "rank": 13,
-		"title_tr": "Yüzüklerin Efendisi: İki Kule",
-		"title": "The Lord of the Rings: The Two Towers",
+	"title_tr": "Yüzüklerin Efendisi: İki Kule",
+	"title": "The Lord of the Rings: The Two Towers",
         "description": "Frodo ve Sam, Gollum'un rehberliğinde Mordor'a ilerlerken, diğerleri Isengard'ın ordularına karşı savaşır.",
         "image": "https://m.media-amazon.com/images/M/MV5BZGMxZTdjZmYtMmE2Ni00ZTdkLWI5NTgtNjlmMjBiNzU2MmI5XkEyXkFqcGdeQXVyNjU0OTQ0OTY@._V1_QL75_UX380_CR0,14,380,562_.jpg",
         "big_image": "https://m.media-amazon.com/images/M/MV5BZGMxZTdjZmYtMmE2Ni00ZTdkLWI5NTgtNjlmMjBiNzU2MmI5XkEyXkFqcGdeQXVyNjU0OTQ0OTY@._V1_QL75_UX380_CR0,14,380,562_.jpg",
@@ -195,8 +196,8 @@
     },
     {
         "rank": 14,
-		"title_tr": "Başlangıç",
-		"title": "Inception",
+	"title_tr": "Başlangıç",
+	"title": "Inception",
         "description": "Rüya paylaşım teknolojisiyle kurumsal sırları çalan bir hırsız, bu kez bir CEO'nun zihnine fikir yerleştirme görevi alır.",
         "image": "https://m.media-amazon.com/images/M/MV5BMjAxMzY3NjcxNF5BMl5BanBnXkFtZTcwNTI5OTM0Mw@@._V1_QL75_UX380_CR0,0,380,562_.jpg",
         "big_image": "https://m.media-amazon.com/images/M/MV5BMjAxMzY3NjcxNF5BMl5BanBnXkFtZTcwNTI5OTM0Mw@@._V1_QL75_UX380_CR0,0,380,562_.jpg",
