@@ -1,0 +1,373 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8" />
+<meta name="theme-color" content="#ffcd21">
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link rel="stylesheet" href="style.css" />
+<link rel="manifest" href="manifest.json">
+<link rel="icon" href="assets/icon-192.png">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<title>YÜDÜ - Film Yüksek mi Düşük mü?</title>
+
+</head>
+<body>
+  <button class="theme-toggle" id="toggleThemeBtn" aria-label="Tema değiştir">🌙</button>
+  <div class="container" role="main" aria-live="polite">
+    <h2>YÜDÜ - Film Yüksek mi Düşük mü?</h2>
+
+    <div id="introText">
+      Bu oyun, verilen iki Filmden ikinci şehrin nüfusunun birincisinden daha yüksek mi yoksa daha düşük mü olduğunu tahmin etme oyunudur.<br>
+      Zaman sınırlıdır, doğru tahmin etmeye çalış!
+    </div>
+
+    <div class="card" id="card1" aria-label="Birinci öğe" style="display:none;">
+      <div id="item1Name">...</div>
+      <div id="item1Value" class="value">?</div>
+    </div>
+
+    <div id="timer" aria-label="Kalan süre" style="display:none;">
+      <div id="timer-fill"></div>
+    </div>
+
+    <div class="options" role="group" aria-label="Tahmin seçenekleri" style="display:none;">
+      <button id="btnHigher" onclick="checkGuess('higher')" disabled>Daha Yüksek</button>
+      <button id="btnLower" onclick="checkGuess('lower')" disabled>Daha Düşük</button>
+    </div>
+
+    <div class="card" id="card2" aria-label="İkinci öğe" style="display:none;">
+      <div id="item2Name">...</div>
+      <div id="item2Value" class="value hidden">?</div>
+    </div>
+
+<div class="best-score">En iyi skor: <span id="bestScoreUlke">0</span></div>
+<div id="scoreText" style="display:none;">Skor: 0</div>
+
+    <button id="btnAnasayfa" class="btn-secondary" onclick="window.location.href='index.html'">Anasayfa</button>
+    <button id="btnStart" class="btn-secondary" onclick="startGame()">Oyuna Başla</button>
+
+    <div id="gameOver" role="alert" style="display:none;">
+      <p>Oyun Bitti! Toplam Skorun: <strong id="finalScore">0</strong></p>
+      <button class="btn-secondary" id="btnRestart" onclick="startGame()">Yeniden Başla</button>
+      <button class="btn-secondary" id="btnShare" onclick="copyShare()">Skorunu Paylaş</button>
+	  <button id="btnAnasayfa" class="btn-secondary" onclick="window.location.href='index.html'">Anasayfa</button>
+    </div>
+  </div>
+
+
+<script>
+  async function fetchCities() {
+    const response = await fetch(
+      'https://turkiyeapi.dev/api/v1/provinces?&fields=name,population'
+    );
+    if (!response.ok) {
+      throw new Error('API isteği başarısız oldu');
+    }
+    const data = await response.json();
+    return data; // [{ name, population, ... }, ...]
+  }
+
+  let items = [];
+
+  async function initData() {
+    try {
+const arr = await fetchCities();
+items = arr.data.map(c => ({ name: c.name, value: c.population }));
+
+      console.log('API verisi başarıyla yüklendi', items);
+      // Ardından oyun başlatma işlemini buraya ekleyebilirsin
+    } catch (e) {
+      console.error(e);
+      alert('Veri alınamadı, internet bağlantısını kontrol et.');
+    }
+  }
+
+  initData();
+
+
+    let score = 0;
+    let currentPair = [];
+    let usedPairs = new Set();
+    let buttonsDisabled = false;
+    let darkMode = localStorage.getItem('darkMode') === 'true';
+
+    const card1 = document.getElementById('card1');
+    const card2 = document.getElementById('card2');
+    const item1Name = document.getElementById('item1Name');
+    const item1Value = document.getElementById('item1Value');
+    const item2Name = document.getElementById('item2Name');
+    const item2Value = document.getElementById('item2Value');
+    const scoreText = document.getElementById('scoreText');
+    const gameOverDiv = document.getElementById('gameOver');
+    const finalScore = document.getElementById('finalScore');
+    const btnHigher = document.getElementById('btnHigher');
+    const btnLower = document.getElementById('btnLower');
+    const btnStart = document.getElementById('btnStart');
+    const btnAnasayfa = document.getElementById('btnAnasayfa');
+    const btnRestart = document.getElementById('btnRestart');
+    const btnShare = document.getElementById('btnShare');
+    const toggleThemeBtn = document.getElementById('toggleThemeBtn');
+    const timerBar = document.getElementById('timer-fill');
+    const TIMER_DURATION = 7000; // 7 saniye
+    let timerInterval = null;
+    let timerStart = null;
+
+    // Ses efektleri (kısa bip)
+    const audioCorrect = new Audio("data:audio/wav;base64,UklGRiQAAABXQVZFZm10IBAAAAABAAEAQB8AAEAfAAABAAgAZGF0YQgAAA=="); // very short silent sound placeholder
+    const audioWrong = new Audio("data:audio/wav;base64,UklGRhwAAABXQVZFZm10IBAAAAABAAEAQB8AAEAfAAABAAgAZGF0YQgAAAAAAACAgICAgP//f39/f39/f39/f39/f39/f39/f39/f39/f39/f39/f39/f39/f39/");
+
+    function applyTheme() {
+      if (darkMode) {
+        document.documentElement.setAttribute('data-theme', 'dark');
+        toggleThemeBtn.textContent = '☀️';
+      } else {
+        document.documentElement.setAttribute('data-theme', 'light');
+        toggleThemeBtn.textContent = '🌙';
+      }
+      localStorage.setItem('darkMode', darkMode);
+    }
+    toggleThemeBtn.addEventListener('click', () => {
+      darkMode = !darkMode;
+      applyTheme();
+    });
+
+    function getRandomPair() {
+      if (usedPairs.size >= items.length * (items.length -1) / 2) {
+        usedPairs.clear();
+      }
+      let i1, i2, key;
+      do {
+        i1 = Math.floor(Math.random() * items.length);
+        do {
+          i2 = Math.floor(Math.random() * items.length);
+        } while (i2 === i1);
+        key = i1 < i2 ? `${i1}-${i2}` : `${i2}-${i1}`;
+      } while (usedPairs.has(key));
+      usedPairs.add(key);
+      return [items[i1], items[i2]];
+    }
+
+    function setCardsVisibility(showSecondValue) {
+      if (showSecondValue) {
+        item2Value.classList.remove('hidden');
+      } else {
+        item2Value.classList.add('hidden');
+        item2Value.textContent = '?';
+      }
+    }
+
+    function disableButtons(val) {
+      btnHigher.disabled = val;
+      btnLower.disabled = val;
+      buttonsDisabled = val;
+    }
+
+    function updateScore() {
+      scoreText.textContent = `Skor: ${score}`;
+    }
+
+    function resetTimer() {
+      clearInterval(timerInterval);
+      timerBar.style.width = '100%';
+      timerStart = Date.now();
+
+      timerInterval = setInterval(() => {
+        const elapsed = Date.now() - timerStart;
+        const percent = Math.max(0, 100 - (elapsed / TIMER_DURATION) * 100);
+        timerBar.style.width = percent + '%';
+
+        if (percent <= 0) {
+          clearInterval(timerInterval);
+          if (!buttonsDisabled) {
+            disableButtons(true);
+            showResult(false);
+			updatehighScoreFilm(score);
+			
+          }
+        }
+      }, 50);
+    }
+
+    function nextRound() {
+      setCardsVisibility(false);
+      currentPair = getRandomPair();
+
+      item1Name.textContent = currentPair[0].name;
+      item1Value.textContent = currentPair[0].value.toLocaleString();
+
+      item2Name.textContent = currentPair[1].name;
+      item2Value.textContent = '?';
+
+      card1.classList.remove('correct', 'wrong');
+      card2.classList.remove('correct', 'wrong');
+
+      disableButtons(false);
+      gameOverDiv.style.display = 'none';
+
+      resetTimer();
+    }
+
+function showResult(isCorrect) {
+  setCardsVisibility(true);
+  const val1 = currentPair[0].value;
+  const val2 = currentPair[1].value;
+
+  if (isCorrect) {
+    score++;
+    updateScore();
+    card2.classList.add('correct');
+    audioCorrect.play().catch(() => {});
+    setTimeout(nextRound, 1200);
+  } else {
+    card2.classList.add('wrong');
+    audioWrong.play().catch(() => {});
+    
+    finalScore.textContent = score;
+
+    // ⬇️ Buraya ekleyelim — skor sıfırlanmadan önce
+    updatehighScoreFilm(score);
+
+    // Oyun öğelerini gizle
+    card1.style.display = 'none';
+    card2.style.display = 'none';
+    document.getElementById('timer').style.display = 'none';
+    document.querySelector('.options').style.display = 'none';
+    scoreText.style.display = 'none';
+
+    // Sadece Game Over bölümü göster
+    gameOverDiv.style.display = 'block';
+
+    score = 0;
+    updateScore();
+  }
+}
+
+    function checkGuess(choice) {
+      if (buttonsDisabled) return;
+      disableButtons(true);
+      clearInterval(timerInterval);
+      const val1 = currentPair[0].value;
+      const val2 = currentPair[1].value;
+
+      const correct = (choice === 'higher' && val2 > val1) || (choice === 'lower' && val2 < val1);
+      showResult(correct);
+    }
+
+function copyShare() {
+  const score = finalScore?.textContent?.trim() || "0";
+
+  // Oyun başlığını belirle
+  const page = window.location.pathname.split("/").pop();
+  let gameTitle = "YÜDÜ: Genel Oyun";
+
+  if (page.includes("ulke")) {
+    gameTitle = "YÜDÜ: Ülke Tahmini";
+  } else if (page.includes("Film")) {
+    gameTitle = "YÜDÜ: Film Tahmini";
+  }
+
+  const mainUrl = window.location.origin;
+  const shareText = `${gameTitle} oyununda ${score} puan yaptım! Sen de dene: ${mainUrl}`;
+
+  const isMobile = /Mobi|Android/i.test(navigator.userAgent);
+
+  if (isMobile && navigator.share) {
+    navigator.share({
+      title: gameTitle,
+      text: `Skorum: ${score}. Hadi sen de dene!`,
+      url: mainUrl
+    }).catch(() => {
+      fallbackCopyToClipboard(shareText);
+    });
+  } else {
+    fallbackCopyToClipboard(shareText);
+    
+  }
+}
+
+function fallbackCopyToClipboard(text) {
+  if (navigator.clipboard) {
+    navigator.clipboard.writeText(text).then(() => {
+      alert("Paylaşım panoya kopyalandı!");
+    }).catch(() => {
+      legacyCopyToClipboard(text);
+    });
+  } else {
+    legacyCopyToClipboard(text);
+  }
+}
+
+function legacyCopyToClipboard(text) {
+  const textArea = document.createElement("textarea");
+  textArea.value = text;
+  textArea.style.position = "fixed";
+  textArea.style.left = "-9999px";
+  document.body.appendChild(textArea);
+  textArea.focus();
+  textArea.select();
+
+  try {
+    const successful = document.execCommand('copy');
+    if (successful) {
+      alert("Mesaj panoya kopyalandı! İstediğiniz platformda Ctrl+V ile yapıştırabilirsiniz.");
+    } else {
+      throw new Error("Kopyalama başarısız");
+    }
+  } catch (e) {
+    alert("Kopyalama desteklenmiyor. Lütfen aşağıdaki metni manuel kopyalayın:\n\n" + text);
+  }
+
+  document.body.removeChild(textArea);
+}
+
+function startGame() {
+  if (items.length < 2) {
+    alert("Veri henüz yüklenmedi. Lütfen sayfayı yeniden yükleyin.");
+    return;
+  }
+      // İlk önce açılış metnini ve başla butonunu gizle, oyun elemanlarını göster
+      document.getElementById('introText').style.display = 'none';
+      btnStart.style.display = 'none';
+      btnAnasayfa.style.display = 'none';
+
+      card1.style.display = 'block';
+      card2.style.display = 'block';
+      document.getElementById('timer').style.display = 'block';
+      document.querySelector('.options').style.display = 'flex';
+      scoreText.style.display = 'block';
+      gameOverDiv.style.display = 'none';
+
+      score = 0;
+      updateScore();
+      nextRound();
+    }
+
+function updatehighScoreFilm(currentScore) {
+  const best = localStorage.getItem('highScoreFilm') || 0;
+  if (currentScore > best) {
+    localStorage.setItem('highScoreFilm', currentScore);
+	document.getElementById('bestScoreUlke').textContent = currentScore;
+
+  }
+}
+function displayBestUlkeScore() {
+  const best = localStorage.getItem('highScoreFilm') || 0;
+  document.getElementById('bestScoreUlke').textContent = best;
+}
+
+displayBestUlkeScore();
+
+    applyTheme();
+    // startGame(); // Açılışta oyun başlamasın, kullanıcı başla butonuna basınca başlasın
+  </script>
+  <script>
+  if ("serviceWorker" in navigator) {
+    navigator.serviceWorker.register("/service-worker.js")
+      .then(() => console.log("✅ Service Worker kayıt edildi"))
+      .catch((err) => console.error("❌ Hata:", err));
+  }
+</script>
+
+</body>
+</html>
