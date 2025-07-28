@@ -1,54 +1,54 @@
 [
   {
-    "name": "The Shawshank Redemption",
+    "name": "The Shawshank Redemption - Esaretin Bedeli",
     "value": 9.3,
     "extra": "IMDb Puanı",
     "image": "https://image.tmdb.org/t/p/w500/q6y0Go1tsGEsmtFryDOJo3dEmqu.jpg"
   },
   {
-    "name": "The Godfather",
+    "name": "The Godfather - Baba",
     "value": 9.2,
     "extra": "IMDb Puanı",
     "image": "https://image.tmdb.org/t/p/w500/3bhkrj58Vtu7enYsRolD1fZdja1.jpg"
   },
   {
-    "name": "The Dark Knight",
+    "name": "The Dark Knight - Kara Şövalye",
     "value": 9.0,
     "extra": "IMDb Puanı",
     "image": "https://image.tmdb.org/t/p/w500/qJ2tW6WMUDux911r6m7haRef0WH.jpg"
   },
   {
-    "name": "The Godfather Part II",
+    "name": "The Godfather Part II - Baba 2",
     "value": 9.0,
     "extra": "IMDb Puanı",
-    "image": "https://image.tmdb.org/t/p/w500/bVq65huQ8vHDd1a4Z37QtuyEvpA.jpg"
+    "image": "https://image.tmdb.org/t/p/w500/hek3koDUyRQk7FIhPXsa6mT2Zc3.jpg"
   },
   {
-    "name": "12 Angry Men",
+    "name": "12 Angry Men - 12 Öfkeli Adam",
     "value": 9.0,
     "extra": "IMDb Puanı",
     "image": "https://image.tmdb.org/t/p/w500/3W0v956XxSG5xgm7LB6qu8ExYJ2.jpg"
   },
   {
-    "name": "Schindler's List",
-    "value": 8.9,
+    "name": "Schindler's List - Schindler'in Listesi",
+    "value": 9.0,
     "extra": "IMDb Puanı",
     "image": "https://image.tmdb.org/t/p/w500/c8Ass7acuOe4za6DhSattE359gr.jpg"
   },
   {
-    "name": "The Lord of the Rings: The Return of the King",
-    "value": 8.9,
+    "name": "The Lord of the Rings: The Return of the King - Kralın Dönüşü",
+    "value": 9.0,
     "extra": "IMDb Puanı",
     "image": "https://image.tmdb.org/t/p/w500/rCzpDGLbOoPwLjy3OAm5NUPOTrC.jpg"
   },
   {
-    "name": "Pulp Fiction",
+    "name": "Pulp Fiction - Ucuz Roman",
     "value": 8.9,
     "extra": "IMDb Puanı",
     "image": "https://image.tmdb.org/t/p/w500/d5iIlFn5s0ImszYzBPb8JPIfbXD.jpg"
   },
   {
-    "name": "The Lord of the Rings: The Fellowship of the Ring",
+    "name": "The Lord of the Rings: The Fellowship of the Ring - Yüzük Kardeşliği",
     "value": 8.8,
     "extra": "IMDb Puanı",
     "image": "https://image.tmdb.org/t/p/w500/6oom5QYQ2yQTMJIbnvbkBL9cHo6.jpg"
@@ -60,13 +60,13 @@
     "image": "https://image.tmdb.org/t/p/w500/saHP97rTPS5eLmrLQEcANmKrsFl.jpg"
   },
   {
-    "name": "Inception",
-    "value": 8.8,
+    "name": "Inception - Başlangıç",
+    "value": 8.7,
     "extra": "IMDb Puanı",
-    "image": "https://image.tmdb.org/t/p/w500/9gk7adHYeDvHkCSEqAvQNLV5Uge.jpg"
+    "image": "https://image.tmdb.org/t/p/w500/edv5CZvWj09upOsy2Y6IwDhK8bt.jpg"
   },
   {
-    "name": "Fight Club",
+    "name": "Fight Club - Dövüş Kulübü",
     "value": 8.8,
     "extra": "IMDb Puanı",
     "image": "https://image.tmdb.org/t/p/w500/bptfVGEQuv6vDTIMVCHjJ9Dz8PX.jpg"
@@ -78,111 +78,93 @@
     "image": "https://image.tmdb.org/t/p/w500/f89U3ADr1oiB1s9GkdPOEpXUk5H.jpg"
   },
   {
-    "name": "Goodfellas",
+    "name": "Goodfellas - Sıkı Dostlar",
     "value": 8.7,
     "extra": "IMDb Puanı",
     "image": "https://image.tmdb.org/t/p/w500/aKuFiU82s5ISJpGZp7YkIr3kCUd.jpg"
   },
   {
-    "name": "The Empire Strikes Back",
+    "name": "Star Wars: Episode V - The Empire Strikes Back - İmparator",
     "value": 8.7,
     "extra": "IMDb Puanı",
     "image": "https://image.tmdb.org/t/p/w500/7BuH8itoSrLExs2YZSsM01Qk2no.jpg"
   },
   {
-    "name": "One Flew Over the Cuckoo's Nest",
+    "name": "One Flew Over the Cuckoo's Nest - Guguk Kuşu",
     "value": 8.7,
     "extra": "IMDb Puanı",
     "image": "https://image.tmdb.org/t/p/w500/3jcbDmRFiQ83drXNOvRDeKHxS0C.jpg"
   },
   {
-    "name": "Interstellar",
+    "name": "Interstellar - Yıldızlararası",
     "value": 8.6,
     "extra": "IMDb Puanı",
     "image": "https://image.tmdb.org/t/p/w500/gEU2QniE6E77NI6lCU6MxlNBvIx.jpg"
   },
   {
-    "name": "City of God",
+    "name": "City of God - Tanrıkent",
     "value": 8.6,
     "extra": "IMDb Puanı",
-    "image": "https://image.tmdb.org/t/p/w500/4cDFJr4HnXN5AdPw4AKrmLlMWdO.jpg"
+    "image": "https://image.tmdb.org/t/p/w500/4bm9QeEJDt7gix0JZaR1k6TY4VP.jpg"
   },
   {
-    "name": "Spirited Away",
+    "name": "Spirited Away - Ruhların Kaçışı",
     "value": 8.6,
     "extra": "IMDb Puanı",
     "image": "https://image.tmdb.org/t/p/w500/dL11DBPcRhWWnJcFXl9A07MrqTI.jpg"
   },
   {
-    "name": "Saving Private Ryan",
+    "name": "Saving Private Ryan - Er Ryan'ı Kurtarmak",
     "value": 8.6,
     "extra": "IMDb Puanı",
     "image": "https://image.tmdb.org/t/p/w500/miDoEMlYDJhOCvxlzI0wZqBs9Yt.jpg"
   },
   {
-    "name": "The Green Mile",
-    "value": 8.6,
-    "extra": "IMDb Puanı",
-    "image": "https://image.tmdb.org/t/p/w500/velWPhVMQeQKcxggNEU8YmIo52R.jpg"
-  },
-  {
-    "name": "Se7en",
-    "value": 8.6,
-    "extra": "IMDb Puanı",
-    "image": "https://image.tmdb.org/t/p/w500/69Sns8WoET6CfaYlIkHbla4l7nC.jpg"
-  },
-  {
-    "name": "The Silence of the Lambs",
-    "value": 8.6,
-    "extra": "IMDb Puanı",
-    "image": "https://image.tmdb.org/t/p/w500/rplLJ2hPcOQmkFhTqUte0MkEaO2.jpg"
-  },
-  {
-    "name": "Life Is Beautiful",
-    "value": 8.6,
-    "extra": "IMDb Puanı",
-    "image": "https://image.tmdb.org/t/p/w500/f7DImXDebOs148U4uPjI61iDvaK.jpg"
-  },
-  {
-    "name": "The Usual Suspects",
-    "value": 8.5,
-    "extra": "IMDb Puanı",
-    "image": "https://image.tmdb.org/t/p/w500/bUPmtQzrRhzqYySeiMpv7GurAfm.jpg"
-  },
-  {
-    "name": "Léon: The Professional",
-    "value": 8.5,
-    "extra": "IMDb Puanı",
-    "image": "https://image.tmdb.org/t/p/w500/hVYfE0Y3PptbZBpjzL4zqtmxWdv.jpg"
-  },
-  {
-    "name": "Harakiri",
-    "value": 8.5,
-    "extra": "IMDb Puanı",
-    "image": "https://image.tmdb.org/t/p/w500/iiRz8L3nTSei8XZ28uKh1MLpR3H.jpg"
-  },
-  {
-    "name": "Back to the Future",
-    "value": 8.5,
-    "extra": "IMDb Puanı",
-    "image": "https://image.tmdb.org/t/p/w500/fNOH9f1aA7XRTzl1sAOx9iF553Q.jpg"
-  },
-  {
-    "name": "Terminator 2: Judgment Day",
-    "value": 8.5,
-    "extra": "IMDb Puanı",
-    "image": "https://image.tmdb.org/t/p/w500/weVXMD5QBGeQil4HEATZqAkXeEc.jpg"
-  },
-  {
-    "name": "Parasite",
+    "name": "Parasite - Parazit",
     "value": 8.5,
     "extra": "IMDb Puanı",
     "image": "https://image.tmdb.org/t/p/w500/7IiTTgloJzvGI1TAYymCfbfl3vT.jpg"
   },
   {
-    "name": "Whiplash",
+    "name": "The Green Mile - Yeşil Yol",
+    "value": 8.6,
+    "extra": "IMDb Puanı",
+    "image": "https://image.tmdb.org/t/p/w500/sOHqdY1RnSn6kcfAHKu28jvTebE.jpg"
+  },
+  {
+    "name": "The Pianist - Piyanist",
     "value": 8.5,
     "extra": "IMDb Puanı",
-    "image": "https://image.tmdb.org/t/p/w500/oPxnRhyAIzJKGUEdSiwTJQBa2z7.jpg"
+    "image": "https://image.tmdb.org/t/p/w500/2hFvxCCWrTmCYwfy7yum0GKRi3a.jpg"
+  },
+  {
+    "name": "Whiplash - Whiplash",
+    "value": 8.5,
+    "extra": "IMDb Puanı",
+    "image": "https://image.tmdb.org/t/p/w500/oPxnRhyAIzJKGUEdSiwTJQBa8VT.jpg"
+  },
+  {
+    "name": "The Intouchables - Can Dostum",
+    "value": 8.5,
+    "extra": "IMDb Puanı",
+    "image": "https://image.tmdb.org/t/p/w500/wzNfOklbG6E0zSyEe2pC3r7cUzS.jpg"
+  },
+  {
+    "name": "Life Is Beautiful - Hayat Güzeldir",
+    "value": 8.6,
+    "extra": "IMDb Puanı",
+    "image": "https://image.tmdb.org/t/p/w500/f7DImXDebOs148U4uPjI61iDvaK.jpg"
+  },
+  {
+    "name": "Se7en - Yedi",
+    "value": 8.6,
+    "extra": "IMDb Puanı",
+    "image": "https://image.tmdb.org/t/p/w500/69Sns8WoET6CfaYlIkHbla4l7nC.jpg"
+  },
+  {
+    "name": "Gladiator - Gladyatör",
+    "value": 8.5,
+    "extra": "IMDb Puanı",
+    "image": "https://image.tmdb.org/t/p/w500/pRn3TJHbAqCAO7V1NBcXb0jwVbG.jpg"
   }
 ]
