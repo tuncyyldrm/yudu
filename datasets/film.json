@@ -78,6 +78,85 @@
     "rating": "8.8",
     "image": "https://m.media-amazon.com/images/M/MV5BNjJlYmNkZGItM2NhYy00MjlmLTk5NmQtNjg1NmM2ODU4OTMwXkEyXkFqcGdeQXVyMjUzOTY1NTc@",
     "imdb_link": "https://www.imdb.com/title/tt0060196"
+  },
+  {
+    "title_tr": "Forrest Gump",
+    "title": "Forrest Gump",
+    "year": 1994,
+    "rating": "8.8",
+    "image": "https://m.media-amazon.com/images/M/MV5BNWIwODRmNzYtYzlhMi00MzliLTk0MjAtYzlhOGFkNTBiYmFkXkEyXkFqcGdeQXVyNzkwMjQ5NzM@",
+    "imdb_link": "https://www.imdb.com/title/tt0109830"
+  },
+  {
+    "title_tr": "Dövüş Kulübü",
+    "title": "Fight Club",
+    "year": 1999,
+    "rating": "8.8",
+    "image": "https://m.media-amazon.com/images/M/MV5BMmEzNTY1NzMtMmQyZC00NzMxLTgxZDYtZGM2NjE1MDU2NDk2XkEyXkFqcGdeQXVyNDYyMDk5MTU@",
+    "imdb_link": "https://www.imdb.com/title/tt0137523"
+  },
+  {
+    "title_tr": "Başlangıç",
+    "title": "Inception",
+    "year": 2010,
+    "rating": "8.8",
+    "image": "https://m.media-amazon.com/images/M/MV5BMjAxMzY3NjY4MF5BMl5BanBnXkFtZTcwNTI5OTM0Mw@@",
+    "imdb_link": "https://www.imdb.com/title/tt1375666"
+  },
+  {
+    "title_tr": "Yüzüklerin Efendisi: İki Kule",
+    "title": "The Lord of the Rings: The Two Towers",
+    "year": 2002,
+    "rating": "8.8",
+    "image": "https://m.media-amazon.com/images/M/MV5BZjdkOTU3MDAtMmUzYS00MTRlLTliOTMtY2QwMzY3M2I5OTU5XkEyXkFqcGdeQXVyNzkwMjQ5NzM@",
+    "imdb_link": "https://www.imdb.com/title/tt0167261"
+  },
+  {
+    "title_tr": "Yıldızlararası",
+    "title": "Interstellar",
+    "year": 2014,
+    "rating": "8.7",
+    "image": "https://m.media-amazon.com/images/M/MV5BMjIxNTU4MzY4MF5BMl5BanBnXkFtZTgwNzUxNzE3MjE@",
+    "imdb_link": "https://www.imdb.com/title/tt0816692"
+  },
+  {
+    "title_tr": "Matrix",
+    "title": "The Matrix",
+    "year": 1999,
+    "rating": "8.7",
+    "image": "https://m.media-amazon.com/images/M/MV5BNzQzOTk3NzAtNDJlZi00ZmQwLWI5YzEtYjRlNGY1ZGMzMTFkXkEyXkFqcGdeQXVyNzkwMjQ5NzM@",
+    "imdb_link": "https://www.imdb.com/title/tt0133093"
+  },
+  {
+    "title_tr": "İyi Bir Gün",
+    "title": "Goodfellas",
+    "year": 1990,
+    "rating": "8.7",
+    "image": "https://m.media-amazon.com/images/M/MV5BMmQzNDU2ODAtMGFkMi00MmY4LTgwNzEtZjFhNTlkYmRmY2JhXkEyXkFqcGdeQXVyNjU0OTQ0OTY@",
+    "imdb_link": "https://www.imdb.com/title/tt0099685"
+  },
+  {
+    "title_tr": "Hayat Güzeldir",
+    "title": "Life is Beautiful",
+    "year": 1997,
+    "rating": "8.6",
+    "image": "https://m.media-amazon.com/images/M/MV5BMGVmZThjNzItMTliMi00YjM4LWI2YzUtNzY2NmNlNTk0YzFhXkEyXkFqcGdeQXVyNTAyODkwOQ@@",
+    "imdb_link": "https://www.imdb.com/title/tt0118799"
+  },
+  {
+    "title_tr": "Gladyatör",
+    "title": "Gladiator",
+    "year": 2000,
+    "rating": "8.5",
+    "image": "https://m.media-amazon.com/images/M/MV5BM2MyNjYxNmUtYTAwNi00MTYxLWJmNWYtYzZlODY3ZTk3OTFlXkEyXkFqcGdeQXVyNjU0OTQ0OTY@",
+    "imdb_link": "https://www.imdb.com/title/tt0172495"
+  },
+  {
+    "title_tr": "Yeşil Yol",
+    "title": "The Green Mile",
+    "year": 1999,
+    "rating": "8.6",
+    "image": "https://m.media-amazon.com/images/M/MV5BZGViYjVkODgtZjY0MC00YmQxLTgxZDItMjc2M2RjZDJlYTZlXkEyXkFqcGdeQXVyNzkwMjQ5NzM@",
+    "imdb_link": "https://www.imdb.com/title/tt0120689"
   }
-
 ]
