@@ -210,7 +210,9 @@ function nextRound() {
   item1description.textContent = currentPair[0].description;
   item1Poster.src = currentPair[0].poster;
   item1Poster.alt = currentPair[0].name + " posteri";
-  item1Value.textContent = Number(currentPair[0].value.replace(/\./g, "")).toLocaleString("tr-TR");
+  const numValue = Number(currentPair[0].value.replace(/\./g, ""));
+  item1Value.textContent = numValue.toLocaleString("tr-TR");
+
 
   item2Text.textContent = currentPair[1].name;
   item2description.textContent = currentPair[1].description;
