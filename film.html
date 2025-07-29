@@ -268,7 +268,9 @@ function checkGuess(choice) {
 function copyShare() {
   const score = finalScore?.textContent?.trim() || "0";
 
-  const gameTitle = "YÜDÜ: Film Tahmini";
+  const pathname = window.location.pathname.toLowerCase();
+  let gameTitle = "YÜDÜ: Film Tahmini";
+
   const mainUrl = "https://yu-du.vercel.app";
 
   const shareText = `${gameTitle} oyununda ${score} puan yaptım! Sen de dene: ${mainUrl}`;
@@ -279,6 +281,7 @@ function copyShare() {
     navigator.share({
       title: gameTitle,
       text: shareText,
+      // url: mainUrl  // Burayı kaldırdık, URL zaten text içinde var
     }).catch(() => {
       fallbackCopyToClipboard(shareText);
     });
@@ -309,9 +312,15 @@ function legacyCopyToClipboard(text) {
   textArea.select();
 
   try {
-    document.execCommand('copy');
-    alert("Mesaj panoya kopyalandı!");
-  } catch (e) {}
+    const successful = document.execCommand('copy');
+    if (successful) {
+      alert("Mesaj panoya kopyalandı! İstediğiniz platformda Ctrl+V ile yapıştırabilirsiniz.");
+    } else {
+      throw new Error("Kopyalama başarısız");
+    }
+  } catch (e) {
+    
+  }
 
   document.body.removeChild(textArea);
 }
