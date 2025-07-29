@@ -1,0 +1,32 @@
+[
+  {
+    "title": "Ay'a İlk İnsanlı Yolculuk",
+    "value": 1969,
+    "image": "https://upload.wikimedia.org/wikipedia/commons/9/99/Apollo_11_Lunar_Module_on_the_Moon.jpg",
+    "description": "Neil Armstrong ve Buzz Aldrin, Apollo 11 göreviyle Ay'a iniş yaptı."
+  },
+  {
+    "title": "Berlin Duvarı'nın Yıkılışı",
+    "value": 1989,
+    "image": "https://upload.wikimedia.org/wikipedia/commons/d/d9/Berlin_Wall_Brandenburg_Gate.jpg",
+    "description": "Doğu ve Batı Almanya'yı ayıran Berlin Duvarı yıkıldı."
+  },
+  {
+    "title": "Fransız Devrimi",
+    "value": 1789,
+    "image": "https://upload.wikimedia.org/wikipedia/commons/e/e6/Prise_de_la_Bastille.jpg",
+    "description": "Fransız halkı mutlak monarşiye karşı ayaklandı, Bastille baskınıyla devrim başladı."
+  },
+  {
+    "title": "İkinci Dünya Savaşı'nın Başlangıcı",
+    "value": 1939,
+    "image": "https://upload.wikimedia.org/wikipedia/commons/2/21/Polish_army_in_Sep_1939.jpg",
+    "description": "Almanya'nın Polonya'yı işgaliyle 2. Dünya Savaşı başladı."
+  },
+  {
+    "title": "İstanbul'un Fethi",
+    "value": 1453,
+    "image": "https://upload.wikimedia.org/wikipedia/commons/d/d4/Istanbul_conquest.jpg",
+    "description": "Fatih Sultan Mehmet, Bizans'ın başkenti Konstantinopolis’i fethetti."
+  }
+]
