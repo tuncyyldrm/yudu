@@ -45,10 +45,12 @@ function showBestScores() {
   const bestUlke = localStorage.getItem('highScoreUlke') || 0;
   const bestSehir = localStorage.getItem('highScoreSehir') || 0;
   const bestFilm = localStorage.getItem('highScoreFilm') || 0;
+  const bestTarih = localStorage.getItem('highScoreTarih') || 0;
 
   document.getElementById('bestUlke').textContent = bestUlke > 0 ? `(En iyi: ${bestUlke})` : '';
   document.getElementById('bestSehir').textContent = bestSehir > 0 ? `(En iyi: ${bestSehir})` : '';
   document.getElementById('bestFilm').textContent = bestFilm > 0 ? `(En iyi: ${bestFilm})` : '';
+  document.getElementById('bestTarih').textContent = bestTarih > 0 ? `(En iyi: ${bestTarih})` : '';
 }
 
 showBestScores();
