@@ -98,6 +98,14 @@
     width: auto;
     height: 40px;
   }
+  #item2description{
+    font-size:65%;
+    margin:0;
+  }
+  #item2Poster{
+    width: auto;
+    height: 40px;
+  }
   .value {
     font-weight: bold;
     font-size: 1.4rem;
