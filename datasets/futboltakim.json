@@ -1,0 +1,602 @@
+[
+  {
+    "rank": 1,
+    "title": "Paris Saint-Germain",
+    "value": 2027,
+    "image": "https://footballdatabase.com/logos/club/80px/39.png"
+  },
+  {
+    "rank": 2,
+    "title": "Chelsea FC",
+    "value": 1997,
+    "image": "https://footballdatabase.com/logos/club/80px/43.png"
+  },
+  {
+    "rank": 3,
+    "title": "Barcelona",
+    "value": 1973,
+    "image": "https://footballdatabase.com/logos/club/80px/1.png"
+  },
+  {
+    "rank": 4,
+    "title": "Bayern München",
+    "value": 1964,
+    "image": "https://footballdatabase.com/logos/club/80px/16.png"
+  },
+  {
+    "rank": 5,
+    "title": "Liverpool FC",
+    "value": 1959,
+    "image": "https://footballdatabase.com/logos/club/80px/313.png"
+  },
+  {
+    "rank": 6,
+    "title": "Arsenal",
+    "value": 1954,
+    "image": "https://footballdatabase.com/logos/club/80px/7.png"
+  },
+  {
+    "rank": 7,
+    "title": "Real Madrid",
+    "value": 1935,
+    "image": "https://footballdatabase.com/logos/club/80px/2.png"
+  },
+  {
+    "rank": 8,
+    "title": "Manchester City",
+    "value": 1907,
+    "image": "https://footballdatabase.com/logos/club/80px/11.png"
+  },
+  {
+    "rank": 9,
+    "title": "Inter Milan",
+    "value": 1899,
+    "image": "https://footballdatabase.com/logos/club/80px/10.png"
+  },
+  {
+    "rank": 10,
+    "title": "Borussia Dortmund",
+    "value": 1879,
+    "image": "https://footballdatabase.com/logos/club/80px/4.png"
+  },
+  {
+    "rank": 11,
+    "title": "Atlético Madrid",
+    "value": 1871,
+    "image": "https://footballdatabase.com/logos/club/80px/72.png"
+  },
+  {
+    "rank": 12,
+    "title": "Aston Villa",
+    "value": 1871,
+    "image": "https://footballdatabase.com/logos/club/80px/392.png"
+  },
+  {
+    "rank": 13,
+    "title": "SSC Napoli",
+    "value": 1849,
+    "image": "https://footballdatabase.com/logos/club/80px/44.png"
+  },
+  {
+    "rank": 14,
+    "title": "AS Roma",
+    "value": 1846,
+    "image": "https://footballdatabase.com/logos/club/80px/31.png"
+  },
+  {
+    "rank": 15,
+    "title": "Bayer Leverkusen",
+    "value": 1841,
+    "image": "https://footballdatabase.com/logos/club/80px/35.png"
+  },
+  {
+    "rank": 16,
+    "title": "Atalanta",
+    "value": 1838,
+    "image": "https://footballdatabase.com/logos/club/80px/1322.png"
+  },
+  {
+    "rank": 17,
+    "title": "PSV Eindhoven",
+    "value": 1823,
+    "image": "https://footballdatabase.com/logos/club/80px/14.png"
+  },
+  {
+    "rank": 18,
+    "title": "Villarreal",
+    "value": 1820,
+    "image": "https://footballdatabase.com/logos/club/80px/15.png"
+  },
+  {
+    "rank": 19,
+    "title": "Benfica",
+    "value": 1816,
+    "image": "https://footballdatabase.com/logos/club/80px/58.png"
+  },
+  {
+    "rank": 20,
+    "title": "Sporting",
+    "value": 1812,
+    "image": "https://footballdatabase.com/logos/club/80px/53.png"
+  },
+  {
+    "rank": 21,
+    "title": "Newcastle United",
+    "value": 1805,
+    "image": "https://footballdatabase.com/logos/club/80px/183.png"
+  },
+  {
+    "rank": 22,
+    "title": "Crystal Palace",
+    "value": 1794,
+    "image": "https://footballdatabase.com/logos/club/80px/0.png"
+  },
+  {
+    "rank": 23,
+    "title": "Brighton & Hove Albion",
+    "value": 1785,
+    "image": "https://footballdatabase.com/logos/club/80px/0.png"
+  },
+  {
+    "rank": 24,
+    "title": "Juventus",
+    "value": 1782,
+    "image": "https://footballdatabase.com/logos/club/80px/68.png"
+  },
+  {
+    "rank": 25,
+    "title": "AC Milan",
+    "value": 1777,
+    "image": "https://footballdatabase.com/logos/club/80px/23.png"
+  },
+  {
+    "rank": 26,
+    "title": "Athletic Bilbao",
+    "value": 1770,
+    "image": "https://footballdatabase.com/logos/club/80px/168.png"
+  },
+  {
+    "rank": 27,
+    "title": "Galatasaray",
+    "value": 1769,
+    "image": "https://footballdatabase.com/logos/club/80px/249.png"
+  },
+  {
+    "rank": 28,
+    "title": "Eintracht Frankfurt",
+    "value": 1766,
+    "image": "https://footballdatabase.com/logos/club/80px/230.png"
+  },
+  {
+    "rank": 29,
+    "title": "Lazio",
+    "value": 1758,
+    "image": "https://footballdatabase.com/logos/club/80px/63.png"
+  },
+  {
+    "rank": 30,
+    "title": "Feyenoord",
+    "value": 1753,
+    "image": "https://footballdatabase.com/logos/club/80px/338.png"
+  },
+  {
+    "rank": 31,
+    "title": "Fiorentina",
+    "value": 1749,
+    "image": "https://footballdatabase.com/logos/club/80px/164.png"
+  },
+  {
+    "rank": 32,
+    "title": "Brentford FC",
+    "value": 1748,
+    "image": "https://footballdatabase.com/logos/club/80px/0.png"
+  },
+  {
+    "rank": 33,
+    "title": "Slavia Prague",
+    "value": 1748,
+    "image": "https://footballdatabase.com/logos/club/80px/340.png"
+  },
+  {
+    "rank": 34,
+    "title": "Olympiakos",
+    "value": 1746,
+    "image": "https://footballdatabase.com/logos/club/80px/22.png"
+  },
+  {
+    "rank": 35,
+    "title": "AFC Bournemouth",
+    "value": 1746,
+    "image": "https://footballdatabase.com/logos/club/80px/0.png"
+  },
+  {
+    "rank": 36,
+    "title": "Lille",
+    "value": 1743,
+    "image": "https://footballdatabase.com/logos/club/80px/18.png"
+  },
+  {
+    "rank": 37,
+    "title": "Nottingham Forest",
+    "value": 1743,
+    "image": "https://footballdatabase.com/logos/club/80px/0.png"
+  },
+  {
+    "rank": 38,
+    "title": "Everton FC",
+    "value": 1735,
+    "image": "https://footballdatabase.com/logos/club/80px/185.png"
+  },
+  {
+    "rank": 39,
+    "title": "Real Betis",
+    "value": 1733,
+    "image": "https://footballdatabase.com/logos/club/80px/1588.png"
+  },
+  {
+    "rank": 40,
+    "title": "Club Brugge",
+    "value": 1733,
+    "image": "https://footballdatabase.com/logos/club/80px/98.png"
+  },
+  {
+    "rank": 41,
+    "title": "Fenerbahçe",
+    "value": 1730,
+    "image": "https://footballdatabase.com/logos/club/80px/59.png"
+  },
+  {
+    "rank": 42,
+    "title": "AS Monaco",
+    "value": 1729,
+    "image": "https://footballdatabase.com/logos/club/80px/295.png"
+  },
+  {
+    "rank": 43,
+    "title": "FK Red Star Belgrade",
+    "value": 1722,
+    "image": "https://footballdatabase.com/logos/club/80px/565.png"
+  },
+  {
+    "rank": 44,
+    "title": "Union St.Gilloise",
+    "value": 1721,
+    "image": "https://footballdatabase.com/logos/club/80px/0.png"
+  },
+  {
+    "rank": 45,
+    "title": "Bologna",
+    "value": 1719,
+    "image": "https://footballdatabase.com/logos/club/80px/257.png"
+  },
+  {
+    "rank": 46,
+    "title": "Celtic",
+    "value": 1719,
+    "image": "https://footballdatabase.com/logos/club/80px/25.png"
+  },
+  {
+    "rank": 47,
+    "title": "Mainz 05",
+    "value": 1715,
+    "image": "https://footballdatabase.com/logos/club/80px/85.png"
+  },
+  {
+    "rank": 48,
+    "title": "VfB Stuttgart",
+    "value": 1715,
+    "image": "https://footballdatabase.com/logos/club/80px/344.png"
+  },
+  {
+    "rank": 49,
+    "title": "Lyon",
+    "value": 1713,
+    "image": "https://footballdatabase.com/logos/club/80px/48.png"
+  },
+  {
+    "rank": 50,
+    "title": "Manchester United",
+    "value": 1709,
+    "image": "https://footballdatabase.com/logos/club/80px/3.png"
+  },
+  {
+    "rank": 51,
+    "title": "Marseille",
+    "value": 1706,
+    "image": "https://footballdatabase.com/logos/club/80px/19.png"
+  },
+  {
+    "rank": 52,
+    "title": "Osasuna",
+    "value": 1701,
+    "image": "https://footballdatabase.com/logos/club/80px/382.png"
+  },
+  {
+    "rank": 53,
+    "title": "FC Porto",
+    "value": 1699,
+    "image": "https://footballdatabase.com/logos/club/80px/5.png"
+  },
+  {
+    "rank": 54,
+    "title": "Fulham",
+    "value": 1696,
+    "image": "https://footballdatabase.com/logos/club/80px/303.png"
+  },
+  {
+    "rank": 55,
+    "title": "RB Leipzig",
+    "value": 1694,
+    "image": "https://footballdatabase.com/logos/club/80px/0.png"
+  },
+  {
+    "rank": 56,
+    "title": "Nice",
+    "value": 1692,
+    "image": "https://footballdatabase.com/logos/club/80px/324.png"
+  },
+  {
+    "rank": 57,
+    "title": "Celta Vigo",
+    "value": 1687,
+    "image": "https://footballdatabase.com/logos/club/80px/0.png"
+  },
+  {
+    "rank": 58,
+    "title": "Werder Bremen",
+    "value": 1686,
+    "image": "https://footballdatabase.com/logos/club/80px/350.png"
+  },
+  {
+    "rank": 59,
+    "title": "Ajax Amsterdam",
+    "value": 1686,
+    "image": "https://footballdatabase.com/logos/club/80px/37.png"
+  },
+  {
+    "rank": 60,
+    "title": "Zenit St. Petersburg",
+    "value": 1685,
+    "image": "https://footballdatabase.com/logos/club/80px/49.png"
+  },
+  {
+    "rank": 61,
+    "title": "The New Saints",
+    "value": 1683,
+    "image": "https://footballdatabase.com/logos/club/80px/1072.png"
+  },
+  {
+    "rank": 62,
+    "title": "Flora Tallinn",
+    "value": 1676,
+    "image": "https://footballdatabase.com/logos/club/80px/998.png"
+  },
+  {
+    "rank": 63,
+    "title": "Tottenham Hotspur",
+    "value": 1676,
+    "image": "https://footballdatabase.com/logos/club/80px/28.png"
+  },
+  {
+    "rank": 64,
+    "title": "Freiburg",
+    "value": 1675,
+    "image": "https://footballdatabase.com/logos/club/80px/146.png"
+  },
+  {
+    "rank": 65,
+    "title": "Braga",
+    "value": 1672,
+    "image": "https://footballdatabase.com/logos/club/80px/159.png"
+  },
+  {
+    "rank": 66,
+    "title": "Valencia",
+    "value": 1670,
+    "image": "https://footballdatabase.com/logos/club/80px/13.png"
+  },
+  {
+    "rank": 67,
+    "title": "FCI Levadia Tallinn",
+    "value": 1670,
+    "image": "https://footballdatabase.com/logos/club/80px/1002.png"
+  },
+  {
+    "rank": 68,
+    "title": "RC Strasbourg",
+    "value": 1665,
+    "image": "https://footballdatabase.com/logos/club/80px/0.png"
+  },
+  {
+    "rank": 69,
+    "title": "PFC Ludogorets 1945 Razgrad",
+    "value": 1664,
+    "image": "https://footballdatabase.com/logos/club/80px/1545.png"
+  },
+  {
+    "rank": 70,
+    "title": "Como 1907",
+    "value": 1658,
+    "image": "https://footballdatabase.com/logos/club/80px/0.png"
+  },
+  {
+    "rank": 71,
+    "title": "Viktoria Plzeň",
+    "value": 1658,
+    "image": "https://footballdatabase.com/logos/club/80px/27.png"
+  },
+  {
+    "rank": 72,
+    "title": "Shakhtar Donetsk",
+    "value": 1651,
+    "image": "https://footballdatabase.com/logos/club/80px/6.png"
+  },
+  {
+    "rank": 73,
+    "title": "West Ham United",
+    "value": 1651,
+    "image": "https://footballdatabase.com/logos/club/80px/415.png"
+  },
+  {
+    "rank": 74,
+    "title": "Dinamo Zagreb",
+    "value": 1647,
+    "image": "https://footballdatabase.com/logos/club/80px/52.png"
+  },
+  {
+    "rank": 75,
+    "title": "Wolverhampton Wanderers",
+    "value": 1645,
+    "image": "https://footballdatabase.com/logos/club/80px/409.png"
+  },
+  {
+    "rank": 76,
+    "title": "Rayo Vallecano",
+    "value": 1645,
+    "image": "https://footballdatabase.com/logos/club/80px/1590.png"
+  },
+  {
+    "rank": 77,
+    "title": "AZ Alkmaar",
+    "value": 1644,
+    "image": "https://footballdatabase.com/logos/club/80px/82.png"
+  },
+  {
+    "rank": 78,
+    "title": "Rangers",
+    "value": 1643,
+    "image": "https://footballdatabase.com/logos/club/80px/47.png"
+  },
+  {
+    "rank": 79,
+    "title": "Dynamo Kyiv",
+    "value": 1642,
+    "image": "https://footballdatabase.com/logos/club/80px/45.png"
+  },
+  {
+    "rank": 80,
+    "title": "Maccabi Tel Aviv",
+    "value": 1635,
+    "image": "https://footballdatabase.com/logos/club/80px/542.png"
+  },
+  {
+    "rank": 81,
+    "title": "Genoa",
+    "value": 1632,
+    "image": "https://footballdatabase.com/logos/club/80px/356.png"
+  },
+  {
+    "rank": 82,
+    "title": "Zrinjski Mostar",
+    "value": 1631,
+    "image": "https://footballdatabase.com/logos/club/80px/1553.png"
+  },
+  {
+    "rank": 83,
+    "title": "Lens",
+    "value": 1629,
+    "image": "https://footballdatabase.com/logos/club/80px/378.png"
+  },
+  {
+    "rank": 84,
+    "title": "PAOK FC",
+    "value": 1625,
+    "image": "https://footballdatabase.com/logos/club/80px/74.png"
+  },
+  {
+    "rank": 85,
+    "title": "Brest",
+    "value": 1624,
+    "image": "https://footballdatabase.com/logos/club/80px/176.png"
+  },
+  {
+    "rank": 86,
+    "title": "Wolfsburg",
+    "value": 1622,
+    "image": "https://footballdatabase.com/logos/club/80px/237.png"
+  },
+  {
+    "rank": 87,
+    "title": "Deportivo Alaves",
+    "value": 1621,
+    "image": "https://footballdatabase.com/logos/club/80px/0.png"
+  },
+  {
+    "rank": 88,
+    "title": "Torino",
+    "value": 1619,
+    "image": "https://footballdatabase.com/logos/club/80px/0.png"
+  },
+  {
+    "rank": 89,
+    "title": "RCD Espanyol",
+    "value": 1619,
+    "image": "https://footballdatabase.com/logos/club/80px/86.png"
+  },
+  {
+    "rank": 90,
+    "title": "Sparta Prague",
+    "value": 1617,
+    "image": "https://footballdatabase.com/logos/club/80px/42.png"
+  },
+  {
+    "rank": 91,
+    "title": "Real Sociedad",
+    "value": 1616,
+    "image": "https://footballdatabase.com/logos/club/80px/204.png"
+  },
+  {
+    "rank": 92,
+    "title": "Levante",
+    "value": 1612,
+    "image": "https://footballdatabase.com/logos/club/80px/419.png"
+  },
+  {
+    "rank": 93,
+    "title": "Bodø / Glimt",
+    "value": 1611,
+    "image": "https://footballdatabase.com/logos/club/80px/1302.png"
+  },
+  {
+    "rank": 94,
+    "title": "KRC Genk",
+    "value": 1611,
+    "image": "https://footballdatabase.com/logos/club/80px/29.png"
+  },
+  {
+    "rank": 95,
+    "title": "Panathinaikos",
+    "value": 1610,
+    "image": "https://footballdatabase.com/logos/club/80px/131.png"
+  },
+  {
+    "rank": 96,
+    "title": "Mallorca",
+    "value": 1605,
+    "image": "https://footballdatabase.com/logos/club/80px/243.png"
+  },
+  {
+    "rank": 97,
+    "title": "AEK",
+    "value": 1604,
+    "image": "https://footballdatabase.com/logos/club/80px/91.png"
+  },
+  {
+    "rank": 98,
+    "title": "Partizan Beograd",
+    "value": 1604,
+    "image": "https://footballdatabase.com/logos/club/80px/420.png"
+  },
+  {
+    "rank": 99,
+    "title": "Red Bull Salzburg",
+    "value": 1603,
+    "image": "https://footballdatabase.com/logos/club/80px/223.png"
+  },
+  {
+    "rank": 100,
+    "title": "FC Sheriff",
+    "value": 1602,
+    "image": "https://footballdatabase.com/logos/club/80px/244.png"
+  }
+]
