@@ -72,12 +72,10 @@ async function fetchTarihs() {
   }
 
   const data = await response.json();
-
-  // Türkçe ad varsa onu kullan, yoksa İngilizce adı göster
-  return data.map(Tarih => ({
-    name: `${Tarih.title_tr || Tarih.title} (${Tarih.year})`,
-    value: parseFloat(Tarih.rating),
-    poster: Tarih.image || ""
+  return data.map(event => ({
+    name: event.title,
+    value: parseInt(event.value),
+    poster: event.image || ""
   }));
 }
 
