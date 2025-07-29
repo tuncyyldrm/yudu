@@ -90,6 +90,14 @@
     80% { transform: translateX(10px); }
     100% { transform: translateX(0); }
   }
+  #item1description{
+    font-size:65%;
+    margin:0;
+  }
+  #item1Poster{
+    width: auto;
+    height: 40px;
+  }
   .value {
     font-weight: bold;
     font-size: 1.4rem;
