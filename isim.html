@@ -77,7 +77,7 @@ async function fetchIsims() {
   return data.map(event => ({
     name: event.title,
     description: event.description,
-    value: parseInt(event.value),
+    value: Number(event.value.replace(/\./g, "")),
     poster: event.image || ""
   }));
 }
