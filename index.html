@@ -18,7 +18,8 @@
   <a href="ulke.html">🌍 Ülke Oyunu <span id="bestUlke" style="color:white; font-size:0.9rem;"></span></a><br />
   <a href="sehir.html">🏙️ Şehir Oyunu <span id="bestSehir" style="color:white; font-size:0.9rem;"></span></a><br />
   <a href="film.html">🎬 Film Oyunu <span id="bestFilm" style="color:white; font-size:0.9rem;"></span></a><br />
-  <a href="tarih.html">🕰️ Tarihi Olaylar <span id="bestTarih" style="color:white; font-size:0.9rem;"></span></a>
+  <a href="tarih.html">🕰️ Tarihi Olaylar <span id="bestTarih" style="color:white; font-size:0.9rem;"></span></a><br />
+  <a href="futbol.html">⚽ Futbol <span id="bestFutbol" style="color:white; font-size:0.9rem;"></span></a>
 
 <script>
 
@@ -46,11 +47,13 @@ function showBestScores() {
   const bestSehir = localStorage.getItem('highScoreSehir') || 0;
   const bestFilm = localStorage.getItem('highScoreFilm') || 0;
   const bestTarih = localStorage.getItem('highScoreTarih') || 0;
+  const bestFutbol = localStorage.getItem('highScoreFutbol') || 0;
 
   document.getElementById('bestUlke').textContent = bestUlke > 0 ? `(En iyi: ${bestUlke})` : '';
   document.getElementById('bestSehir').textContent = bestSehir > 0 ? `(En iyi: ${bestSehir})` : '';
   document.getElementById('bestFilm').textContent = bestFilm > 0 ? `(En iyi: ${bestFilm})` : '';
   document.getElementById('bestTarih').textContent = bestTarih > 0 ? `(En iyi: ${bestTarih})` : '';
+  document.getElementById('bestFutbol').textContent = bestFutbol > 0 ? `(En iyi: ${bestFutbol})` : '';
 }
 
 showBestScores();
