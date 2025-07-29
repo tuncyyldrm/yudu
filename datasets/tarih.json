@@ -27,20 +27,20 @@
     "title": "İstanbul'un Fethi",
     "value": 1453,
     "image": "https://upload.wikimedia.org/wikipedia/commons/b/b6/Zonaro_GatesofConst.jpg",
-    "description": "Fatih Sultan Mehmet, Bizans'ın başkenti Konstantinopolis’i fethetti."
+    "description": "Fatih Sultan Mehmet, Bizans'ın başkenti Konstantinopolis'i fethetti."
   },
   {
     "title": "Hiroşima'ya Atom Bombası Atılması",
     "value": 1945,
     "image": "https://upload.wikimedia.org/wikipedia/commons/5/54/Atomic_bombing_of_Japan.jpg",
-    "description": "ABD, Japonya’nın Hiroşima şehrine atom bombası attı."
+    "description": "ABD, Japonya'nın Hiroşima şehrine atom bombası attı."
   },
   {
-    "title": "Matbaanın Avrupa’da Kullanımı",
+    "title": "Matbaanın Avrupa'da Kullanımı",
     "value": 1440,
     "image": "https://upload.wikimedia.org/wikipedia/commons/4/42/Chodowiecki_Basedow_Tafel_21_c_Z.jpg",
-    "description": "Johannes Gutenberg, Avrupa’da matbaayı kullanarak bilgi devrimini başlattı."
-  },  
+    "description": "Johannes Gutenberg, Avrupa'da matbaayı kullanarak bilgi devrimini başlattı."
+  },
   {
     "title": "Amerika'nın Keşfi",
     "value": 1492,
@@ -52,5 +52,137 @@
     "value": 1300,
     "image": "https://www.matematiksel.org/wp-content/uploads/2017/01/raffaello-athens-school-atina-okulu-1.jpg",
     "description": "Sanat, bilim ve düşünce alanlarında Avrupa'da büyük bir uyanış başladı."
+  },
+  {
+    "title": "Sanayi Devrimi",
+    "value": 1760,
+    "image": "https://upload.wikimedia.org/wikipedia/commons/0/0c/Coalbrookdale_by_Night.jpg",
+    "description": "İngiltere'de başlayan makineleşme çağı dünyayı değiştirdi."
+  },
+  {
+    "title": "Magna Carta'nın İlanı",
+    "value": 1215,
+    "image": "https://upload.wikimedia.org/wikipedia/commons/3/3c/Magna_Carta_%28British_Library_Cotton_MS_Augustus_II_106%29.jpg",
+    "description": "İngiltere Kralı John'un imzaladığı bu belke, modern anayasal düzenin temelini attı."
+  },
+  {
+    "title": "Osmanlı Devleti'nin Kuruluşu",
+    "value": 1299,
+    "image": "https://upload.wikimedia.org/wikipedia/commons/6/6e/Ottoman_Empire_1299.png",
+    "description": "Osman Gazi tarafından Söğüt'te Osmanlı Beyliği'nin kurulması."
+  },
+  {
+    "title": "I. Dünya Savaşı'nın Başlaması",
+    "value": 1914,
+    "image": "https://upload.wikimedia.org/wikipedia/commons/2/2d/WWI-re.png",
+    "description": "Avusturya-Macaristan Veliahtı'nın suikastiyle başlayan küresel savaş."
+  },
+  {
+    "title": "Titanik Faciası",
+    "value": 1912,
+    "image": "https://upload.wikimedia.org/wikipedia/commons/4/4f/Titanic.jpg",
+    "description": "Döneminin en lüks transatlantiği Titanik, buzdağına çarparak battı."
+  },
+  {
+    "title": "Çanakkale Zaferi",
+    "value": 1915,
+    "image": "https://upload.wikimedia.org/wikipedia/commons/5/5a/Canakkale_1915.jpg",
+    "description": "Osmanlı ordusunun İtilaf Devletleri'ne karşı kazandığı büyük zafer."
+  },
+  {
+    "title": "Cumhuriyetin İlanı",
+    "value": 1923,
+    "image": "https://upload.wikimedia.org/wikipedia/commons/e/e5/TBMM_1923.jpg",
+    "description": "Türkiye Büyük Millet Meclisi tarafından Türkiye Cumhuriyeti'nin kuruluşu."
+  },
+  {
+    "title": "İnsan Genom Projesi'nin Tamamlanması",
+    "value": 2003,
+    "image": "https://upload.wikimedia.org/wikipedia/commons/3/3c/DNA_Overview2.png",
+    "description": "İnsan DNA'sının tam haritasının çıkarılmasıyla tıpta çığır açıldı."
+  },
+  {
+    "title": "Hicret",
+    "value": 622,
+    "image": "https://upload.wikimedia.org/wikipedia/commons/5/5d/Masjid_Nabawi._Medina%2C_Saudi_Arabia.jpg",
+    "description": "Hz. Muhammed'in Mekke'den Medine'ye göçü, İslam takviminin başlangıcı."
+  },
+  {
+    "title": "Haçlı Seferleri'nin Başlaması",
+    "value": 1096,
+    "image": "https://upload.wikimedia.org/wikipedia/commons/7/7a/Crusades_Asia_Minor_c1097.jpg",
+    "description": "Avrupalı Hristiyanların Kudüs'ü Müslümanlardan almak için başlattığı seferler."
+  },
+  {
+    "title": "Mısır Piramitlerinin İnşası",
+    "value": -2560,
+    "image": "https://upload.wikimedia.org/wikipedia/commons/e/e3/Kheops-Pyramid.jpg",
+    "description": "Keops Piramidi'nin tamamlanması, antik dünyanın harikalarından biri."
+  },
+  {
+    "title": "Büyük İskender'in Asya Seferi",
+    "value": -334,
+    "image": "https://upload.wikimedia.org/wikipedia/commons/3/3f/Alexander_the_Great_mosaic.jpg",
+    "description": "Makedonyalı İskender'in Pers İmparatorluğu'nu fetih hareketi."
+  },
+  {
+    "title": "Roma İmparatorluğu'nun Kuruluşu",
+    "value": -27,
+    "image": "https://upload.wikimedia.org/wikipedia/commons/d/db/Statue-Augustus.jpg",
+    "description": "Octavian'ın Augustus unvanı alarak Roma İmparatorluğu'nu kurması."
+  },
+  {
+    "title": "İlk Yazılı Kanunlar",
+    "value": -1750,
+    "image": "https://upload.wikimedia.org/wikipedia/commons/3/3e/Code_de_Hammurabi_%28face%29.jpg",
+    "description": "Babil Kralı Hammurabi'nin ünlü kanunları yürürlüğe koyması."
+  },
+  {
+    "title": "İlk Olimpiyat Oyunları",
+    "value": -776,
+    "image": "https://upload.wikimedia.org/wikipedia/commons/5/5c/Olympia_Reconstruction.jpg",
+    "description": "Antik Yunanistan'da Olympia'da düzenlenen ilk kayıtlı olimpiyatlar."
+  },
+  {
+    "title": "İnternetin Doğuşu",
+    "value": 1983,
+    "image": "https://upload.wikimedia.org/wikipedia/commons/a/a7/Internet_map_1024.jpg",
+    "description": "ARPANET'in TCP/IP protokolünü kullanmaya başlamasıyla modern internetin temeli atıldı."
+  },
+  {
+    "title": "İlk Uzay Yürüyüşü",
+    "value": 1965,
+    "image": "https://upload.wikimedia.org/wikipedia/commons/6/6c/Alexei_Leonov_in_outer_space_%28Voskhod_2%29.jpg",
+    "description": "Sovyet kozmonot Alexei Leonov tarafından gerçekleştirilen ilk uzay yürüyüşü."
+  },
+  {
+    "title": "Sputnik 1'in Fırlatılması",
+    "value": 1957,
+    "image": "https://upload.wikimedia.org/wikipedia/commons/3/3f/Sputnik_asm.jpg",
+    "description": "Sovyetler Birliği tarafından fırlatılan ilk yapay uydu, uzay çağını başlattı."
+  },
+  {
+    "title": "İlk Kalp Nakli",
+    "value": 1967,
+    "image": "https://upload.wikimedia.org/wikipedia/commons/7/7d/Christiaan_Barnard.jpg",
+    "description": "Dr. Christiaan Barnard tarafından Güney Afrika'da gerçekleştirilen ilk insandan insana kalp nakli."
+  },
+  {
+    "title": "Çernobil Faciası",
+    "value": 1986,
+    "image": "https://upload.wikimedia.org/wikipedia/commons/8/8e/Chernobyl_NPP_Satellite_image.jpg",
+    "description": "Ukrayna'daki Çernobil nükleer santralinde meydana gelen büyük nükleer kaza."
+  },
+  {
+    "title": "11 Eylül Saldırıları",
+    "value": 2001,
+    "image": "https://upload.wikimedia.org/wikipedia/commons/a/a3/9-11_News_Fox.jpg",
+    "description": "ABD'de Dünya Ticaret Merkezi ve Pentagon'a yapılan terör saldırıları."
+  },
+  {
+    "title": "COVID-19 Pandemisi",
+    "value": 2020,
+    "image": "https://upload.wikimedia.org/wikipedia/commons/8/82/COVID-19_Outbreak_World_Map.svg",
+    "description": "Yeni koronavirüsün neden olduğu küresel salgının başlangıcı."
   }
 ]
