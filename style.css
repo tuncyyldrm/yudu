@@ -106,6 +106,10 @@
     width: auto;
     height: 40px;
   }
+.item-name{
+    display: flex;
+    justify-content: space-between;
+  }
   .value {
     font-weight: bold;
     font-size: 1.4rem;
