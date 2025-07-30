@@ -41,25 +41,35 @@ self.addEventListener("activate", (e) => {
   self.clients.claim();
 });
 
-// Fetch: önce cache’den hızlı cevap ver, sonra ağdan güncelleyip cache yenile
+// ...existing code...
 self.addEventListener("fetch", (e) => {
   e.respondWith(
     caches.match(e.request).then(cacheRes => {
-      const fetchPromise = fetch(e.request)
-        .then(networkRes => {
-          // Ağdan başarılı dönerse cache’i güncelle
-          caches.open(cacheName).then(cache => {
-            cache.put(e.request, networkRes.clone());
+      if (cacheRes) {
+        // Cache varsa hemen göster, arka planda güncelle
+        fetch(e.request)
+          .then(networkRes => {
+            if (networkRes && networkRes.status === 200) {
+              caches.open(cacheName).then(cache => {
+                cache.put(e.request, networkRes.clone());
+              });
+            }
           });
+        return cacheRes;
+      }
+      // Cache yoksa ağdan getir ve cache’e ekle
+      return fetch(e.request)
+        .then(networkRes => {
+          if (networkRes && networkRes.status === 200) {
+            const responseClone = networkRes.clone();
+            caches.open(cacheName).then(cache => {
+              cache.put(e.request, responseClone);
+            });
+          }
           return networkRes;
         })
-        .catch(() => {
-          // Ağ yoksa veya hata olursa sadece cache’den göster
-          return cacheRes;
-        });
-
-      // Cache varsa hemen göster, yoksa ağdan gelen cevabı bekle
-      return cacheRes || fetchPromise;
+        .catch(() => cacheRes);
     })
   );
 });
+// ...existing code...
