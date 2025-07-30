@@ -38,7 +38,9 @@
     min-height: 100vh;
     transition: background-color 0.3s, color 0.3s;
   }
-
+  .menu-kategori{
+    display:flex;
+  }
     a {
       display: inline-block;
       padding: 10px 20px;
