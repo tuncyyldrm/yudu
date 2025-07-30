@@ -210,14 +210,14 @@ async function initData() {
       currentPair = getRandomPair();
 
 document.getElementById('item1Text').textContent = currentPair[0].name;
-document.getElementById('item1Flag').src = currentPair[0].flag;
-document.getElementById('item1Flag').alt = currentPair[0].name + " bayrağı";
+document.getElementById('item1Poster').src = currentPair[0].flag;
+document.getElementById('item1Poster').alt = currentPair[0].name + " bayrağı";
 
 item1Value.textContent = currentPair[0].value.toLocaleString();
 
 document.getElementById('item2Text').textContent = currentPair[1].name;
-document.getElementById('item2Flag').src = currentPair[1].flag;
-document.getElementById('item2Flag').alt = currentPair[1].name + " bayrağı";
+document.getElementById('item2Poster').src = currentPair[1].flag;
+document.getElementById('item2Poster').alt = currentPair[1].name + " bayrağı";
 
 item2Value.textContent = '?';
 
