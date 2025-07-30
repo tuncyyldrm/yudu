@@ -99,9 +99,6 @@
     width: auto;
     height: 40px;
   }
-#item1Text{
-    text-align:right;
-}
   #item2description{
     font-size:65%;
     margin:0;
@@ -109,15 +106,6 @@
   #item2Poster{
     width: auto;
     height: 40px;
-  }
-#item2Text{
-    text-align:right;
-}
-.item-name{
-    justify-content: space-between;
-    display: grid;
-    grid-template-columns: 1fr 3fr;
-    gap: 1rem;
   }
   .value {
     font-weight: bold;
