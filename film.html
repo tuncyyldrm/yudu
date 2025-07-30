@@ -78,6 +78,7 @@ async function fetchFilms() {
   // Türkçe ad varsa onu kullan, yoksa İngilizce adı göster
   return data.map(film => ({
     name: `${film.title_tr || film.title} (${film.year})`,
+    description: event.description,
     value: parseFloat(film.rating),
     poster: film.image || ""
   }));
