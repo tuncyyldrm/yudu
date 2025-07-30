@@ -107,9 +107,11 @@ let darkMode = localStorage.getItem('darkMode') === 'true';
 const card1 = document.getElementById('card1');
 const card2 = document.getElementById('card2');
 const item1Text = document.getElementById('item1Text');
+const item1description = document.getElementById('item1description');
 const item1Poster = document.getElementById('item1Poster');
 const item1Value = document.getElementById('item1Value');
 const item2Text = document.getElementById('item2Text');
+const item2description = document.getElementById('item2description');
 const item2Poster = document.getElementById('item2Poster');
 const item2Value = document.getElementById('item2Value');
 const scoreText = document.getElementById('scoreText');
@@ -206,11 +208,13 @@ function nextRound() {
   currentPair = getRandomPair();
 
   item1Text.textContent = currentPair[0].name;
+  item1description.textContent = currentPair[0].description;
   item1Poster.src = currentPair[0].poster;
   item1Poster.alt = currentPair[0].name + " posteri";
-  item1Value.textContent = currentPair[0].value.toFixed(1);
+  item1Value.textContent = currentPair[0].value.toFixed(0);
 
   item2Text.textContent = currentPair[1].name;
+  item2description.textContent = currentPair[1].description;
   item2Poster.src = currentPair[1].poster;
   item2Poster.alt = currentPair[1].name + " posteri";
   item2Value.textContent = '?';
@@ -223,7 +227,7 @@ function nextRound() {
 
   resetTimer();
 }
-
+  
 function showResult(isCorrect) {
   setCardsVisibility(true);
   const val1 = currentPair[0].value;
