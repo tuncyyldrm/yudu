@@ -11,7 +11,6 @@
 <meta name="apple-mobile-web-app-capable" content="yes">
   <!-- Google tag (gtag.js) -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-263H1JRSEK"></script>
-
 <script>
   window.dataLayer = window.dataLayer || [];
   function gtag(){dataLayer.push(arguments);}
@@ -19,14 +18,7 @@
 
   gtag('config', 'G-263H1JRSEK');
 </script>
-<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js"></script>
-<script>
-  const supabase = window.supabase.createClient(
-    'https://iheoyyvibwdtfjbjrqgmy.supabase.co',
-    'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImloZW95eXZpYndkdGZqYmpyZ215Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NTM5ODI4MjQsImV4cCI6MjA2OTU1ODgyNH0.dr2O7p5mq9S6PtnFMb96u9y9PzvqJjAC9laRBTjTO2A'
-  );
-</script>
-
+  
 <title>YÜDÜ - Film Yüksek mi Düşük mü?</title>
   
 </head>
@@ -40,12 +32,6 @@
       Bu oyun, verilen iki filmden ikinci filmin IMDb puanının birincisinden daha yüksek mi yoksa daha düşük mü olduğunu tahmin etme oyunudur.<br>
       Zaman sınırlıdır, doğru tahmin etmeye çalış!
     </div>
-
-    <div id="loginSection">
-      <input type="text" id="usernameInput" placeholder="Kullanıcı adın" />
-      <button onclick="login()">Giriş Yap</button>
-    </div>
-
 
     <div class="card" id="card1" aria-label="Birinci " style="display:none;">
         <img id="item1Poster" src="" alt=" posteri" style="width:auto; height:40px; vertical-align:middle; border-radius:4px;">
@@ -270,7 +256,6 @@ function showResult(isCorrect) {
     
     finalScore.textContent = score;
     updateHighScoreFilm(score);
-    saveScoreToSupabase(score);
 
     // Oyun bitişi görünümü
     card1.style.display = 'none';
@@ -398,61 +383,6 @@ if ("serviceWorker" in navigator) {
     .then(() => console.log("✅ Service Worker kayıt edildi"))
     .catch((err) => console.error("❌ Hata:", err));
 }
-
-async function saveScoreToSupabase(score) {
-  const user = supabase.auth.user();
-
-  if (!user) {
-    console.warn("Kayıt başarısız: Giriş yapılmamış.");
-    return;
-  }
-
-  const { data, error } = await supabase
-    .from('scores')
-    .insert([
-      { user_id: user.id, score: score, game: 'film', created_at: new Date().toISOString() }
-    ]);
-
-  if (error) {
-    console.error("⚠️ Supabase'e skor kaydı başarısız:", error);
-  } else {
-    console.log("✅ Skor Supabase'e kaydedildi:", data);
-  }
-}
-
-async function login() {
-  const username = document.getElementById('usernameInput').value.trim();
-  if (!username) return alert("Lütfen bir kullanıcı adı gir");
-
-  // Otomatik anonim kullanıcı oluştur
-  const { user, error } = await supabase.auth.signUp({
-    email: `${username}@ydoyun.fake`,
-    password: '123456' // varsayılan şifre, gizli
-  }, {
-    data: { username }
-  });
-
-  if (error && !error.message.includes('already registered')) {
-    console.error("Giriş başarısız:", error.message);
-    return alert("Giriş yapılamadı");
-  }
-
-  // Mevcut kullanıcıysa giriş yap
-  if (error && error.message.includes('already registered')) {
-    const { user: existingUser, error: loginErr } = await supabase.auth.signInWithPassword({
-      email: `${username}@ydoyun.fake`,
-      password: '123456'
-    });
-
-    if (loginErr) return alert("Giriş yapılamadı");
-    alert("Giriş yapıldı");
-    document.getElementById('loginSection').style.display = 'none';
-  } else {
-    alert("Giriş yapıldı");
-    document.getElementById('loginSection').style.display = 'none';
-  }
-}
-
 </script>
 </body>
 </html>
