@@ -1,0 +1,569 @@
+[
+  {
+    "rank": "01",
+    "title": "Adana",
+    "value": "2270298",
+    "description": "Adana: Sabancı Merkez Camii. Fotoğraf, Ali Başarır",
+    "image": "//img.memurlar.net/galeri/4400/6c283fe2-bb68-e311-8b97-14feb5cc1801.jpg?width=800"
+  },
+  {
+    "rank": "02",
+    "title": "Adıyaman",
+    "value": "604978",
+    "description": "Adıyaman: Nemrut Dağı. Fotoğraf, Coolbiere. A",
+    "image": "//img.memurlar.net/galeri/4400/2b9d58e8-bb68-e311-8b97-14feb5cc1801.jpg?width=800"
+  },
+  {
+    "rank": "03",
+    "title": "Afyonkarahisar",
+    "value": "751344",
+    "description": "Afyon: Frig Vadisi. (Yıldız Pozlama) Fotoğraf, Hümeyra Çelik",
+    "image": "//img.memurlar.net/galeri/4400/23ed7aee-bb68-e311-8b97-14feb5cc1801.jpg?width=800"
+  },
+  {
+    "rank": "04",
+    "title": "Ağrı",
+    "value": "511238",
+    "description": "Ağrı: İshak Paşa Sarayı ve Ağrı Dağı manzarası. Fotoğraf, Nuro Aksoy",
+    "image": "//img.memurlar.net/galeri/4400/2ded7aee-bb68-e311-8b97-14feb5cc1801.jpg?width=800"
+  },
+  {
+    "rank": "05",
+    "title": "Amasya",
+    "value": "339529",
+    "description": "Amasya: Kral mezarları ve Amasya'nın gece görünüşü. Fotoğraf, Can Eser",
+    "image": "//img.memurlar.net/galeri/4400/d402a7f4-bb68-e311-8b97-14feb5cc1801.jpg?width=800"
+  },
+  {
+    "rank": "06",
+    "title": "Ankara",
+    "value": "5803482",
+    "description": "Ankara: Gece Işıklandırmasıyla Anıtkabir",
+    "image": "//img.memurlar.net/galeri/4400/39e50110-bc68-e311-8b97-14feb5cc1801.jpg?width=800"
+  },
+  {
+    "rank": "07",
+    "title": "Antalya",
+    "value": "2696249",
+    "description": "Antalya: Side Apollon Tapınağı. Fotoğraf, Necat Çetin",
+    "image": "//img.memurlar.net/galeri/4400/b4577816-bc68-e311-8b97-14feb5cc1801.jpg?width=800"
+  },
+  {
+    "rank": "08",
+    "title": "Artvin",
+    "value": "172356",
+    "description": "Artvin: Kara Göl. Fotoğraf, Özcan Malkoçer",
+    "image": "//img.memurlar.net/galeri/4400/efe1c31c-bc68-e311-8b97-14feb5cc1801.jpg?width=800"
+  },
+  {
+    "rank": "09",
+    "title": "Aydın",
+    "value": "1161702",
+    "description": "Aydın: Apollon Tapınağı. Fotoğraf, Veli Toluay",
+    "image": "//img.memurlar.net/galeri/4400/4116e022-bc68-e311-8b97-14feb5cc1801.jpg?width=800"
+  },
+  {
+    "rank": "10",
+    "title": "Balıkesir",
+    "value": "1273519",
+    "description": "Balıkesir: Manyas Kuş Cenneti. Fotoğraf, Zafer Çankırı",
+    "image": "//img.memurlar.net/galeri/4400/b6ab6a36-bc68-e311-8b97-14feb5cc1801.jpg?width=800"
+  },
+  {
+    "rank": "11",
+    "title": "Bilecik",
+    "value": "228058",
+    "description": "Bilecik: Orhan Gazi Camii",
+    "image": "//img.memurlar.net/galeri/4400/0dd3973c-bc68-e311-8b97-14feb5cc1801.jpg?width=800"
+  },
+  {
+    "rank": "12",
+    "title": "Bingöl",
+    "value": "285655",
+    "description": "Bingöl: Yüzen Ada",
+    "image": "//img.memurlar.net/galeri/4400/546aaa56-bc68-e311-8b97-14feb5cc1801.jpg?width=800"
+  },
+  {
+    "rank": "13",
+    "title": "Bitlis",
+    "value": "359747",
+    "description": "Bitlis: Ahlat Selçuklu Mezarları. Fotoğraf, Erkam Uğur",
+    "image": "//img.memurlar.net/galeri/4400/d7833a5d-bc68-e311-8b97-14feb5cc1801.jpg?width=800"
+  },
+  {
+    "rank": "14",
+    "title": "Bolu",
+    "value": "324789",
+    "description": "Bolu: Göynük Evleri. Fotoğraf, Erdal Irgat",
+    "image": "//img.memurlar.net/galeri/4400/f1833a5d-bc68-e311-8b97-14feb5cc1801.jpg?width=800"
+  },
+  {
+    "rank": "15",
+    "title": "Burdur",
+    "value": "277452",
+    "description": "Burdur: Kibyra Antik Kenti. Fotoğraf, Recep Çirik",
+    "image": "//img.memurlar.net/galeri/4400/96304163-bc68-e311-8b97-14feb5cc1801.jpg?width=800"
+  },
+  {
+    "rank": "16",
+    "title": "Bursa",
+    "value": "3214571",
+    "description": "Bursa: Cumalıkızık Köyü. Fotoğraf, Gökhan Güzeltepe",
+    "image": "//img.memurlar.net/galeri/4400/0ecc4769-bc68-e311-8b97-14feb5cc1801.jpg?width=800"
+  },
+  {
+    "rank": "17",
+    "title": "Çanakkale",
+    "value": "570499",
+    "description": "Çanakkale: Çanakkale Şehitleri Anıtı",
+    "image": "//img.memurlar.net/galeri/4400/20cc4769-bc68-e311-8b97-14feb5cc1801.jpg?width=800"
+  },
+  {
+    "rank": "18",
+    "title": "Çankırı",
+    "value": "205501",
+    "description": "Çankırı: Tuz Mağaraları. Fotoğraf Melih Sular",
+    "image": "//img.memurlar.net/galeri/4400/eba9dc7c-bc68-e311-8b97-14feb5cc1801.jpg?width=800"
+  },
+  {
+    "rank": "19",
+    "title": "Çorum",
+    "value": "528351",
+    "description": "Çorum: Osmancık Köprüsü. Fotoğraf, Can Eser",
+    "image": "//img.memurlar.net/galeri/4400/8f0e9291-bc68-e311-8b97-14feb5cc1801.jpg?width=800"
+  },
+  {
+    "rank": "20",
+    "title": "Denizli",
+    "value": "1059082",
+    "description": "Denizli: Pamukkale. Fotoğraf, Ahmet Şahin",
+    "image": "//img.memurlar.net/galeri/4400/3d0abb97-bc68-e311-8b97-14feb5cc1801.jpg?width=800"
+  },
+  {
+    "rank": "21",
+    "title": "Diyarbakır",
+    "value": "1818133",
+    "description": "Diyarbakır: Ulu Camii. Fotoğraf, Kadir Kömür",
+    "image": "//img.memurlar.net/galeri/4400/4b0abb97-bc68-e311-8b97-14feb5cc1801.jpg?width=800"
+  },
+  {
+    "rank": "22",
+    "title": "Edirne",
+    "value": "419913",
+    "description": "Edirne: Selimiye Camii ve şehir silüeti. Fotoğraf, Ömer Şahin",
+    "image": "//img.memurlar.net/galeri/4400/c14a129e-bc68-e311-8b97-14feb5cc1801.jpg?width=800"
+  },
+  {
+    "rank": "23",
+    "title": "Elazığ",
+    "value": "604411",
+    "description": "Elazığ: Harput Kalesi. Fotoğraf, Hıdır Yıldırım",
+    "image": "//img.memurlar.net/galeri/4400/d44a129e-bc68-e311-8b97-14feb5cc1801.jpg?width=800"
+  },
+  {
+    "rank": "24",
+    "title": "Erzincan",
+    "value": "243399",
+    "description": "Erzincan: Girlevik Şelalesi. Fotoğraf, Çağrı Çırak",
+    "image": "//img.memurlar.net/galeri/4400/d84639a4-bc68-e311-8b97-14feb5cc1801.jpg?width=800"
+  },
+  {
+    "rank": "25",
+    "title": "Erzurum",
+    "value": "749993",
+    "description": "Erzurum: Üç Kümbetler. Fotoğraf, Barış Yorulmaz",
+    "image": "//img.memurlar.net/galeri/4400/e04639a4-bc68-e311-8b97-14feb5cc1801.jpg?width=800"
+  },
+  {
+    "rank": "26",
+    "title": "Eskişehir",
+    "value": "915418",
+    "description": "Eskişehir: Odun Pazarı. Fotoğraf, Murat Fındık",
+    "image": "//img.memurlar.net/galeri/4400/9d6868aa-bc68-e311-8b97-14feb5cc1801.jpg?width=800"
+  },
+  {
+    "rank": "27",
+    "title": "Gaziantep",
+    "value": "2164134",
+    "description": "Gaziantep: Tarihi Bedesten içindeki bakırıcılar çarşısı. Fotoğraf, Hakkı \nArıcan",
+    "image": "//img.memurlar.net/galeri/4400/71798ab0-bc68-e311-8b97-14feb5cc1801.jpg?width=800"
+  },
+  {
+    "rank": "28",
+    "title": "Giresun",
+    "value": "461712",
+    "description": "Giresun: Kümbet Yaylası. Fotoğraf, Ahmet Yapan",
+    "image": "//img.memurlar.net/galeri/4400/7f798ab0-bc68-e311-8b97-14feb5cc1801.jpg?width=800"
+  },
+  {
+    "rank": "29",
+    "title": "Gümüşhane",
+    "value": "148539",
+    "description": "Gümüşhane: Kürtün Vadisi. Fotoğraf, Mustafa Olgun",
+    "image": "//img.memurlar.net/galeri/4400/5647d1b6-bc68-e311-8b97-14feb5cc1801.jpg?width=800"
+  },
+  {
+    "rank": "30",
+    "title": "Hakkari",
+    "value": "287625",
+    "description": "Hakkari: Mergan Yaylası. Fotoğraf, Mahmut Peynirci",
+    "image": "//img.memurlar.net/galeri/4400/6d47d1b6-bc68-e311-8b97-14feb5cc1801.jpg?width=800"
+  },
+  {
+    "rank": "31",
+    "title": "Hatay",
+    "value": "1544640",
+    "description": "Hatay: M.Ö. 1. yüzyılda yapılmış Vespasianus ve Titus Tüneli. Fotoğraf, \nSoner Pehlivan",
+    "image": "//img.memurlar.net/galeri/4400/15d48fbd-bc68-e311-8b97-14feb5cc1801.jpg?width=800"
+  },
+  {
+    "rank": "32",
+    "title": "Isparta",
+    "value": "449777",
+    "description": "Isparta: Eğirdir gece silüeti ve Eğirdir Gölü. Fotoğraf, Mehmet Altınay",
+    "image": "//img.memurlar.net/galeri/4400/20d48fbd-bc68-e311-8b97-14feb5cc1801.jpg?width=800"
+  },
+  {
+    "rank": "33",
+    "title": "Mersin",
+    "value": "1938389",
+    "description": "Mersin: Kız Kalesi. Fotoğraf, Erdal Suat",
+    "image": "//img.memurlar.net/galeri/4400/f7ce2ac5-bc68-e311-8b97-14feb5cc1801.jpg?width=800"
+  },
+  {
+    "rank": "34",
+    "title": "İstanbul",
+    "value": "15655924",
+    "description": "İstanbul: Galata Kulesi. Fotoğraf, Gökhan Girgine",
+    "image": "//img.memurlar.net/galeri/4400/00cf2ac5-bc68-e311-8b97-14feb5cc1801.jpg?width=800"
+  },
+  {
+    "rank": "35",
+    "title": "İzmir",
+    "value": "4479525",
+    "description": "İzmir: Efes Antik Kenti. Fotoğraf, Tingy Wu",
+    "image": "//img.memurlar.net/galeri/4400/7a5841cb-bc68-e311-8b97-14feb5cc1801.jpg?width=800"
+  },
+  {
+    "rank": "36",
+    "title": "Kars",
+    "value": "278335",
+    "description": "Kars: Ani Harabeleri. Fotoğraf, Salih Borbozan",
+    "image": "//img.memurlar.net/galeri/4400/865841cb-bc68-e311-8b97-14feb5cc1801.jpg?width=800"
+  },
+  {
+    "rank": "37",
+    "title": "Kastamonu",
+    "value": "388990",
+    "description": "Kastamonu: Kastamonu Kalesi. Fotoğraf, Sertaç Ünal",
+    "image": "//img.memurlar.net/galeri/4400/ea7584d1-bc68-e311-8b97-14feb5cc1801.jpg?width=800"
+  },
+  {
+    "rank": "38",
+    "title": "Kayseri",
+    "value": "1445683",
+    "description": "Kayseri: Kapuzbaşı Şelalesi. Fotoğraf, Ramazan Yücel Öner",
+    "image": "//img.memurlar.net/galeri/4400/f47584d1-bc68-e311-8b97-14feb5cc1801.jpg?width=800"
+  },
+  {
+    "rank": "39",
+    "title": "Kırklareli",
+    "value": "377156",
+    "description": "Kırklareli: Bizans döneminde İmparator II. Teodosius'un bu bölgedeki önemli \nşövalyelerinden biri olan Kozmos Dimitriyadis tarafından yaptırıldığı \nvarsayılan Pınarhisar Kalesi.",
+    "image": "//img.memurlar.net/galeri/4400/a2aa283e-bd68-e311-8b97-14feb5cc1801.jpg?width=800"
+  },
+  {
+    "rank": "40",
+    "title": "Kırşehir",
+    "value": "247179",
+    "description": "Kırşehir: Mucur Yeraltı Şehri",
+    "image": "//img.memurlar.net/galeri/4400/33ac5544-bd68-e311-8b97-14feb5cc1801.jpg?width=800"
+  },
+  {
+    "rank": "41",
+    "title": "Kocaeli",
+    "value": "2102907",
+    "description": "Kocaeli: Maşukiye Yaylası. Fotoğraf, Gökhan Alpdoğan",
+    "image": "//img.memurlar.net/galeri/4400/45ac5544-bd68-e311-8b97-14feb5cc1801.jpg?width=800"
+  },
+  {
+    "rank": "42",
+    "title": "Konya",
+    "value": "2320241",
+    "description": "Konya: Mevlana Türbesi. Fotoğraf, İlknur Akpınar",
+    "image": "//img.memurlar.net/galeri/4400/f76f504a-bd68-e311-8b97-14feb5cc1801.jpg?width=800"
+  },
+  {
+    "rank": "43",
+    "title": "Kütahya",
+    "value": "575674",
+    "description": "Kütahya: Aizanoi Antik Kenti. Fotoğraf, Zafer Çankırı",
+    "image": "//img.memurlar.net/galeri/4400/6152d056-bd68-e311-8b97-14feb5cc1801.jpg?width=800"
+  },
+  {
+    "rank": "44",
+    "title": "Malatya",
+    "value": "742725",
+    "description": "Malatya: Günpınar Şelalesi. Fotoğraf, Sefa Özdemir",
+    "image": "//img.memurlar.net/galeri/4400/6952d056-bd68-e311-8b97-14feb5cc1801.jpg?width=800"
+  },
+  {
+    "rank": "45",
+    "title": "Manisa",
+    "value": "1475716",
+    "description": "Manisa: Sardes Antik Kenti. Fotoğraf, Ali Başarır",
+    "image": "//img.memurlar.net/galeri/4400/7ccad35c-bd68-e311-8b97-14feb5cc1801.jpg?width=800"
+  },
+  {
+    "rank": "46",
+    "title": "Kahramanmaraş",
+    "value": "1116618",
+    "description": "Kahramanmaraş: Taş Köprü. Fotoğraf, Ümit Bor",
+    "image": "//img.memurlar.net/galeri/4400/c1f07363-bd68-e311-8b97-14feb5cc1801.jpg?width=800"
+  },
+  {
+    "rank": "47",
+    "title": "Mardin",
+    "value": "888874",
+    "description": "Mardin: Bir bütün olarak, Mardin şehrinin gece silüeti. Fotoğraf, Erkam Uğur",
+    "image": "//img.memurlar.net/galeri/4400/caf07363-bd68-e311-8b97-14feb5cc1801.jpg?width=800"
+  },
+  {
+    "rank": "48",
+    "title": "Muğla",
+    "value": "1066736",
+    "description": "Muğla: Ölü Deniz. Fotoğraf, Nejdet Düzen",
+    "image": "//img.memurlar.net/galeri/4400/8b0b7f69-bd68-e311-8b97-14feb5cc1801.jpg?width=800"
+  },
+  {
+    "rank": "49",
+    "title": "Muş",
+    "value": "399879",
+    "description": "Muş: Murat Köprüsü. Fotoğraf, Hidayet Kara",
+    "image": "//img.memurlar.net/galeri/4400/920b7f69-bd68-e311-8b97-14feb5cc1801.jpg?width=800"
+  },
+  {
+    "rank": "50",
+    "title": "Nevşehir",
+    "value": "315994",
+    "description": "Nevşehir: Kapadokya/Peri Bacaları. Fotoğraf, Reynaldi Herdinanto",
+    "image": "//img.memurlar.net/galeri/4400/665bea6f-bd68-e311-8b97-14feb5cc1801.jpg?width=800"
+  },
+  {
+    "rank": "51",
+    "title": "Niğde",
+    "value": "377080",
+    "description": "Niğde: Alaaddin Camii. Fotoğraf, Serdar Güner",
+    "image": "//img.memurlar.net/galeri/4400/3c29ea75-bd68-e311-8b97-14feb5cc1801.jpg?width=800"
+  },
+  {
+    "rank": "52",
+    "title": "Ordu",
+    "value": "775800",
+    "description": "Ordu: Boztepe'den gece Ordu görünüşü. Fotoğraf, Kerim Gültaş",
+    "image": "//img.memurlar.net/galeri/4400/4b29ea75-bd68-e311-8b97-14feb5cc1801.jpg?width=800"
+  },
+  {
+    "rank": "53",
+    "title": "Rize",
+    "value": "350506",
+    "description": "Rize: Pokut Yaylası. Fotoğraf, Ferzan Uğurdağ",
+    "image": "//img.memurlar.net/galeri/4400/9a4bf17b-bd68-e311-8b97-14feb5cc1801.jpg?width=800"
+  },
+  {
+    "rank": "54",
+    "title": "Sakarya",
+    "value": "1098115",
+    "description": "Sakarya: Sapanca Gölü. Fotoğraf, Selçuk Gülen",
+    "image": "//img.memurlar.net/galeri/4400/43050682-bd68-e311-8b97-14feb5cc1801.jpg?width=800"
+  },
+  {
+    "rank": "55",
+    "title": "Samsun",
+    "value": "1377546",
+    "description": "Samsun: Atatürk Heykeli",
+    "image": "//img.memurlar.net/galeri/4400/cc143688-bd68-e311-8b97-14feb5cc1801.jpg?width=800"
+  },
+  {
+    "rank": "56",
+    "title": "Siirt",
+    "value": "347412",
+    "description": "Siirt: Siirt'in Aydınlar ilçesinde ekinoks zamanlarında güneş ışınlarının \nbelli bir vakitte belli bir noktaya düşeceğinin 17-18. yüzyıllarda hesap \nedilmesine dayalı olarak inşa edilen türbe. Fotoğraf, Tarık Oran.",
+    "image": "//img.memurlar.net/galeri/4400/dd8c588e-bd68-e311-8b97-14feb5cc1801.jpg?width=800"
+  },
+  {
+    "rank": "57",
+    "title": "Sinop",
+    "value": "229716",
+    "description": "Sinop: Sinop Kalesi ve fotoğrafta görüldüğü gibi surları. Fotoğraf, Caucas \nBlue",
+    "image": "//img.memurlar.net/galeri/4400/e68c588e-bd68-e311-8b97-14feb5cc1801.jpg?width=800"
+  },
+  {
+    "rank": "58",
+    "title": "Sivas",
+    "value": "650401",
+    "description": "Sivas: Divriği Ulu Camii ve Darüşşifası. Fotoğraf, Ahmet Özbaş",
+    "image": "//img.memurlar.net/galeri/4400/8abe1195-bd68-e311-8b97-14feb5cc1801.jpg?width=800"
+  },
+  {
+    "rank": "59",
+    "title": "Tekirdağ",
+    "value": "1167059",
+    "description": "Tekirdağ: Ayçiçeği/Günebakan Bahçeleri. Fotoğraf, Ramis Akar",
+    "image": "//img.memurlar.net/galeri/4400/99be1195-bd68-e311-8b97-14feb5cc1801.jpg?width=800"
+  },
+  {
+    "rank": "60",
+    "title": "Tokat",
+    "value": "606934",
+    "description": "Tokat: Ballıca Mağarası. Fotoğraf, Tuna Ozata",
+    "image": "//img.memurlar.net/galeri/4400/d3f8209b-bd68-e311-8b97-14feb5cc1801.jpg?width=800"
+  },
+  {
+    "rank": "61",
+    "title": "Trabzon",
+    "value": "824352",
+    "description": "Trabzon: Sümela Manastırı. Fotoğraf, Mustafa Tayar",
+    "image": "//img.memurlar.net/galeri/4400/dcf8209b-bd68-e311-8b97-14feb5cc1801.jpg?width=800"
+  },
+  {
+    "rank": "62",
+    "title": "Tunceli",
+    "value": "89317",
+    "description": "Tunceli: Pertek Kalesi. Fotoğraf, Engin Asil",
+    "image": "//img.memurlar.net/galeri/4400/e0831aa1-bd68-e311-8b97-14feb5cc1801.jpg?width=800"
+  },
+  {
+    "rank": "63",
+    "title": "Şanlıurfa",
+    "value": "2213964",
+    "description": "Şanlıurfa: Büyük kısmı Birecik Barajı nedeniyle sular altında kalmış \nHalfeti İlçesi. Fotoğraf, Aylin Erözcan",
+    "image": "//img.memurlar.net/galeri/4400/e9831aa1-bd68-e311-8b97-14feb5cc1801.jpg?width=800"
+  },
+  {
+    "rank": "64",
+    "title": "Uşak",
+    "value": "377001",
+    "description": "Uşak: Ulubey Kanyonları",
+    "image": "//img.memurlar.net/galeri/4400/65dc19a7-bd68-e311-8b97-14feb5cc1801.jpg?width=800"
+  },
+  {
+    "rank": "65",
+    "title": "Van",
+    "value": "1127612",
+    "description": "Van: Akdamar Adası ve Kilisesi. Fotoğraf, Coolbiere. A.",
+    "image": "//img.memurlar.net/galeri/4400/21d108bb-bd68-e311-8b97-14feb5cc1801.jpg?width=800"
+  },
+  {
+    "rank": "66",
+    "title": "Yozgat",
+    "value": "420699",
+    "description": "Yozgat: Kazankaya Kanyonu. Fotoğraf, Adem Yağız",
+    "image": "//img.memurlar.net/galeri/4400/2cd108bb-bd68-e311-8b97-14feb5cc1801.jpg?width=800"
+  },
+  {
+    "rank": "67",
+    "title": "Zonguldak",
+    "value": "591492",
+    "description": "Zonguldak: Mitolojik karakter Herakles'in ölüler ülkesinin kapısını \nbekleyen üç başlı köpek cerberus'u yakaladığı yer olduğu rivayet edilen \nCehennemağzı Mağaraları.",
+    "image": "//img.memurlar.net/galeri/4400/1c513ec2-bd68-e311-8b97-14feb5cc1801.jpg?width=800"
+  },
+  {
+    "rank": "68",
+    "title": "Aksaray",
+    "value": "438504",
+    "description": "Aksaray: Ihlara Vadisi. Fotoğraf, Erol Şahin",
+    "image": "//img.memurlar.net/galeri/4400/2e513ec2-bd68-e311-8b97-14feb5cc1801.jpg?width=800"
+  },
+  {
+    "rank": "69",
+    "title": "Bayburt",
+    "value": "86047",
+    "description": "Bayburt: Bayburt Kalesi ve şehir silüeti. Fotoğraf, Can Savcı",
+    "image": "//img.memurlar.net/galeri/4400/aac638c8-bd68-e311-8b97-14feb5cc1801.jpg?width=800"
+  },
+  {
+    "rank": "70",
+    "title": "Karaman",
+    "value": "263960",
+    "description": "Karaman: Hatuniye Medresesi",
+    "image": "//img.memurlar.net/galeri/4400/b1c638c8-bd68-e311-8b97-14feb5cc1801.jpg?width=800"
+  },
+  {
+    "rank": "71",
+    "title": "Kırıkkale",
+    "value": "285744",
+    "description": "Kırıkkale: Celal Bayar Parkı",
+    "image": "//img.memurlar.net/galeri/4400/a2b46fce-bd68-e311-8b97-14feb5cc1801.jpg?width=800"
+  },
+  {
+    "rank": "72",
+    "title": "Batman",
+    "value": "647205",
+    "description": "Batman: Hasankeyf. Fotoğraf, Mehmet Çay",
+    "image": "//img.memurlar.net/galeri/4400/a7b46fce-bd68-e311-8b97-14feb5cc1801.jpg?width=800"
+  },
+  {
+    "rank": "73",
+    "title": "Şırnak",
+    "value": "570745",
+    "description": "Şırnak: Kırmızı Medrese",
+    "image": "//img.memurlar.net/galeri/4400/8ddf76d4-bd68-e311-8b97-14feb5cc1801.jpg?width=800"
+  },
+  {
+    "rank": "74",
+    "title": "Bartın",
+    "value": "207238",
+    "description": "Bartın: İnkum Plajı. Fotoğraf, Murat Güler",
+    "image": "//img.memurlar.net/galeri/4400/97df76d4-bd68-e311-8b97-14feb5cc1801.jpg?width=800"
+  },
+  {
+    "rank": "75",
+    "title": "Ardahan",
+    "value": "92819",
+    "description": "Ardahan: Kış sezonunda Çıldır Gölü. Fotoğraf, Ahmet Hrmnc",
+    "image": "//img.memurlar.net/galeri/4400/3934eada-bd68-e311-8b97-14feb5cc1801.jpg?width=800"
+  },
+  {
+    "rank": "76",
+    "title": "Iğdır",
+    "value": "209738",
+    "description": "Iğdır: Halıkışla. Fotoğraf, Özkan Soylu",
+    "image": "//img.memurlar.net/galeri/4400/4a34eada-bd68-e311-8b97-14feb5cc1801.jpg?width=800"
+  },
+  {
+    "rank": "77",
+    "title": "Yalova",
+    "value": "304780",
+    "description": "Yalova: Erikli Şelalesi. Fotoğraf, Hüseyin Atakuru",
+    "image": "//img.memurlar.net/galeri/4400/d22a17e1-bd68-e311-8b97-14feb5cc1801.jpg?width=800"
+  },
+  {
+    "rank": "78",
+    "title": "Karabük",
+    "value": "255242",
+    "description": "Karabük: Bulak Mağarası. Fotoğraf, Emrah Balaban",
+    "image": "//img.memurlar.net/galeri/4400/ce5e3de7-bd68-e311-8b97-14feb5cc1801.jpg?width=800"
+  },
+  {
+    "rank": "79",
+    "title": "Kilis",
+    "value": "155179",
+    "description": "Kilis: Ravanda Kalesi, içinden görünüm. Fotoğraf, Hannan Aslan",
+    "image": "//img.memurlar.net/galeri/4400/db5e3de7-bd68-e311-8b97-14feb5cc1801.jpg?width=800"
+  },
+  {
+    "rank": "80",
+    "title": "Osmaniye",
+    "value": "557666",
+    "description": "Osmaniye: Ceyhan Nehri. Fotoğraf, Murat Beşbudak",
+    "image": "//img.memurlar.net/galeri/4400/731b67ed-bd68-e311-8b97-14feb5cc1801.jpg?width=800"
+  },
+  {
+    "rank": "81",
+    "title": "Düzce",
+    "value": "409865",
+    "description": "Düzce: Kardüz Yaylası",
+    "image": "//img.memurlar.net/galeri/4400/7d1b67ed-bd68-e311-8b97-14feb5cc1801.jpg?width=800"
+  }
+]
