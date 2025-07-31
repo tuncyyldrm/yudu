@@ -11,6 +11,7 @@
     --btn-secondary: #555; /* Başla/Yeniden Başla butonu */
     --btn-secondary-hover: #333;
   }
+
   [data-theme="dark"] {
     --bg-light: #121212;
     --text-light: #f1f1f1;
