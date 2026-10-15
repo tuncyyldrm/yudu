@@ -1,69 +1,107 @@
-import Image from "next/image";
+import Link from 'next/link';
+import { CATEGORIES } from '@/data/categories';
+import { SoundToggle } from '@/components/SoundToggle';
+import { Play, Flame, Zap, Trophy } from 'lucide-react';
 
-export default function Home() {
+export default function HomePage() {
   return (
-    <div className="flex flex-col flex-1 items-center justify-center bg-zinc-50 font-sans dark:bg-black">
-      <main className="flex flex-1 w-full max-w-3xl flex-col items-center justify-between py-32 px-16 bg-white dark:bg-black sm:items-start">
-        <Image
-          className="dark:invert h-5 w-[100px]"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={100}
-          height={20}
-          priority
-        />
-        <div className="flex flex-col items-center gap-6 text-center sm:items-start sm:text-left">
-          <h1 className="max-w-xs text-3xl font-semibold leading-10 tracking-tight text-black dark:text-zinc-50">
-            To get started, edit the{" "}
-            <code className="rounded bg-black/[.06] px-1.5 py-0.5 font-mono text-[0.9em] dark:bg-white/[.08]">
-              page.tsx
-            </code>{" "}
-            file.
-          </h1>
-          <p className="max-w-md text-lg leading-8 text-zinc-600 dark:text-zinc-400">
-            Looking for a starting point or more instructions? Head over to{" "}
-            <a
-              href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Templates
-            </a>{" "}
-            or the{" "}
-            <a
-              href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Learning
-            </a>{" "}
-            center.
-          </p>
+    <main className="min-h-screen bg-slate-950 text-white flex flex-col justify-between p-4 sm:p-8 md:p-12 relative overflow-hidden select-none">
+      {/* Background glow effects */}
+      <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full max-w-6xl h-96 bg-gradient-to-b from-amber-500/10 via-rose-500/5 to-transparent blur-3xl pointer-events-none" />
+
+      {/* Top Navbar */}
+      <header className="relative z-10 max-w-6xl mx-auto w-full flex justify-between items-center mb-8 sm:mb-12">
+        <div className="flex items-center gap-3">
+          <div className="flex items-center gap-1.5 bg-white/10 backdrop-blur-md px-3 py-1 rounded-full border border-white/15">
+            <Flame className="w-3.5 h-3.5 text-amber-400 fill-amber-400" />
+            <span className="text-white text-xs font-black tracking-wider uppercase">
+              YÜDÜ V2
+            </span>
+          </div>
+          <span className="text-slate-400 text-xs font-bold hidden sm:inline">
+            10 Kategori &bull; 3 Mod &bull; Full Ekran
+          </span>
         </div>
-        <div className="flex flex-col gap-4 text-base font-medium sm:flex-row">
-          <a
-            className="flex h-12 w-full items-center justify-center gap-2 rounded-full bg-foreground px-5 text-background transition-colors hover:bg-[#383838] dark:hover:bg-[#ccc] md:w-[158px]"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert h-[14px] w-4"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={16}
-              height={14}
-            />
-            Deploy Now
-          </a>
-          <a
-            className="flex h-12 w-full items-center justify-center rounded-full border border-solid border-black/[.08] px-5 transition-colors hover:border-transparent hover:bg-black/[.04] dark:border-white/[.145] dark:hover:bg-[#1a1a1a] md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Documentation
-          </a>
+        <SoundToggle className="!bg-white/10 !border-white/15 text-white" />
+      </header>
+
+      {/* Hero Title Section */}
+      <section className="relative z-10 max-w-4xl mx-auto w-full text-center mb-10 sm:mb-16">
+        <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-amber-400/10 border border-amber-400/30 text-amber-300 text-xs font-black uppercase tracking-widest mb-4 shadow-[0_0_20px_rgba(251,191,36,0.15)]">
+          <Zap className="w-3.5 h-3.5 fill-amber-300" />
+          Türkiye&apos;nin En Bağımlılık Yapan Karşılaştırma Oyunu
         </div>
-      </main>
-    </div>
+
+        <h1 className="text-6xl sm:text-7xl md:text-9xl font-black tracking-tighter text-white mb-4 drop-shadow-[0_4px_20px_rgba(0,0,0,0.8)]">
+          YÜ<span className="text-amber-400">DÜ</span>
+        </h1>
+
+        <p className="text-slate-300 text-lg sm:text-xl md:text-2xl font-bold max-w-xl mx-auto leading-relaxed">
+          Hangisi daha çok? Sezgine güven, <span className="text-emerald-400">Yüksek</span> veya <span className="text-rose-400">Düşük</span> de, rekoru kap!
+        </p>
+      </section>
+
+      {/* Category Selection Grid */}
+      <section className="relative z-10 max-w-6xl mx-auto w-full mb-12">
+        <div className="flex items-center justify-between mb-6">
+          <h2 className="text-lg sm:text-xl font-black text-white flex items-center gap-2 uppercase tracking-wide">
+            <Trophy className="w-5 h-5 text-amber-400" />
+            Kategori Seç & Başla
+          </h2>
+          <span className="text-xs text-slate-400 font-bold bg-white/5 px-2.5 py-1 rounded-full border border-white/10">
+            {CATEGORIES.length} Kategori
+          </span>
+        </div>
+
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-5">
+          {CATEGORIES.map((cat) => (
+            <Link
+              key={cat.id}
+              href={`/oyunu/${cat.id}`}
+              className="group relative bg-slate-900/80 hover:bg-slate-900 border border-white/10 hover:border-amber-400/50 p-6 rounded-3xl transition-all duration-300 hover:-translate-y-1.5 hover:shadow-[0_10px_30px_rgba(251,191,36,0.15)] flex flex-col justify-between overflow-hidden"
+            >
+              {/* Subtle accent line */}
+              <div className={`absolute top-0 left-0 right-0 h-1 bg-gradient-to-r ${cat.gradient || 'from-amber-400 to-rose-500'} opacity-60 group-hover:opacity-100 transition-opacity`} />
+
+              <div>
+                <div className="flex items-start justify-between mb-4">
+                  <div className="text-4xl p-2.5 rounded-2xl bg-black/40 border border-white/10 group-hover:scale-110 transition-transform duration-300 w-fit">
+                    {cat.icon}
+                  </div>
+                  {cat.badge && (
+                    <span className="bg-amber-400 text-slate-950 text-[10px] font-black uppercase tracking-widest px-2.5 py-0.5 rounded-full shadow-sm">
+                      {cat.badge}
+                    </span>
+                  )}
+                </div>
+
+                <h3 className="text-xl sm:text-2xl font-black mb-1.5 text-white group-hover:text-amber-300 transition-colors">
+                  {cat.title}
+                </h3>
+                <p className="text-slate-400 text-xs sm:text-sm leading-relaxed">
+                  {cat.description}
+                </p>
+              </div>
+
+              <div className="mt-6 pt-4 border-t border-white/10 flex items-center justify-between">
+                <span className="text-xs text-slate-500 font-bold">
+                  Birim: <span className="text-slate-300">{cat.valueLabel}</span>
+                </span>
+                <span className="inline-flex items-center gap-1.5 text-xs font-black text-amber-400 group-hover:text-amber-300 uppercase tracking-wider">
+                  Hemen Oyna
+                  <Play className="w-3.5 h-3.5 fill-current" />
+                </span>
+              </div>
+            </Link>
+          ))}
+        </div>
+      </section>
+
+      {/* Footer */}
+      <footer className="relative z-10 max-w-6xl mx-auto w-full text-center text-slate-500 text-xs py-4 border-t border-white/10 flex flex-col sm:flex-row items-center justify-between gap-2">
+        <p>YÜDÜ &bull; Higher Lower Türkiye Edisyonu</p>
+        <p className="text-slate-600">Arkadaşlarınla kapış, rekorları zorla!</p>
+      </footer>
+    </main>
   );
 }
