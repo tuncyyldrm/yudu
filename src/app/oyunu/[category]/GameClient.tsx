@@ -409,11 +409,11 @@ export function GameClient({ categoryId }: GameClientProps) {
 
   if (!category || rawItems.length < 2) {
     return (
-      <div className="h-screen bg-slate-950 text-white flex flex-col items-center justify-center p-6 text-center">
-        <h2 className="text-2xl font-black mb-4">Bu kategori için yeterli veri bulunamadı.</h2>
+      <div className="h-[100dvh] bg-slate-900 text-white flex flex-col items-center justify-center p-6 text-center">
+        <h2 className="text-xl md:text-2xl font-black mb-4">Bu kategori için yeterli veri bulunamadı.</h2>
         <Link
           href="/"
-          className="bg-indigo-600 hover:bg-indigo-500 text-white font-bold px-6 py-3 rounded-xl transition"
+          className="bg-indigo-600 hover:bg-indigo-500 text-white font-bold px-6 py-3 rounded-2xl transition shadow-lg"
         >
           Kategorilere Dön
         </Link>
@@ -423,8 +423,8 @@ export function GameClient({ categoryId }: GameClientProps) {
 
   if (!leftItem || !rightItem) {
     return (
-      <div className="h-screen bg-slate-950 text-white flex items-center justify-center">
-        <div className="flex items-center gap-3 text-slate-400 font-medium">
+      <div className="h-[100dvh] bg-slate-900 text-white flex items-center justify-center">
+        <div className="flex items-center gap-3 text-slate-300 font-medium">
           <RotateCcw className="w-5 h-5 animate-spin text-amber-400" />
           Yükleniyor...
         </div>
@@ -443,15 +443,15 @@ export function GameClient({ categoryId }: GameClientProps) {
     : 0;
 
   return (
-    <main className={`h-screen w-screen overflow-hidden bg-black text-white relative select-none flex flex-col md:flex-row ${screenShake ? 'animate-screen-shake' : ''}`}>
+    <main className={`h-[100dvh] w-screen overflow-hidden bg-slate-950 text-white relative select-none flex flex-col md:flex-row ${screenShake ? 'animate-screen-shake' : ''}`}>
       {/* Floating Shield Active Glow Aura */}
       {shieldActive && (
-        <div className="absolute inset-0 pointer-events-none ring-8 ring-amber-400/80 shadow-[inset_0_0_80px_rgba(251,191,36,0.4)] z-40 animate-pulse" />
+        <div className="absolute inset-0 pointer-events-none ring-4 sm:ring-8 ring-amber-400/80 shadow-[inset_0_0_80px_rgba(251,191,36,0.3)] z-40 animate-pulse" />
       )}
 
       {/* Floating Header Overlay */}
-      <header className="absolute top-0 left-0 right-0 z-30 flex items-center justify-between p-3 md:p-6 pointer-events-none">
-        <div className="flex items-center gap-2 pointer-events-auto">
+      <header className="absolute top-0 left-0 right-0 z-30 flex items-center justify-between p-2.5 sm:p-4 md:p-6 pointer-events-none">
+        <div className="flex items-center gap-1.5 sm:gap-2 pointer-events-auto">
           <button
             onClick={() => {
               soundManager.playClick();
@@ -459,9 +459,9 @@ export function GameClient({ categoryId }: GameClientProps) {
                 router.push('/');
               });
             }}
-            className="flex items-center gap-1.5 text-white bg-black/60 hover:bg-black/85 backdrop-blur-md border border-white/15 px-3 py-2 rounded-2xl text-xs md:text-sm font-bold transition-all active:scale-95 shadow-lg"
+            className="flex items-center gap-1 text-slate-100 bg-slate-900/80 hover:bg-slate-800 backdrop-blur-md border border-white/20 px-2.5 sm:px-3.5 py-1.5 sm:py-2 rounded-xl sm:rounded-2xl text-xs sm:text-sm font-bold transition-all active:scale-95 shadow-lg"
           >
-            <ArrowLeft className="w-4 h-4" />
+            <ArrowLeft className="w-3.5 h-3.5 sm:w-4 sm:h-4" />
             <span className="hidden sm:inline">Kategoriler</span>
           </button>
 
@@ -470,22 +470,22 @@ export function GameClient({ categoryId }: GameClientProps) {
               soundManager.playClick();
               setIsStatsOpen(true);
             }}
-            className="p-2 rounded-2xl bg-black/60 hover:bg-black/85 backdrop-blur-md border border-white/15 text-amber-300 hover:text-white transition shadow-lg"
+            className="p-1.5 sm:p-2 rounded-xl sm:rounded-2xl bg-slate-900/80 hover:bg-slate-800 backdrop-blur-md border border-white/20 text-amber-300 hover:text-white transition shadow-lg"
             title="İstatistikler & Başarımlar"
           >
-            <Trophy className="w-4 h-4 text-amber-400" />
+            <Trophy className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-amber-400" />
           </button>
 
-          <SoundToggle className="!bg-black/60 !border-white/15 text-white" />
+          <SoundToggle className="!bg-slate-900/80 !border-white/20 text-slate-200 !w-8 !h-8 sm:!w-9 sm:!h-9" />
         </div>
 
         {/* Mode Selector */}
-        <div className="flex bg-black/65 backdrop-blur-md p-1 rounded-2xl border border-white/15 text-[11px] md:text-xs font-black pointer-events-auto shadow-lg">
+        <div className="flex bg-slate-900/85 backdrop-blur-md p-0.5 sm:p-1 rounded-xl sm:rounded-2xl border border-white/20 text-[10px] sm:text-xs font-black pointer-events-auto shadow-lg">
           <button
             onClick={() => handleModeChange('classic')}
-            className={`px-2.5 py-1.5 rounded-xl transition-all ${
+            className={`px-2 sm:px-2.5 py-1 sm:py-1.5 rounded-lg sm:rounded-xl transition-all ${
               mode === 'classic'
-                ? 'bg-amber-500 text-slate-950 shadow-md'
+                ? 'bg-amber-500 text-slate-950 shadow-md font-black'
                 : 'text-slate-300 hover:text-white'
             }`}
           >
@@ -493,9 +493,9 @@ export function GameClient({ categoryId }: GameClientProps) {
           </button>
           <button
             onClick={() => handleModeChange('lives')}
-            className={`px-2.5 py-1.5 rounded-xl transition-all flex items-center gap-1 ${
+            className={`px-2 sm:px-2.5 py-1 sm:py-1.5 rounded-lg sm:rounded-xl transition-all flex items-center gap-1 ${
               mode === 'lives'
-                ? 'bg-rose-500 text-white shadow-md'
+                ? 'bg-rose-500 text-white shadow-md font-black'
                 : 'text-slate-300 hover:text-white'
             }`}
           >
@@ -503,9 +503,9 @@ export function GameClient({ categoryId }: GameClientProps) {
           </button>
           <button
             onClick={() => handleModeChange('time')}
-            className={`px-2.5 py-1.5 rounded-xl transition-all flex items-center gap-1 ${
+            className={`px-2 sm:px-2.5 py-1 sm:py-1.5 rounded-lg sm:rounded-xl transition-all flex items-center gap-1 ${
               mode === 'time'
-                ? 'bg-indigo-500 text-white shadow-md'
+                ? 'bg-indigo-500 text-white shadow-md font-black'
                 : 'text-slate-300 hover:text-white'
             }`}
           >
@@ -514,13 +514,13 @@ export function GameClient({ categoryId }: GameClientProps) {
         </div>
 
         {/* Score Counters */}
-        <div className="flex items-center gap-2 md:gap-3 pointer-events-auto text-xs md:text-sm font-black">
+        <div className="flex items-center gap-1.5 sm:gap-2.5 pointer-events-auto text-xs sm:text-sm font-black">
           {mode === 'lives' && (
-            <div className="flex items-center gap-1 bg-black/60 backdrop-blur-md border border-white/15 px-2.5 py-1.5 rounded-2xl">
+            <div className="flex items-center gap-0.5 sm:gap-1 bg-slate-900/80 backdrop-blur-md border border-white/20 px-2 sm:px-2.5 py-1.5 rounded-xl sm:rounded-2xl">
               {[1, 2, 3].map((heartIndex) => (
                 <Heart
                   key={heartIndex}
-                  className={`w-3.5 h-3.5 transition-all duration-300 ${
+                  className={`w-3 h-3 sm:w-3.5 sm:h-3.5 transition-all duration-300 ${
                     heartIndex <= lives
                       ? 'text-rose-500 fill-rose-500 scale-100'
                       : 'text-white/20 scale-90'
@@ -531,37 +531,37 @@ export function GameClient({ categoryId }: GameClientProps) {
           )}
 
           {mode === 'time' && (
-            <div className={`flex items-center gap-1 px-3 py-1.5 rounded-2xl border font-mono font-black backdrop-blur-md ${
+            <div className={`flex items-center gap-1 px-2.5 py-1.5 rounded-xl sm:rounded-2xl border font-mono font-black backdrop-blur-md ${
               timeLeft <= 10 
-                ? 'bg-rose-600/80 border-rose-400 text-white animate-pulse' 
-                : 'bg-black/60 border-white/15 text-amber-400'
+                ? 'bg-rose-600/90 border-rose-400 text-white animate-pulse' 
+                : 'bg-slate-900/80 border-white/20 text-amber-300'
             }`}>
               <Clock className="w-3.5 h-3.5" />
               <span>{timeLeft}s</span>
             </div>
           )}
 
-          <div className="flex items-center gap-1.5 bg-black/60 backdrop-blur-md border border-white/15 px-3 py-1.5 rounded-2xl text-emerald-400">
-            <span className="text-[11px] uppercase tracking-wider text-slate-400">Skor</span>
-            <span className="font-mono text-white text-sm md:text-base">{score}</span>
+          <div className="flex items-center gap-1 bg-slate-900/80 backdrop-blur-md border border-white/20 px-2 sm:px-3 py-1 sm:py-1.5 rounded-xl sm:rounded-2xl text-emerald-400">
+            <span className="text-[10px] sm:text-xs uppercase tracking-wider text-slate-400">Skor</span>
+            <span className="font-mono text-white text-xs sm:text-base">{score}</span>
           </div>
 
-          <div className="flex items-center gap-1.5 bg-black/60 backdrop-blur-md border border-white/15 px-3 py-1.5 rounded-2xl text-amber-400">
-            <Trophy className="w-3.5 h-3.5 text-amber-400" />
-            <span className="font-mono text-white text-sm md:text-base">{highScore}</span>
+          <div className="flex items-center gap-1 bg-slate-900/80 backdrop-blur-md border border-white/20 px-2 sm:px-3 py-1 sm:py-1.5 rounded-xl sm:rounded-2xl text-amber-300">
+            <Trophy className="w-3 h-3 sm:w-3.5 sm:h-3.5 text-amber-400" />
+            <span className="font-mono text-white text-xs sm:text-base">{highScore}</span>
           </div>
         </div>
       </header>
 
       {/* Streak Alert Pill */}
       {shoutout && !isGameOver && (
-        <div className="absolute top-16 md:top-20 left-1/2 -translate-x-1/2 z-30 pointer-events-none">
+        <div className="absolute top-14 sm:top-16 md:top-20 left-1/2 -translate-x-1/2 z-30 pointer-events-none">
           <motion.div
             initial={{ scale: 0.8, opacity: 0, y: -10 }}
             animate={{ scale: 1, opacity: 1, y: 0 }}
-            className="bg-amber-400 text-slate-950 font-black px-4 py-1 rounded-full text-xs uppercase tracking-widest shadow-[0_0_20px_rgba(251,191,36,0.6)] flex items-center gap-1.5"
+            className="bg-amber-400 text-slate-950 font-black px-3.5 py-0.5 sm:py-1 rounded-full text-[10px] sm:text-xs uppercase tracking-widest shadow-[0_0_20px_rgba(251,191,36,0.6)] flex items-center gap-1.5"
           >
-            <Flame className="w-3.5 h-3.5 fill-slate-950" />
+            <Flame className="w-3 h-3 sm:w-3.5 sm:h-3.5 fill-slate-950" />
             {shoutout}
           </motion.div>
         </div>
@@ -574,92 +574,92 @@ export function GameClient({ categoryId }: GameClientProps) {
             initial={{ opacity: 0, y: -20 }}
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -20 }}
-            className="absolute top-28 md:top-24 left-1/2 -translate-x-1/2 z-30 bg-indigo-600/90 text-white font-bold text-xs md:text-sm px-5 py-2.5 rounded-2xl shadow-2xl border border-indigo-400 flex items-center gap-2 backdrop-blur-md"
+            className="absolute top-24 sm:top-28 md:top-24 left-1/2 -translate-x-1/2 z-30 bg-indigo-600/95 text-white font-bold text-xs sm:text-sm px-4 py-2 sm:px-5 sm:py-2.5 rounded-2xl shadow-2xl border border-indigo-300 flex items-center gap-2 backdrop-blur-md max-w-sm text-center"
           >
-            <Lightbulb className="w-4 h-4 text-amber-300 animate-bounce" />
-            {activeHint}
+            <Lightbulb className="w-4 h-4 text-amber-300 shrink-0 animate-bounce" />
+            <span>{activeHint}</span>
           </motion.div>
         )}
       </AnimatePresence>
 
-      {/* Center "VS" Circular Badge */}
+      {/* Center "VS" Circular Badge - Fluid responsive */}
       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-20 pointer-events-none">
-        <div className="w-14 h-14 md:w-16 md:h-16 rounded-full bg-amber-400 text-slate-950 font-black text-lg md:text-xl flex items-center justify-center shadow-[0_0_30px_rgba(251,191,36,0.8)] border-4 border-slate-950 animate-vs-pulse">
+        <div className="w-10 h-10 sm:w-12 sm:h-12 md:w-16 md:h-16 rounded-full bg-amber-400 text-slate-950 font-black text-xs sm:text-sm md:text-xl flex items-center justify-center shadow-[0_0_25px_rgba(251,191,36,0.7)] border-2 sm:border-4 border-slate-900 animate-vs-pulse">
           VS
         </div>
       </div>
 
-      {/* ===================== LEFT HALF: KNOWN ITEM ===================== */}
+      {/* ===================== LEFT / TOP HALF: KNOWN ITEM ===================== */}
       <section 
-        className="w-full md:w-1/2 h-1/2 md:h-full relative flex flex-col justify-center items-center p-6 md:p-12 text-center overflow-hidden border-b md:border-b-0 md:border-r border-white/10 group"
+        className="w-full md:w-1/2 h-1/2 md:h-full relative flex flex-col justify-center items-center p-3 sm:p-6 md:p-10 text-center overflow-hidden border-b md:border-b-0 md:border-r border-white/15 group min-h-0"
       >
-        {/* Full-bleed Photo Background */}
+        {/* Full-bleed Photo Background - Crisp and luminous */}
         <div 
           className="absolute inset-0 bg-cover bg-center transition-transform duration-700 group-hover:scale-105"
           style={{ backgroundImage: `url(${leftItem.image || 'https://images.unsplash.com/photo-1518709268805-4e9042af9f23?auto=format&fit=crop&w=1200&q=80'})` }}
         />
-        {/* Dark Cinematic Vignette */}
-        <div className="absolute inset-0 bg-gradient-to-t from-black/95 via-black/75 to-black/60 backdrop-blur-[2px]" />
+        {/* Lighter, balanced cinematic gradient overlay (never pitch-black mud) */}
+        <div className="absolute inset-0 bg-gradient-to-t from-slate-950/75 via-slate-900/35 to-slate-950/45 backdrop-blur-[1px]" />
 
-        {/* Content */}
-        <div className="relative z-10 max-w-md flex flex-col items-center">
-          <span className="text-[11px] md:text-xs font-black uppercase tracking-widest px-3 py-1 rounded-full bg-white/15 text-slate-200 border border-white/20 mb-3 md:mb-4">
+        {/* Card Content in Crisp Glass Box */}
+        <div className="relative z-10 max-w-md w-full flex flex-col items-center bg-slate-950/60 backdrop-blur-md p-3 sm:p-5 md:p-8 rounded-2xl sm:rounded-3xl border border-white/20 shadow-2xl">
+          <span className="text-[10px] sm:text-xs font-black uppercase tracking-widest px-2.5 py-0.5 sm:py-1 rounded-full bg-white/20 text-slate-100 border border-white/25 mb-1.5 sm:mb-2.5">
             {category.icon} {category.title}
           </span>
 
-          <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-black tracking-tight text-white drop-shadow-[0_4px_12px_rgba(0,0,0,0.9)] mb-3">
+          <h2 className="text-xl sm:text-2xl md:text-4xl lg:text-5xl font-black tracking-tight text-white drop-shadow-[0_2px_8px_rgba(0,0,0,0.9)] mb-1 sm:mb-2 line-clamp-2">
             {leftItem.name}
           </h2>
 
-          <div className="text-xs md:text-sm font-bold uppercase tracking-widest text-slate-400 mb-2">
+          <div className="text-[10px] sm:text-xs font-bold uppercase tracking-widest text-slate-300 mb-1">
             {category.valueLabel}
           </div>
 
-          <div className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-black font-mono text-emerald-400 drop-shadow-[0_0_25px_rgba(52,211,153,0.5)]">
+          <div className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-black font-mono text-emerald-400 drop-shadow-[0_0_20px_rgba(52,211,153,0.5)]">
             {formatGameValue(leftItem, category.id)}
           </div>
         </div>
       </section>
 
-      {/* ===================== RIGHT HALF: CHALLENGER ===================== */}
+      {/* ===================== RIGHT / BOTTOM HALF: CHALLENGER ===================== */}
       <section 
-        className={`w-full md:w-1/2 h-1/2 md:h-full relative flex flex-col justify-center items-center p-6 md:p-12 text-center overflow-hidden transition-all duration-300 group ${
+        className={`w-full md:w-1/2 h-1/2 md:h-full relative flex flex-col justify-center items-center p-3 sm:p-6 md:p-10 text-center overflow-hidden transition-all duration-300 group min-h-0 ${
           showResult
             ? lastGuessResult === 'correct' || lastGuessResult === 'tie' || lastGuessResult === 'shield_saved'
-              ? 'ring-8 ring-emerald-500/70'
-              : 'ring-8 ring-rose-500/70'
+              ? 'ring-4 sm:ring-8 ring-emerald-500/80'
+              : 'ring-4 sm:ring-8 ring-rose-500/80'
             : ''
         }`}
       >
-        {/* Full-bleed Photo Background */}
+        {/* Full-bleed Photo Background - Crisp and luminous */}
         <div 
           className="absolute inset-0 bg-cover bg-center transition-transform duration-700 group-hover:scale-105"
           style={{ backgroundImage: `url(${rightItem.image || 'https://images.unsplash.com/photo-1508804185872-d7badad00f7d?auto=format&fit=crop&w=1200&q=80'})` }}
         />
-        {/* Dark Cinematic Vignette */}
-        <div className="absolute inset-0 bg-gradient-to-t from-black/95 via-black/75 to-black/60 backdrop-blur-[2px]" />
+        {/* Lighter, balanced cinematic gradient overlay */}
+        <div className="absolute inset-0 bg-gradient-to-t from-slate-950/75 via-slate-900/35 to-slate-950/45 backdrop-blur-[1px]" />
 
-        {/* Content */}
-        <div className="relative z-10 max-w-md w-full flex flex-col items-center">
-          <span className="text-[11px] md:text-xs font-black uppercase tracking-widest px-3 py-1 rounded-full bg-white/15 text-slate-200 border border-white/20 mb-3 md:mb-4">
+        {/* Card Content in Crisp Glass Box */}
+        <div className="relative z-10 max-w-md w-full flex flex-col items-center bg-slate-950/60 backdrop-blur-md p-3 sm:p-5 md:p-8 rounded-2xl sm:rounded-3xl border border-white/20 shadow-2xl">
+          <span className="text-[10px] sm:text-xs font-black uppercase tracking-widest px-2.5 py-0.5 sm:py-1 rounded-full bg-white/20 text-slate-100 border border-white/25 mb-1.5 sm:mb-2.5">
             Rakip Öğe
           </span>
 
-          <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-black tracking-tight text-white drop-shadow-[0_4px_12px_rgba(0,0,0,0.9)] mb-3">
+          <h2 className="text-xl sm:text-2xl md:text-4xl lg:text-5xl font-black tracking-tight text-white drop-shadow-[0_2px_8px_rgba(0,0,0,0.9)] mb-1 sm:mb-2 line-clamp-2">
             {rightItem.name}
           </h2>
 
-          <div className="text-xs md:text-sm font-bold uppercase tracking-widest text-slate-400 mb-2">
+          <div className="text-[10px] sm:text-xs font-bold uppercase tracking-widest text-slate-300 mb-1">
             {category.valueLabel}
           </div>
 
           {!showResult ? (
-            <div className="flex flex-col gap-2.5 sm:gap-3 w-full max-w-xs mt-2">
+            <div className="flex flex-col gap-2 sm:gap-3 w-full max-w-xs mt-1 sm:mt-2">
               <button
                 onClick={() => handleGuess('higher')}
-                className="group relative bg-emerald-500 hover:bg-emerald-400 text-slate-950 font-black py-3 md:py-4 px-6 rounded-2xl shadow-[0_0_25px_rgba(16,185,129,0.4)] transition-all duration-150 active:scale-95 flex items-center justify-center gap-2 cursor-pointer border border-emerald-300"
+                className="group relative bg-emerald-500 hover:bg-emerald-400 text-slate-950 font-black py-2.5 sm:py-3.5 px-4 rounded-xl sm:rounded-2xl shadow-[0_0_20px_rgba(16,185,129,0.4)] transition-all duration-150 active:scale-95 flex items-center justify-center gap-1.5 cursor-pointer border border-emerald-300"
               >
-                <span className="text-sm md:text-base tracking-wider">{higherBtnLabel}</span>
+                <span className="text-xs sm:text-sm md:text-base tracking-wider font-black">{higherBtnLabel}</span>
                 <span className="text-[10px] bg-slate-950/20 text-slate-950 px-1.5 py-0.5 rounded font-mono font-bold hidden sm:inline">
                   W / ↑
                 </span>
@@ -667,50 +667,50 @@ export function GameClient({ categoryId }: GameClientProps) {
 
               <button
                 onClick={() => handleGuess('lower')}
-                className="group relative bg-rose-600 hover:bg-rose-500 text-white font-black py-3 md:py-4 px-6 rounded-2xl shadow-[0_0_25px_rgba(225,29,72,0.4)] transition-all duration-150 active:scale-95 flex items-center justify-center gap-2 cursor-pointer border border-rose-400"
+                className="group relative bg-rose-600 hover:bg-rose-500 text-white font-black py-2.5 sm:py-3.5 px-4 rounded-xl sm:rounded-2xl shadow-[0_0_20px_rgba(225,29,72,0.4)] transition-all duration-150 active:scale-95 flex items-center justify-center gap-1.5 cursor-pointer border border-rose-400"
               >
-                <span className="text-sm md:text-base tracking-wider">{lowerBtnLabel}</span>
+                <span className="text-xs sm:text-sm md:text-base tracking-wider font-black">{lowerBtnLabel}</span>
                 <span className="text-[10px] bg-white/20 text-white px-1.5 py-0.5 rounded font-mono font-bold hidden sm:inline">
                   S / ↓
                 </span>
               </button>
             </div>
           ) : (
-            <div className="flex flex-col items-center justify-center min-h-[110px] md:min-h-[130px]">
+            <div className="flex flex-col items-center justify-center min-h-[70px] sm:min-h-[100px]">
               <NumberTicker
                 value={rightItem.value}
                 unit={rightItem.unit}
                 categoryId={category.id}
-                className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl text-amber-400 drop-shadow-[0_0_30px_rgba(251,191,36,0.6)] font-mono font-black"
+                className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl text-amber-300 drop-shadow-[0_0_25px_rgba(251,191,36,0.6)] font-mono font-black"
               />
 
               <motion.div
                 initial={{ scale: 0, opacity: 0 }}
                 animate={{ scale: 1, opacity: 1 }}
                 transition={{ delay: 0.2 }}
-                className="mt-3 flex flex-col items-center gap-2 font-black text-xs md:text-sm"
+                className="mt-2 flex flex-col items-center gap-1 font-black text-[11px] sm:text-xs md:text-sm"
               >
                 {lastGuessResult === 'tie' && (
                   <span className="flex items-center gap-1.5 bg-amber-400 text-slate-950 px-3 py-1 rounded-full shadow-lg">
-                    <Zap className="w-4 h-4 fill-slate-950" />
+                    <Zap className="w-3.5 h-3.5 fill-slate-950" />
                     EŞİT DEĞER! (Doğru Sayıldı)
                   </span>
                 )}
                 {lastGuessResult === 'shield_saved' && (
                   <span className="flex items-center gap-1.5 bg-amber-400 text-slate-950 px-3 py-1 rounded-full shadow-lg">
-                    <Shield className="w-4 h-4 fill-slate-950" />
+                    <Shield className="w-3.5 h-3.5 fill-slate-950" />
                     KALKAN SENİ KURTARDI!
                   </span>
                 )}
                 {lastGuessResult === 'correct' && (
                   <span className="flex items-center gap-1.5 bg-emerald-500 text-slate-950 px-3 py-1 rounded-full shadow-lg">
-                    <CheckCircle2 className="w-4 h-4 fill-slate-950" />
+                    <CheckCircle2 className="w-3.5 h-3.5 fill-slate-950" />
                     DOĞRU TAHMİN! (Fark: %{diffPercent})
                   </span>
                 )}
                 {lastGuessResult === 'wrong' && (
                   <span className="flex items-center gap-1.5 bg-rose-600 text-white px-3 py-1 rounded-full shadow-lg">
-                    <XCircle className="w-4 h-4 fill-white" />
+                    <XCircle className="w-3.5 h-3.5 fill-white" />
                     YANLIŞ TAHMİN! (Fark: %{diffPercent})
                   </span>
                 )}
@@ -720,10 +720,10 @@ export function GameClient({ categoryId }: GameClientProps) {
         </div>
       </section>
 
-      {/* Floating Joker Dock (Bottom Center) */}
+      {/* Floating Joker Dock (Bottom Center) - Compact & Ergonomic */}
       {!isGameOver && (
-        <div className="absolute bottom-4 left-1/2 -translate-x-1/2 z-30 flex items-center gap-2 bg-black/70 backdrop-blur-md px-3.5 py-2 rounded-2xl border border-white/15 shadow-2xl">
-          <span className="text-[10px] font-black uppercase tracking-wider text-slate-400 mr-1 hidden sm:inline">
+        <div className="absolute bottom-2.5 sm:bottom-4 left-1/2 -translate-x-1/2 z-30 flex items-center gap-1.5 sm:gap-2 bg-slate-900/85 backdrop-blur-md px-2.5 sm:px-3.5 py-1.5 sm:py-2 rounded-xl sm:rounded-2xl border border-white/20 shadow-2xl">
+          <span className="text-[10px] font-black uppercase tracking-wider text-slate-400 mr-0.5 sm:mr-1 hidden sm:inline">
             Jokerler:
           </span>
 
@@ -731,47 +731,47 @@ export function GameClient({ categoryId }: GameClientProps) {
           <button
             onClick={handleUseSkip}
             disabled={usedSkip || showResult}
-            className={`flex items-center gap-1 px-2.5 py-1.5 rounded-xl text-xs font-bold transition-all ${
+            className={`flex items-center gap-1 px-2 sm:px-2.5 py-1 sm:py-1.5 rounded-lg sm:rounded-xl text-[11px] sm:text-xs font-bold transition-all ${
               usedSkip
                 ? 'bg-white/5 text-slate-600 border border-transparent cursor-not-allowed'
-                : 'bg-white/10 hover:bg-white/20 text-white border border-white/15 active:scale-95 cursor-pointer shadow-sm'
+                : 'bg-white/10 hover:bg-white/20 text-white border border-white/20 active:scale-95 cursor-pointer shadow-sm'
             }`}
             title="Pas Geç (Sağdaki rakip kartı seriyi bozmadan değiştir)"
           >
-            <FastForward className="w-3.5 h-3.5 text-indigo-400" />
-            <span className="hidden sm:inline">Pas</span>
+            <FastForward className="w-3 h-3 sm:w-3.5 sm:h-3.5 text-indigo-300" />
+            <span>Pas</span>
           </button>
 
           {/* Hint Joker */}
           <button
             onClick={handleUseHint}
             disabled={usedHint || showResult}
-            className={`flex items-center gap-1 px-2.5 py-1.5 rounded-xl text-xs font-bold transition-all ${
+            className={`flex items-center gap-1 px-2 sm:px-2.5 py-1 sm:py-1.5 rounded-lg sm:rounded-xl text-[11px] sm:text-xs font-bold transition-all ${
               usedHint
                 ? 'bg-white/5 text-slate-600 border border-transparent cursor-not-allowed'
-                : 'bg-white/10 hover:bg-white/20 text-white border border-white/15 active:scale-95 cursor-pointer shadow-sm'
+                : 'bg-white/10 hover:bg-white/20 text-white border border-white/20 active:scale-95 cursor-pointer shadow-sm'
             }`}
             title="İpucu (Farkın büyüklüğünü öğren)"
           >
-            <Lightbulb className="w-3.5 h-3.5 text-amber-400" />
-            <span className="hidden sm:inline">İpucu</span>
+            <Lightbulb className="w-3 h-3 sm:w-3.5 sm:h-3.5 text-amber-300" />
+            <span>İpucu</span>
           </button>
 
           {/* Shield Joker */}
           <button
             onClick={handleUseShield}
             disabled={usedShield || shieldActive || showResult}
-            className={`flex items-center gap-1 px-2.5 py-1.5 rounded-xl text-xs font-bold transition-all ${
+            className={`flex items-center gap-1 px-2 sm:px-2.5 py-1 sm:py-1.5 rounded-lg sm:rounded-xl text-[11px] sm:text-xs font-bold transition-all ${
               usedShield || shieldActive
                 ? shieldActive 
                   ? 'bg-amber-400 text-slate-950 font-black border border-amber-300 shadow-md animate-pulse'
                   : 'bg-white/5 text-slate-600 border border-transparent cursor-not-allowed'
-                : 'bg-white/10 hover:bg-white/20 text-white border border-white/15 active:scale-95 cursor-pointer shadow-sm'
+                : 'bg-white/10 hover:bg-white/20 text-white border border-white/20 active:scale-95 cursor-pointer shadow-sm'
             }`}
             title="Kalkan (1 yanlış cevabı affeder)"
           >
-            <Shield className="w-3.5 h-3.5 text-emerald-400" />
-            <span className="hidden sm:inline">Kalkan</span>
+            <Shield className="w-3 h-3 sm:w-3.5 sm:h-3.5 text-emerald-300" />
+            <span>Kalkan</span>
           </button>
         </div>
       )}
@@ -783,13 +783,13 @@ export function GameClient({ categoryId }: GameClientProps) {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
-            className="fixed inset-0 bg-black/90 backdrop-blur-md flex items-center justify-center z-50 p-4"
+            className="fixed inset-0 bg-slate-950/85 backdrop-blur-md flex items-center justify-center z-50 p-4"
           >
             <motion.div
               initial={{ scale: 0.9, opacity: 0, y: 20 }}
               animate={{ scale: 1, opacity: 1, y: 0 }}
               exit={{ scale: 0.9, opacity: 0, y: 20 }}
-              className="bg-slate-950 border border-white/15 rounded-3xl p-6 md:p-8 max-w-md w-full text-center shadow-2xl relative overflow-hidden"
+              className="bg-slate-900 border border-white/20 rounded-3xl p-5 sm:p-7 md:p-8 max-w-md w-full text-center shadow-2xl relative overflow-hidden"
             >
               {isNewRecord && (
                 <div className="absolute top-0 left-0 right-0 bg-gradient-to-r from-amber-400 via-yellow-300 to-amber-500 text-slate-950 font-black text-xs uppercase tracking-widest py-1.5 flex items-center justify-center gap-1.5 shadow-md">
@@ -800,28 +800,28 @@ export function GameClient({ categoryId }: GameClientProps) {
               )}
 
               <div className="mt-4 mb-2">
-                <div className="text-5xl mb-2">{commentary.emoji}</div>
-                <h3 className="text-2xl md:text-3xl font-black text-white">
+                <div className="text-4xl sm:text-5xl mb-2">{commentary.emoji}</div>
+                <h3 className="text-2xl sm:text-3xl font-black text-white">
                   {mode === 'time' && timeLeft <= 0 ? 'Süre Doldu!' : commentary.title}
                 </h3>
-                <p className="text-slate-400 text-xs md:text-sm mt-1 leading-relaxed">
+                <p className="text-slate-300 text-xs sm:text-sm mt-1 leading-relaxed">
                   {commentary.subtitle}
                 </p>
-                <div className="mt-3 text-xs bg-white/5 border border-white/10 rounded-xl p-2.5 text-slate-300">
+                <div className="mt-3 text-xs bg-slate-950/60 border border-white/10 rounded-xl p-2.5 text-slate-300">
                   <span className="font-bold text-white">{rightItem.name}</span>: {' '}
-                  <span className="text-amber-400 font-bold font-mono">{formatGameValue(rightItem, category.id)}</span> idi.
+                  <span className="text-amber-300 font-bold font-mono">{formatGameValue(rightItem, category.id)}</span> idi.
                 </div>
               </div>
 
               {/* Score Display Card */}
-              <div className="bg-black/60 border border-white/10 rounded-2xl p-4 my-5 grid grid-cols-2 gap-4">
+              <div className="bg-slate-950/80 border border-white/10 rounded-2xl p-3.5 sm:p-4 my-4 sm:my-5 grid grid-cols-2 gap-4">
                 <div className="flex flex-col items-center">
-                  <span className="text-xs text-slate-400 font-bold uppercase tracking-wider">Skorun</span>
-                  <span className="text-3xl md:text-4xl font-black font-mono text-emerald-400">{score}</span>
+                  <span className="text-[11px] sm:text-xs text-slate-400 font-bold uppercase tracking-wider">Skorun</span>
+                  <span className="text-3xl sm:text-4xl font-black font-mono text-emerald-400">{score}</span>
                 </div>
                 <div className="flex flex-col items-center border-l border-white/10">
-                  <span className="text-xs text-slate-400 font-bold uppercase tracking-wider">Rekorun</span>
-                  <span className="text-3xl md:text-4xl font-black font-mono text-amber-400">{highScore}</span>
+                  <span className="text-[11px] sm:text-xs text-slate-400 font-bold uppercase tracking-wider">Rekorun</span>
+                  <span className="text-3xl sm:text-4xl font-black font-mono text-amber-300">{highScore}</span>
                 </div>
               </div>
 
@@ -831,13 +831,13 @@ export function GameClient({ categoryId }: GameClientProps) {
               </div>
 
               {/* Action Buttons */}
-              <div className="flex gap-3">
+              <div className="flex gap-2.5 sm:gap-3">
                 <button
                   onClick={() => {
                     soundManager.playClick();
                     restartWithMode(mode);
                   }}
-                  className="flex-1 bg-amber-400 hover:bg-amber-300 text-slate-950 font-black py-3.5 rounded-xl shadow-[0_0_20px_rgba(251,191,36,0.4)] transition-all active:scale-95 flex items-center justify-center gap-2 cursor-pointer text-sm"
+                  className="flex-1 bg-amber-400 hover:bg-amber-300 text-slate-950 font-black py-3 sm:py-3.5 rounded-xl sm:rounded-2xl shadow-[0_0_20px_rgba(251,191,36,0.4)] transition-all active:scale-95 flex items-center justify-center gap-2 cursor-pointer text-xs sm:text-sm"
                 >
                   <RotateCcw className="w-4 h-4" />
                   Tekrar Dene
@@ -850,7 +850,7 @@ export function GameClient({ categoryId }: GameClientProps) {
                       router.push('/');
                     });
                   }}
-                  className="bg-white/10 hover:bg-white/20 text-white font-bold px-5 py-3.5 rounded-xl transition-all active:scale-95 text-sm border border-white/15"
+                  className="bg-slate-800 hover:bg-slate-700 text-white font-bold px-4 sm:px-5 py-3 sm:py-3.5 rounded-xl sm:rounded-2xl transition-all active:scale-95 text-xs sm:text-sm border border-white/15"
                 >
                   Kategoriler
                 </button>
