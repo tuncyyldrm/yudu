@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useEffect, useCallback, useMemo, useTransition } from 'react';
+import { useState, useEffect, useCallback, useMemo, useTransition, useRef } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
 import { useRouter } from 'next/navigation';
@@ -18,7 +18,8 @@ import {
   Zap,
   Shield,
   Lightbulb,
-  FastForward
+  FastForward,
+  Swords
 } from 'lucide-react';
 import { GAME_DATA } from '@/data/items';
 import { CATEGORIES } from '@/data/categories';
@@ -106,6 +107,20 @@ export function GameClient({ categoryId }: GameClientProps) {
   const [isGameOver, setIsGameOver] = useState<boolean>(false);
   const [isTransitioning, setIsTransitioning] = useState<boolean>(false);
   const [screenShake, setScreenShake] = useState<boolean>(false);
+
+  // Challenge Mode State (?target=12)
+  const [challengeTarget] = useState<number | null>(() => {
+    if (typeof window === 'undefined') return null;
+    const params = new URLSearchParams(window.location.search);
+    const targetParam = params.get('target');
+    if (targetParam) {
+      const val = parseInt(targetParam, 10);
+      return !isNaN(val) && val > 0 ? val : null;
+    }
+    return null;
+  });
+  const challengeBeaten = challengeTarget !== null && score > challengeTarget;
+  const challengeCelebratedRef = useRef(false);
 
   // Restart / Reset game helper
   const restartWithMode = useCallback((targetMode: GameMode) => {
@@ -408,6 +423,15 @@ export function GameClient({ categoryId }: GameClientProps) {
     return () => window.removeEventListener('keydown', handleKeyDown);
   }, [isGameOver, showResult, handleGuess, restartWithMode, mode]);
 
+  // Trigger celebration once when challenge score is beaten
+  useEffect(() => {
+    if (challengeBeaten && !challengeCelebratedRef.current) {
+      challengeCelebratedRef.current = true;
+      soundManager.playFanfare();
+      fireSuperConfetti();
+    }
+  }, [challengeBeaten]);
+
   if (!category || rawItems.length < 2) {
     return (
       <div className="h-[100dvh] bg-slate-900 text-white flex flex-col items-center justify-center p-6 text-center">
@@ -555,9 +579,28 @@ export function GameClient({ categoryId }: GameClientProps) {
         </div>
       </header>
 
-      {/* Streak Alert Pill */}
-      {shoutout && !isGameOver && (
-        <div className="absolute top-14 sm:top-16 md:top-20 left-1/2 -translate-x-1/2 z-30 pointer-events-none">
+      {/* Floating Center Notification Stack (Challenge & Streaks) */}
+      <div className="absolute top-14 sm:top-16 md:top-20 left-1/2 -translate-x-1/2 z-30 pointer-events-none flex flex-col items-center gap-1.5 w-max">
+        {challengeTarget !== null && !isGameOver && (
+          <motion.div
+            initial={{ scale: 0.8, opacity: 0, y: -10 }}
+            animate={{ scale: 1, opacity: 1, y: 0 }}
+            className={`px-3.5 py-1 rounded-full text-[10px] sm:text-xs font-black uppercase tracking-wider flex items-center gap-1.5 shadow-xl border backdrop-blur-md ${
+              challengeBeaten
+                ? 'bg-emerald-500 text-slate-950 border-emerald-300 animate-bounce'
+                : 'bg-rose-600/95 text-white border-rose-400'
+            }`}
+          >
+            <Swords className="w-3.5 h-3.5" />
+            <span>
+              {challengeBeaten
+                ? `Meydan Okuma Başarıldı! (${score} > ${challengeTarget}) 🎉`
+                : `Meydan Okuma: ${challengeTarget} Skoru Geç!`}
+            </span>
+          </motion.div>
+        )}
+
+        {shoutout && !isGameOver && (
           <motion.div
             initial={{ scale: 0.8, opacity: 0, y: -10 }}
             animate={{ scale: 1, opacity: 1, y: 0 }}
@@ -566,8 +609,8 @@ export function GameClient({ categoryId }: GameClientProps) {
             <Flame className="w-3 h-3 sm:w-3.5 sm:h-3.5 fill-slate-950" />
             {shoutout}
           </motion.div>
-        </div>
-      )}
+        )}
+      </div>
 
       {/* Active Hint Banner */}
       <AnimatePresence>

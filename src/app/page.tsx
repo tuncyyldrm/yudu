@@ -6,7 +6,7 @@ import Image from 'next/image';
 import { CATEGORIES } from '@/data/categories';
 import { SoundToggle } from '@/components/SoundToggle';
 import { StatsModal } from '@/components/StatsModal';
-import { Play, Zap, Trophy, Search } from 'lucide-react';
+import { Play, Zap, Trophy, Search, Sparkles } from 'lucide-react';
 import { soundManager } from '@/lib/sound';
 
 type FilterTab = 'all' | 'popular' | 'new' | 'geo' | 'culture';
@@ -95,6 +95,46 @@ export default function HomePage() {
         <p className="text-slate-200 text-base sm:text-lg md:text-xl font-bold max-w-xl mx-auto leading-relaxed">
           Hangisi daha çok? Sezgine güven, <span className="text-emerald-400 font-black">Yüksek</span> veya <span className="text-rose-400 font-black">Düşük</span> de, rekoru kap!
         </p>
+      </section>
+
+      {/* Daily Challenge Hero Banner */}
+      <section className="relative z-10 max-w-4xl mx-auto w-full mb-6 sm:mb-8">
+        <Link
+          href="/gunluk"
+          onClick={() => soundManager.playClick()}
+          className="group block relative overflow-hidden rounded-2xl sm:rounded-3xl p-4 sm:p-5 md:p-6 bg-gradient-to-r from-amber-500/20 via-indigo-600/25 to-rose-500/20 border-2 border-amber-400/40 hover:border-amber-400/80 backdrop-blur-md shadow-[0_0_30px_rgba(251,191,36,0.15)] hover:shadow-[0_0_40px_rgba(251,191,36,0.3)] transition-all transform hover:-translate-y-0.5"
+        >
+          <div className="absolute top-0 right-0 -mr-8 -mt-8 w-32 h-32 bg-amber-400/10 rounded-full blur-2xl group-hover:scale-150 transition-transform" />
+          
+          <div className="flex flex-col sm:flex-row items-center justify-between gap-3 sm:gap-6 text-center sm:text-left">
+            <div className="flex items-center gap-3 sm:gap-4">
+              <div className="w-12 h-12 sm:w-14 sm:h-14 rounded-2xl bg-amber-400/20 border border-amber-400/40 flex items-center justify-center text-2xl sm:text-3xl shrink-0 group-hover:scale-110 group-hover:rotate-6 transition-transform shadow-md">
+                🎯
+              </div>
+              <div>
+                <div className="flex items-center justify-center sm:justify-start gap-2 mb-1">
+                  <span className="bg-amber-400 text-slate-950 font-black text-[10px] sm:text-xs uppercase px-2 py-0.5 rounded-full tracking-wider shadow">
+                    GÜNLÜK MOD
+                  </span>
+                  <span className="text-amber-300 text-xs font-bold flex items-center gap-1">
+                    <Sparkles className="w-3 h-3" /> Her Gün 1 Kez
+                  </span>
+                </div>
+                <h2 className="text-lg sm:text-2xl font-black text-white group-hover:text-amber-300 transition-colors">
+                  Günün YÜDÜ&apos;sü
+                </h2>
+                <p className="text-slate-300 text-xs sm:text-sm mt-0.5">
+                  Tüm Türkiye bugün aynı 10 soruyu çözüyor. Sen 10&apos;da kaç yapacaksın?
+                </p>
+              </div>
+            </div>
+
+            <div className="flex items-center gap-2 shrink-0 bg-amber-400 text-slate-950 px-4 sm:px-5 py-2.5 sm:py-3 rounded-xl sm:rounded-2xl font-black text-xs sm:text-sm uppercase tracking-wider group-hover:bg-amber-300 transition-colors shadow-lg">
+              <span>Mücadeleye Katıl</span>
+              <span className="group-hover:translate-x-1 transition-transform">➔</span>
+            </div>
+          </div>
+        </Link>
       </section>
 
       {/* Search & Filter Controls */}

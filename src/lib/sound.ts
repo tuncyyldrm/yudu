@@ -158,6 +158,10 @@ class SoundManager {
     }
   }
 
+  public playFanfare() {
+    this.playHighScore();
+  }
+
   public playJoker() {
     if (this.muted) return;
     this.initCtx();

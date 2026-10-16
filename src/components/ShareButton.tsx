@@ -1,7 +1,7 @@
 'use client';
 
 import { useState } from 'react';
-import { Share2, Check, MessageCircle } from 'lucide-react';
+import { Check, MessageCircle, Swords } from 'lucide-react';
 import { soundManager } from '@/lib/sound';
 
 interface ShareButtonProps {
@@ -12,16 +12,29 @@ interface ShareButtonProps {
 export function ShareButton({ score, categoryTitle }: ShareButtonProps) {
   const [copied, setCopied] = useState(false);
 
-  const shareText = `🎯 YÜDÜ'de "${categoryTitle}" kategorisinde ${score} skor yaptım! Benim rekorumu geçebilir misin? 🔥 Sen de oyna!`;
+  const getChallengeUrl = () => {
+    if (typeof window === 'undefined') return '';
+    const origin = window.location.origin;
+    const pathname = window.location.pathname;
+    return `${origin}${pathname}?target=${score}`;
+  };
+
+  const getShareText = () => {
+    const challengeUrl = getChallengeUrl();
+    return `⚔️ YÜDÜ "${categoryTitle}" kategorisinde ${score} skor yaptım! Benim rekorumu geçebilir misin? 🔥 Hemen tıkla ve meydan oku:\n${challengeUrl}`;
+  };
 
   const handleShare = async () => {
     soundManager.playClick();
+    const shareText = getShareText();
+    const challengeUrl = getChallengeUrl();
+
     if (typeof navigator !== 'undefined' && navigator.share) {
       try {
         await navigator.share({
-          title: 'YÜDÜ - Yüksek mi Düşük mü?',
+          title: 'YÜDÜ Meydan Okuma',
           text: shareText,
-          url: window.location.href,
+          url: challengeUrl,
         });
         return;
       } catch {
@@ -40,6 +53,7 @@ export function ShareButton({ score, categoryTitle }: ShareButtonProps) {
 
   const openWhatsApp = () => {
     soundManager.playClick();
+    const shareText = getShareText();
     const url = `https://api.whatsapp.com/send?text=${encodeURIComponent(shareText)}`;
     window.open(url, '_blank');
   };
@@ -48,25 +62,25 @@ export function ShareButton({ score, categoryTitle }: ShareButtonProps) {
     <div className="flex gap-2 w-full">
       <button
         onClick={handleShare}
-        className="flex-1 flex items-center justify-center gap-2 bg-slate-800 hover:bg-slate-700 text-slate-200 hover:text-white py-3 px-4 rounded-xl font-semibold text-sm transition-all active:scale-95 border border-slate-700"
+        className="flex-1 flex items-center justify-center gap-2 bg-gradient-to-r from-amber-500/20 to-indigo-500/20 hover:from-amber-500/30 hover:to-indigo-500/30 text-amber-300 hover:text-amber-200 py-3 px-4 rounded-xl font-bold text-xs sm:text-sm transition-all active:scale-95 border border-amber-400/40 shadow-md"
       >
         {copied ? (
           <>
             <Check className="w-4 h-4 text-emerald-400" />
-            <span>Kopyalandı!</span>
+            <span className="text-emerald-400 font-bold">Meydan Okuma Linki Kopyalandı!</span>
           </>
         ) : (
           <>
-            <Share2 className="w-4 h-4 text-indigo-400" />
-            <span>Skoru Paylaş</span>
+            <Swords className="w-4 h-4 text-amber-400" />
+            <span>Arkadaşına Meydan Oku</span>
           </>
         )}
       </button>
 
       <button
         onClick={openWhatsApp}
-        className="flex items-center justify-center bg-emerald-950/60 hover:bg-emerald-900/80 text-emerald-400 border border-emerald-800/60 p-3 rounded-xl transition-all active:scale-95"
-        title="WhatsApp ile Paylaş"
+        className="flex items-center justify-center bg-emerald-950/70 hover:bg-emerald-900/90 text-emerald-400 border border-emerald-700/60 p-3 rounded-xl transition-all active:scale-95 shadow-md"
+        title="WhatsApp ile Meydan Oku"
       >
         <MessageCircle className="w-4 h-4" />
       </button>
