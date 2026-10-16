@@ -2,6 +2,7 @@
 
 import { useState, useEffect, useCallback, useMemo, useTransition } from 'react';
 import Link from 'next/link';
+import Image from 'next/image';
 import { useRouter } from 'next/navigation';
 import { motion, AnimatePresence } from 'framer-motion';
 import { 
@@ -459,9 +460,10 @@ export function GameClient({ categoryId }: GameClientProps) {
                 router.push('/');
               });
             }}
-            className="flex items-center gap-1 text-slate-100 bg-slate-900/80 hover:bg-slate-800 backdrop-blur-md border border-white/20 px-2.5 sm:px-3.5 py-1.5 sm:py-2 rounded-xl sm:rounded-2xl text-xs sm:text-sm font-bold transition-all active:scale-95 shadow-lg"
+            className="flex items-center gap-1.5 text-slate-100 bg-slate-900/80 hover:bg-slate-800 backdrop-blur-md border border-white/20 px-2.5 sm:px-3 py-1.5 sm:py-2 rounded-xl sm:rounded-2xl text-xs sm:text-sm font-bold transition-all active:scale-95 shadow-lg"
           >
-            <ArrowLeft className="w-3.5 h-3.5 sm:w-4 sm:h-4" />
+            <Image src="/logo.png" alt="YÜDÜ" width={20} height={20} className="w-4 h-4 sm:w-5 sm:h-5 object-contain" />
+            <ArrowLeft className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-slate-300" />
             <span className="hidden sm:inline">Kategoriler</span>
           </button>
 
@@ -800,7 +802,14 @@ export function GameClient({ categoryId }: GameClientProps) {
               )}
 
               <div className="mt-4 mb-2">
-                <div className="text-4xl sm:text-5xl mb-2">{commentary.emoji}</div>
+                <Image
+                  src="/logo.png"
+                  alt="YÜDÜ Logo"
+                  width={56}
+                  height={56}
+                  className="w-12 h-12 sm:w-14 sm:h-14 mx-auto mb-2 object-contain drop-shadow-md rounded-xl"
+                />
+                <div className="text-3xl sm:text-4xl mb-1">{commentary.emoji}</div>
                 <h3 className="text-2xl sm:text-3xl font-black text-white">
                   {mode === 'time' && timeLeft <= 0 ? 'Süre Doldu!' : commentary.title}
                 </h3>

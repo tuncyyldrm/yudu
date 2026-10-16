@@ -2,10 +2,11 @@
 
 import { useState, useMemo } from 'react';
 import Link from 'next/link';
+import Image from 'next/image';
 import { CATEGORIES } from '@/data/categories';
 import { SoundToggle } from '@/components/SoundToggle';
 import { StatsModal } from '@/components/StatsModal';
-import { Play, Flame, Zap, Trophy, Search } from 'lucide-react';
+import { Play, Zap, Trophy, Search } from 'lucide-react';
 import { soundManager } from '@/lib/sound';
 
 type FilterTab = 'all' | 'popular' | 'new' | 'geo' | 'culture';
@@ -41,8 +42,8 @@ export default function HomePage() {
       {/* Top Navbar */}
       <header className="relative z-10 max-w-6xl mx-auto w-full flex justify-between items-center mb-6 sm:mb-10">
         <div className="flex items-center gap-2 sm:gap-3">
-          <div className="flex items-center gap-1.5 bg-slate-800/90 backdrop-blur-md px-3 py-1.5 rounded-full border border-slate-700/80 shadow-md">
-            <Flame className="w-3.5 h-3.5 text-amber-400 fill-amber-400" />
+          <div className="flex items-center gap-2 bg-slate-800/90 backdrop-blur-md px-3 py-1.5 rounded-full border border-slate-700/80 shadow-md">
+            <Image src="/logo.png" alt="YÜDÜ Logo" width={20} height={20} className="w-5 h-5 object-contain" priority />
             <span className="text-white text-xs font-black tracking-wider uppercase">
               YÜDÜ V2
             </span>
@@ -77,9 +78,19 @@ export default function HomePage() {
           Türkiye&apos;nin En Bağımlılık Yapan Karşılaştırma Oyunu
         </div>
 
-        <h1 className="text-5xl sm:text-7xl md:text-8xl font-black tracking-tighter text-white mb-3 drop-shadow-md">
-          YÜ<span className="text-amber-400">DÜ</span>
-        </h1>
+        <div className="flex flex-col sm:flex-row items-center justify-center gap-2 sm:gap-4 mb-3">
+          <Image 
+            src="/logo.png" 
+            alt="YÜDÜ Logo" 
+            width={80} 
+            height={80} 
+            className="w-16 h-16 sm:w-20 sm:h-20 object-contain drop-shadow-xl hover:scale-105 transition-transform" 
+            priority
+          />
+          <h1 className="text-5xl sm:text-7xl md:text-8xl font-black tracking-tighter text-white drop-shadow-md">
+            YÜ<span className="text-amber-400">DÜ</span>
+          </h1>
+        </div>
 
         <p className="text-slate-200 text-base sm:text-lg md:text-xl font-bold max-w-xl mx-auto leading-relaxed">
           Hangisi daha çok? Sezgine güven, <span className="text-emerald-400 font-black">Yüksek</span> veya <span className="text-rose-400 font-black">Düşük</span> de, rekoru kap!

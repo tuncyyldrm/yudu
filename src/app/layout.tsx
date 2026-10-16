@@ -14,6 +14,10 @@ export const metadata: Metadata = {
   keywords: ["yüdü", "higher lower game", "yüksek mi düşük mü", "tahmin oyunu", "türkiye trivia"],
   authors: [{ name: "YÜDÜ Team" }],
   manifest: "/manifest.json",
+  icons: {
+    icon: "/icon-192.png",
+    apple: "/icon-192.png",
+  },
   appleWebApp: {
     capable: true,
     statusBarStyle: "black-translucent",
