@@ -14,7 +14,10 @@ import {
   CheckCircle2, 
   XCircle, 
   Sparkles,
-  Zap
+  Zap,
+  Shield,
+  Lightbulb,
+  FastForward
 } from 'lucide-react';
 import { GAME_DATA } from '@/data/items';
 import { CATEGORIES } from '@/data/categories';
@@ -23,7 +26,9 @@ import { formatGameValue } from '@/lib/format';
 import { soundManager } from '@/lib/sound';
 import { fireConfetti, fireSuperConfetti } from '@/lib/confetti';
 import { getGameOverCommentary, getStreakShoutout } from '@/lib/gameCopy';
+import { recordGameResult } from '@/lib/stats';
 import { SoundToggle } from '@/components/SoundToggle';
+import { StatsModal } from '@/components/StatsModal';
 import { NumberTicker } from '@/components/NumberTicker';
 import { ShareButton } from '@/components/ShareButton';
 
@@ -83,9 +88,20 @@ export function GameClient({ categoryId }: GameClientProps) {
   const [timeLeft, setTimeLeft] = useState<number>(60);
   const [timerActive, setTimerActive] = useState<boolean>(false);
 
+  // Power-up Jokers
+  const [usedSkip, setUsedSkip] = useState<boolean>(false);
+  const [usedHint, setUsedHint] = useState<boolean>(false);
+  const [activeHint, setActiveHint] = useState<string | null>(null);
+  const [shieldActive, setShieldActive] = useState<boolean>(false);
+  const [usedShield, setUsedShield] = useState<boolean>(false);
+  const [shieldSavedGame, setShieldSavedGame] = useState<boolean>(false);
+
+  // Stats Modal
+  const [isStatsOpen, setIsStatsOpen] = useState<boolean>(false);
+
   // Status flags
   const [showResult, setShowResult] = useState<boolean>(false);
-  const [lastGuessResult, setLastGuessResult] = useState<'correct' | 'wrong' | 'tie' | null>(null);
+  const [lastGuessResult, setLastGuessResult] = useState<'correct' | 'wrong' | 'tie' | 'shield_saved' | null>(null);
   const [isGameOver, setIsGameOver] = useState<boolean>(false);
   const [isTransitioning, setIsTransitioning] = useState<boolean>(false);
   const [screenShake, setScreenShake] = useState<boolean>(false);
@@ -107,6 +123,15 @@ export function GameClient({ categoryId }: GameClientProps) {
     setIsGameOver(false);
     setIsTransitioning(false);
     setScreenShake(false);
+
+    // Reset Jokers
+    setUsedSkip(false);
+    setUsedHint(false);
+    setActiveHint(null);
+    setShieldActive(false);
+    setUsedShield(false);
+    setShieldSavedGame(false);
+
     setHighScore(getSavedHighScore(categoryId, targetMode));
 
     if (targetMode === 'lives') {
@@ -120,6 +145,19 @@ export function GameClient({ categoryId }: GameClientProps) {
     }
   }, [categoryId, rawItems]);
 
+  // Handle Game Over & Save Stats
+  const triggerGameOver = useCallback((finalScore: number, finalStreak: number) => {
+    setIsGameOver(true);
+    setTimerActive(false);
+    recordGameResult({
+      score: finalScore,
+      streak: finalStreak,
+      mode,
+      categoryId,
+      shieldUsedAndSaved: shieldSavedGame,
+    });
+  }, [categoryId, mode, shieldSavedGame]);
+
   // Timer tick for 'time' mode
   useEffect(() => {
     if (mode !== 'time' || !timerActive || isGameOver) return;
@@ -129,8 +167,8 @@ export function GameClient({ categoryId }: GameClientProps) {
         if (prev <= 1) {
           clearInterval(interval);
           setTimerActive(false);
-          setIsGameOver(true);
           soundManager.playFail();
+          triggerGameOver(score, streak);
           return 0;
         }
         return prev - 1;
@@ -138,7 +176,7 @@ export function GameClient({ categoryId }: GameClientProps) {
     }, 1000);
 
     return () => clearInterval(interval);
-  }, [mode, timerActive, isGameOver]);
+  }, [mode, timerActive, isGameOver, score, streak, triggerGameOver]);
 
   // Handle Mode Change
   const handleModeChange = (newMode: GameMode) => {
@@ -146,6 +184,51 @@ export function GameClient({ categoryId }: GameClientProps) {
     soundManager.playClick();
     setMode(newMode);
     restartWithMode(newMode);
+  };
+
+  // Joker Handlers
+  const handleUseSkip = () => {
+    if (usedSkip || showResult || isGameOver || isTransitioning || !leftItem) return;
+    soundManager.playJoker();
+    setUsedSkip(true);
+    if (deck.length > 0) {
+      setRightItem(deck[0]);
+      setDeck((prev) => prev.slice(1));
+    } else {
+      const freshDeck = [...rawItems].filter((i) => i.id !== rightItem?.id && i.id !== leftItem?.id).sort(() => Math.random() - 0.5);
+      setRightItem(freshDeck[0]);
+      setDeck(freshDeck.slice(1));
+    }
+  };
+
+  const handleUseHint = () => {
+    if (usedHint || !leftItem || !rightItem || showResult || isGameOver || isTransitioning) return;
+    soundManager.playJoker();
+    setUsedHint(true);
+    const v1 = Math.abs(leftItem.value);
+    const v2 = Math.abs(rightItem.value);
+    const maxVal = Math.max(v1, v2);
+    const minVal = Math.min(v1, v2);
+    const diffPct = maxVal === 0 ? 0 : Math.round(((maxVal - minVal) / (minVal || 1)) * 100);
+
+    if (diffPct <= 20) {
+      setActiveHint('⚠️ ÇOK YAKIN! Değerler neredeyse birbirine denk (%20 farkın altında)!');
+    } else if (diffPct <= 75) {
+      setActiveHint('⚖️ ORTA DÜZEY! Aralarında ortalama bir fark bulunuyor.');
+    } else {
+      setActiveHint('🚀 BÜYÜK UÇURUM! Biri diğerinden kat kat büyük!');
+    }
+
+    setTimeout(() => {
+      setActiveHint(null);
+    }, 5000);
+  };
+
+  const handleUseShield = () => {
+    if (usedShield || shieldActive || showResult || isGameOver || isTransitioning) return;
+    soundManager.playShield();
+    setShieldActive(true);
+    setUsedShield(true);
   };
 
   // Guess Handler
@@ -217,10 +300,36 @@ export function GameClient({ categoryId }: GameClientProps) {
           setShowResult(false);
           setLastGuessResult(null);
           setIsTransitioning(false);
-        }, 500);
+        }, 600);
 
       } else {
-        // Wrong Guess
+        // Wrong Guess - Check if shield is active!
+        if (shieldActive) {
+          soundManager.playSuccess();
+          setShieldActive(false);
+          setShieldSavedGame(true);
+          setLastGuessResult('shield_saved');
+          fireConfetti();
+
+          setTimeout(() => {
+            setLeftItem(rightItem);
+            if (deck.length > 0) {
+              setRightItem(deck[0]);
+              setDeck((prev) => prev.slice(1));
+            } else {
+              const freshDeck = [...rawItems]
+                .filter((i) => i.id !== rightItem.id)
+                .sort(() => Math.random() - 0.5);
+              setRightItem(freshDeck[0]);
+              setDeck(freshDeck.slice(1));
+            }
+            setShowResult(false);
+            setLastGuessResult(null);
+          }, 1200);
+          return;
+        }
+
+        // True Wrong Guess
         soundManager.playFail();
         setStreak(0);
         setScreenShake(true);
@@ -230,7 +339,7 @@ export function GameClient({ categoryId }: GameClientProps) {
           const nextLives = lives - 1;
           setLives(nextLives);
           if (nextLives <= 0) {
-            setIsGameOver(true);
+            triggerGameOver(score, 0);
           } else {
             setTimeout(() => {
               setLeftItem(rightItem);
@@ -266,11 +375,11 @@ export function GameClient({ categoryId }: GameClientProps) {
             setLastGuessResult(null);
           }, 800);
         } else {
-          setIsGameOver(true);
+          triggerGameOver(score, 0);
         }
       }
     }, 1100);
-  }, [categoryId, deck, highScore, isGameOver, isTransitioning, leftItem, lives, mode, rawItems, rightItem, score, showResult, streak]);
+  }, [categoryId, deck, highScore, isGameOver, isTransitioning, leftItem, lives, mode, rawItems, rightItem, score, shieldActive, showResult, streak, triggerGameOver]);
 
   // Keyboard shortcut listener
   useEffect(() => {
@@ -328,8 +437,18 @@ export function GameClient({ categoryId }: GameClientProps) {
   const commentary = getGameOverCommentary(score);
   const shoutout = getStreakShoutout(streak);
 
+  // Calculate Difference ratio for result feedback
+  const diffPercent = leftItem.value !== 0 
+    ? Math.abs(Math.round(((rightItem.value - leftItem.value) / leftItem.value) * 100))
+    : 0;
+
   return (
     <main className={`h-screen w-screen overflow-hidden bg-black text-white relative select-none flex flex-col md:flex-row ${screenShake ? 'animate-screen-shake' : ''}`}>
+      {/* Floating Shield Active Glow Aura */}
+      {shieldActive && (
+        <div className="absolute inset-0 pointer-events-none ring-8 ring-amber-400/80 shadow-[inset_0_0_80px_rgba(251,191,36,0.4)] z-40 animate-pulse" />
+      )}
+
       {/* Floating Header Overlay */}
       <header className="absolute top-0 left-0 right-0 z-30 flex items-center justify-between p-3 md:p-6 pointer-events-none">
         <div className="flex items-center gap-2 pointer-events-auto">
@@ -346,9 +465,18 @@ export function GameClient({ categoryId }: GameClientProps) {
             <span className="hidden sm:inline">Kategoriler</span>
           </button>
 
-          <div className="pointer-events-auto">
-            <SoundToggle className="!bg-black/60 !border-white/15 text-white" />
-          </div>
+          <button
+            onClick={() => {
+              soundManager.playClick();
+              setIsStatsOpen(true);
+            }}
+            className="p-2 rounded-2xl bg-black/60 hover:bg-black/85 backdrop-blur-md border border-white/15 text-amber-300 hover:text-white transition shadow-lg"
+            title="İstatistikler & Başarımlar"
+          >
+            <Trophy className="w-4 h-4 text-amber-400" />
+          </button>
+
+          <SoundToggle className="!bg-black/60 !border-white/15 text-white" />
         </div>
 
         {/* Mode Selector */}
@@ -439,6 +567,21 @@ export function GameClient({ categoryId }: GameClientProps) {
         </div>
       )}
 
+      {/* Active Hint Banner */}
+      <AnimatePresence>
+        {activeHint && (
+          <motion.div
+            initial={{ opacity: 0, y: -20 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -20 }}
+            className="absolute top-28 md:top-24 left-1/2 -translate-x-1/2 z-30 bg-indigo-600/90 text-white font-bold text-xs md:text-sm px-5 py-2.5 rounded-2xl shadow-2xl border border-indigo-400 flex items-center gap-2 backdrop-blur-md"
+          >
+            <Lightbulb className="w-4 h-4 text-amber-300 animate-bounce" />
+            {activeHint}
+          </motion.div>
+        )}
+      </AnimatePresence>
+
       {/* Center "VS" Circular Badge */}
       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-20 pointer-events-none">
         <div className="w-14 h-14 md:w-16 md:h-16 rounded-full bg-amber-400 text-slate-950 font-black text-lg md:text-xl flex items-center justify-center shadow-[0_0_30px_rgba(251,191,36,0.8)] border-4 border-slate-950 animate-vs-pulse">
@@ -482,7 +625,7 @@ export function GameClient({ categoryId }: GameClientProps) {
       <section 
         className={`w-full md:w-1/2 h-1/2 md:h-full relative flex flex-col justify-center items-center p-6 md:p-12 text-center overflow-hidden transition-all duration-300 group ${
           showResult
-            ? lastGuessResult === 'correct' || lastGuessResult === 'tie'
+            ? lastGuessResult === 'correct' || lastGuessResult === 'tie' || lastGuessResult === 'shield_saved'
               ? 'ring-8 ring-emerald-500/70'
               : 'ring-8 ring-rose-500/70'
             : ''
@@ -545,7 +688,7 @@ export function GameClient({ categoryId }: GameClientProps) {
                 initial={{ scale: 0, opacity: 0 }}
                 animate={{ scale: 1, opacity: 1 }}
                 transition={{ delay: 0.2 }}
-                className="mt-3 flex items-center gap-2 font-black text-xs md:text-sm"
+                className="mt-3 flex flex-col items-center gap-2 font-black text-xs md:text-sm"
               >
                 {lastGuessResult === 'tie' && (
                   <span className="flex items-center gap-1.5 bg-amber-400 text-slate-950 px-3 py-1 rounded-full shadow-lg">
@@ -553,16 +696,22 @@ export function GameClient({ categoryId }: GameClientProps) {
                     EŞİT DEĞER! (Doğru Sayıldı)
                   </span>
                 )}
+                {lastGuessResult === 'shield_saved' && (
+                  <span className="flex items-center gap-1.5 bg-amber-400 text-slate-950 px-3 py-1 rounded-full shadow-lg">
+                    <Shield className="w-4 h-4 fill-slate-950" />
+                    KALKAN SENİ KURTARDI!
+                  </span>
+                )}
                 {lastGuessResult === 'correct' && (
                   <span className="flex items-center gap-1.5 bg-emerald-500 text-slate-950 px-3 py-1 rounded-full shadow-lg">
                     <CheckCircle2 className="w-4 h-4 fill-slate-950" />
-                    DOĞRU TAHMİN!
+                    DOĞRU TAHMİN! (Fark: %{diffPercent})
                   </span>
                 )}
                 {lastGuessResult === 'wrong' && (
                   <span className="flex items-center gap-1.5 bg-rose-600 text-white px-3 py-1 rounded-full shadow-lg">
                     <XCircle className="w-4 h-4 fill-white" />
-                    YANLIŞ TAHMİN!
+                    YANLIŞ TAHMİN! (Fark: %{diffPercent})
                   </span>
                 )}
               </motion.div>
@@ -570,6 +719,62 @@ export function GameClient({ categoryId }: GameClientProps) {
           )}
         </div>
       </section>
+
+      {/* Floating Joker Dock (Bottom Center) */}
+      {!isGameOver && (
+        <div className="absolute bottom-4 left-1/2 -translate-x-1/2 z-30 flex items-center gap-2 bg-black/70 backdrop-blur-md px-3.5 py-2 rounded-2xl border border-white/15 shadow-2xl">
+          <span className="text-[10px] font-black uppercase tracking-wider text-slate-400 mr-1 hidden sm:inline">
+            Jokerler:
+          </span>
+
+          {/* Skip Joker */}
+          <button
+            onClick={handleUseSkip}
+            disabled={usedSkip || showResult}
+            className={`flex items-center gap-1 px-2.5 py-1.5 rounded-xl text-xs font-bold transition-all ${
+              usedSkip
+                ? 'bg-white/5 text-slate-600 border border-transparent cursor-not-allowed'
+                : 'bg-white/10 hover:bg-white/20 text-white border border-white/15 active:scale-95 cursor-pointer shadow-sm'
+            }`}
+            title="Pas Geç (Sağdaki rakip kartı seriyi bozmadan değiştir)"
+          >
+            <FastForward className="w-3.5 h-3.5 text-indigo-400" />
+            <span className="hidden sm:inline">Pas</span>
+          </button>
+
+          {/* Hint Joker */}
+          <button
+            onClick={handleUseHint}
+            disabled={usedHint || showResult}
+            className={`flex items-center gap-1 px-2.5 py-1.5 rounded-xl text-xs font-bold transition-all ${
+              usedHint
+                ? 'bg-white/5 text-slate-600 border border-transparent cursor-not-allowed'
+                : 'bg-white/10 hover:bg-white/20 text-white border border-white/15 active:scale-95 cursor-pointer shadow-sm'
+            }`}
+            title="İpucu (Farkın büyüklüğünü öğren)"
+          >
+            <Lightbulb className="w-3.5 h-3.5 text-amber-400" />
+            <span className="hidden sm:inline">İpucu</span>
+          </button>
+
+          {/* Shield Joker */}
+          <button
+            onClick={handleUseShield}
+            disabled={usedShield || shieldActive || showResult}
+            className={`flex items-center gap-1 px-2.5 py-1.5 rounded-xl text-xs font-bold transition-all ${
+              usedShield || shieldActive
+                ? shieldActive 
+                  ? 'bg-amber-400 text-slate-950 font-black border border-amber-300 shadow-md animate-pulse'
+                  : 'bg-white/5 text-slate-600 border border-transparent cursor-not-allowed'
+                : 'bg-white/10 hover:bg-white/20 text-white border border-white/15 active:scale-95 cursor-pointer shadow-sm'
+            }`}
+            title="Kalkan (1 yanlış cevabı affeder)"
+          >
+            <Shield className="w-3.5 h-3.5 text-emerald-400" />
+            <span className="hidden sm:inline">Kalkan</span>
+          </button>
+        </div>
+      )}
 
       {/* Game Over Modal */}
       <AnimatePresence>
@@ -654,6 +859,9 @@ export function GameClient({ categoryId }: GameClientProps) {
           </motion.div>
         )}
       </AnimatePresence>
+
+      {/* Mid-game Stats Modal */}
+      <StatsModal isOpen={isStatsOpen} onClose={() => setIsStatsOpen(false)} />
     </main>
   );
 }

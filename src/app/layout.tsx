@@ -13,6 +13,12 @@ export const metadata: Metadata = {
   description: "Türkiye'nin en popüler karşılaştırma ve trivia oyunu. Ülkeler, filmler, futbolcular, süper arabalar ve daha fazlası!",
   keywords: ["yüdü", "higher lower game", "yüksek mi düşük mü", "tahmin oyunu", "türkiye trivia"],
   authors: [{ name: "YÜDÜ Team" }],
+  manifest: "/manifest.json",
+  appleWebApp: {
+    capable: true,
+    statusBarStyle: "black-translucent",
+    title: "YÜDÜ",
+  },
   openGraph: {
     title: "YÜDÜ - Yüksek mi, Düşük mü?",
     description: "Kategorini seç, sezgilerini sına ve rekorları altüst et!",
