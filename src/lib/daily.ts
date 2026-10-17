@@ -1,7 +1,20 @@
-import { GameItem } from '@/types/game';
+import { GameItem, CategoryConfig, CategoryType } from '@/types/game';
 import { GAME_DATA } from '@/data/items';
+import { CATEGORIES } from '@/data/categories';
 
-// Simple deterministic hash for a date string like "2026-10-16"
+export const BASE_CATEGORIES: CategoryType[] = [
+  'ulke',
+  'sehir',
+  'film',
+  'futbol',
+  'sirket',
+  'sosyal',
+  'araba',
+  'tarih',
+  'isim',
+];
+
+// Simple deterministic hash for a date string like "2026-10-17"
 export function hashString(str: string): number {
   let hash = 0;
   for (let i = 0; i < str.length; i++) {
@@ -38,37 +51,67 @@ export function getDailyChallengeNumber(dateStr: string): number {
   return diffDays;
 }
 
-// Generate deterministic 11 items (10 question pairs) for a specific date
-export function getDailyChallengeItems(dateStr: string): GameItem[] {
-  const seed = hashString(`yudu-daily-${dateStr}`);
+export interface DailyQuestion {
+  category: CategoryConfig;
+  leftItem: GameItem;
+  rightItem: GameItem;
+}
+
+// Generate deterministic 10 balanced questions for a specific date
+// Each question compares 2 items belonging to the SAME category so units and metrics match!
+export function getDailyChallengeQuestions(dateStr: string): DailyQuestion[] {
+  const seed = hashString(`yudu-daily-v2-${dateStr}`);
   const rng = createRng(seed);
 
-  // Pool from all items with distinct values
-  const allPool = [...GAME_DATA.karisik];
-
-  // Fisher-Yates shuffle with seeded RNG
-  const shuffled = [...allPool];
-  for (let i = shuffled.length - 1; i > 0; i--) {
+  // We want 10 questions. Start with all 9 base categories shuffled, then add 1 more popular category.
+  const categoriesPool: CategoryType[] = [...BASE_CATEGORIES];
+  // Shuffle categories pool
+  for (let i = categoriesPool.length - 1; i > 0; i--) {
     const j = Math.floor(rng() * (i + 1));
-    [shuffled[i], shuffled[j]] = [shuffled[j], shuffled[i]];
+    [categoriesPool[i], categoriesPool[j]] = [categoriesPool[j], categoriesPool[i]];
   }
 
-  // Pick 11 items ensuring no two consecutive items have equal values
-  const selected: GameItem[] = [];
-  for (const item of shuffled) {
-    if (selected.length === 0) {
-      selected.push(item);
-    } else {
-      const prev = selected[selected.length - 1];
-      // Only add if not identical and not equal value to make comparison interesting
-      if (prev.id !== item.id && prev.value !== item.value) {
-        selected.push(item);
+  // 10th category: pick between film, futbol, or araba
+  const bonusCats: CategoryType[] = ['film', 'futbol', 'araba'];
+  const bonus = bonusCats[Math.floor(rng() * bonusCats.length)];
+  const finalCategoryOrder = [...categoriesPool, bonus];
+
+  const questions: DailyQuestion[] = [];
+
+  for (const catId of finalCategoryOrder) {
+    const config = CATEGORIES.find((c) => c.id === catId);
+    if (!config) continue;
+
+    const items = GAME_DATA[catId] || [];
+    if (items.length < 2) continue;
+
+    // Pick 2 distinct items from this category with distinct values
+    const shuffledItems = [...items];
+    for (let i = shuffledItems.length - 1; i > 0; i--) {
+      const j = Math.floor(rng() * (i + 1));
+      [shuffledItems[i], shuffledItems[j]] = [shuffledItems[j], shuffledItems[i]];
+    }
+
+    const left = shuffledItems[0];
+    // Find right item with a different value so the comparison is clear and fun
+    let right = shuffledItems[1];
+    for (let i = 1; i < shuffledItems.length; i++) {
+      if (shuffledItems[i].value !== left.value) {
+        right = shuffledItems[i];
+        break;
       }
     }
-    if (selected.length >= 11) break;
+
+    questions.push({
+      category: config,
+      leftItem: left,
+      rightItem: right,
+    });
+
+    if (questions.length >= 10) break;
   }
 
-  return selected;
+  return questions;
 }
 
 export interface DailyResult {

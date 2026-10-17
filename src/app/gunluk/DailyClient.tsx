@@ -18,7 +18,7 @@ import {
 import { 
   getTodayDateString, 
   getDailyChallengeNumber, 
-  getDailyChallengeItems, 
+  getDailyChallengeQuestions, 
   getStoredDailyResult, 
   saveStoredDailyResult, 
   generateDailyShareText,
@@ -32,7 +32,7 @@ import { SoundToggle } from '@/components/SoundToggle';
 export function DailyClient() {
   const todayStr = useMemo(() => getTodayDateString(), []);
   const dayNumber = useMemo(() => getDailyChallengeNumber(todayStr), [todayStr]);
-  const dailyItems = useMemo(() => getDailyChallengeItems(todayStr), [todayStr]);
+  const questions = useMemo(() => getDailyChallengeQuestions(todayStr), [todayStr]);
 
   const [currentIndex, setCurrentIndex] = useState(0);
   const [results, setResults] = useState<boolean[]>(() => {
@@ -71,8 +71,10 @@ export function DailyClient() {
   }, []);
 
   const totalQuestions = 10;
-  const leftItem = dailyItems[currentIndex] || dailyItems[0];
-  const rightItem = dailyItems[currentIndex + 1] || dailyItems[1];
+  const currentQuestion = questions[currentIndex] || questions[0];
+  const leftItem = currentQuestion.leftItem;
+  const rightItem = currentQuestion.rightItem;
+  const currentCat = currentQuestion.category;
 
   const handleGuess = useCallback((guess: 'higher' | 'lower') => {
     if (isRevealing || isGameOver) return;
@@ -242,6 +244,16 @@ export function DailyClient() {
         })}
       </div>
 
+      {/* Active Category Context Badge */}
+      <div className="absolute top-20 sm:top-24 md:top-28 left-1/2 -translate-x-1/2 z-30 pointer-events-none">
+        <div className="flex items-center gap-1.5 sm:gap-2 bg-slate-900/95 backdrop-blur-md px-3 sm:px-4 py-1 sm:py-1.5 rounded-full border border-white/25 shadow-2xl text-[11px] sm:text-xs md:text-sm font-black text-amber-300">
+          <span className="text-sm sm:text-base">{currentCat.icon}</span>
+          <span className="uppercase tracking-wider">{currentCat.title}</span>
+          <span className="text-white/30">&bull;</span>
+          <span className="text-slate-300 font-bold">{currentCat.valueLabel}</span>
+        </div>
+      </div>
+
       {/* LEFT ITEM (Reference) */}
       <section className="relative flex-1 h-1/2 md:h-full w-full flex flex-col justify-center items-center p-4 sm:p-8 text-center overflow-hidden border-b md:border-b-0 md:border-r border-white/10">
         <div
@@ -259,7 +271,7 @@ export function DailyClient() {
           </h2>
           <div className="inline-block bg-slate-950/70 border border-white/20 backdrop-blur-md rounded-2xl px-4 py-2 sm:py-2.5 shadow-2xl">
             <span className="text-xl sm:text-2xl md:text-3xl font-black font-mono text-amber-300 drop-shadow">
-              {formatGameValue(leftItem)}
+              {formatGameValue(leftItem, currentCat.id)}
             </span>
           </div>
         </div>
@@ -307,7 +319,7 @@ export function DailyClient() {
                   )}
                 </div>
                 <span className="text-xl sm:text-3xl font-black font-mono">
-                  {formatGameValue(rightItem)}
+                  {formatGameValue(rightItem, currentCat.id)}
                 </span>
               </motion.div>
             ) : (
@@ -317,14 +329,14 @@ export function DailyClient() {
                   disabled={isRevealing || isGameOver}
                   className="flex-1 bg-gradient-to-r from-emerald-600 to-emerald-500 hover:from-emerald-500 hover:to-emerald-400 text-white font-black py-2.5 sm:py-3.5 px-4 rounded-2xl shadow-xl transition-all active:scale-95 text-xs sm:text-sm uppercase tracking-wider flex items-center justify-center gap-1.5 border border-emerald-400/40"
                 >
-                  ▲ Daha Yüksek
+                  {currentCat.higherLabel || '▲ Daha Yüksek'}
                 </button>
                 <button
                   onClick={() => handleGuess('lower')}
                   disabled={isRevealing || isGameOver}
                   className="flex-1 bg-gradient-to-r from-rose-600 to-rose-500 hover:from-rose-500 hover:to-rose-400 text-white font-black py-2.5 sm:py-3.5 px-4 rounded-2xl shadow-xl transition-all active:scale-95 text-xs sm:text-sm uppercase tracking-wider flex items-center justify-center gap-1.5 border border-rose-400/40"
                 >
-                  ▼ Daha Düşük
+                  {currentCat.lowerLabel || '▼ Daha Düşük'}
                 </button>
               </div>
             )}

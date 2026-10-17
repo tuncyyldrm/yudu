@@ -23,7 +23,7 @@ import {
 } from 'lucide-react';
 import { GAME_DATA } from '@/data/items';
 import { CATEGORIES } from '@/data/categories';
-import { GameItem, GameMode } from '@/types/game';
+import { GameItem, GameMode, CategoryType, CategoryConfig } from '@/types/game';
 import { formatGameValue } from '@/lib/format';
 import { soundManager } from '@/lib/sound';
 import { fireConfetti, fireSuperConfetti } from '@/lib/confetti';
@@ -48,6 +48,40 @@ function getSavedHighScore(categoryId: string, mode: GameMode): number {
   }
 }
 
+const BASE_CATEGORIES: CategoryType[] = [
+  'ulke',
+  'sehir',
+  'film',
+  'futbol',
+  'sirket',
+  'sosyal',
+  'araba',
+  'tarih',
+  'isim',
+];
+
+function getRandomCategoryPair(excludeCatId?: string): {
+  category: CategoryConfig;
+  left: GameItem;
+  right: GameItem;
+} {
+  const available = BASE_CATEGORIES.filter((c) => c !== excludeCatId);
+  const chosenCatId = available[Math.floor(Math.random() * available.length)];
+  const config = CATEGORIES.find((c) => c.id === chosenCatId) || CATEGORIES[0];
+  const items = GAME_DATA[chosenCatId as CategoryType] || [];
+
+  const shuffled = [...items].sort(() => Math.random() - 0.5);
+  const left = shuffled[0];
+  let right = shuffled[1];
+  for (let i = 1; i < shuffled.length; i++) {
+    if (shuffled[i].value !== left.value) {
+      right = shuffled[i];
+      break;
+    }
+  }
+  return { category: config, left, right };
+}
+
 function getInitialDeck(items: GameItem[]) {
   if (items.length < 2) {
     return { left: null, right: null, deck: [] };
@@ -65,19 +99,39 @@ export function GameClient({ categoryId }: GameClientProps) {
   const [, startTransition] = useTransition();
 
   const category = CATEGORIES.find((c) => c.id === categoryId);
+  const isKarisik = categoryId === 'karisik';
   const rawItems = useMemo(
     () => GAME_DATA[categoryId as keyof typeof GAME_DATA] || [],
     [categoryId]
   );
 
-  // Game Mode: 'classic' (1 life), 'lives' (3 lives), 'time' (60s countdown)
-  const [mode, setMode] = useState<GameMode>('classic');
+  // Initial setup distinguishing karisik vs single category
+  const initialSetup = useMemo(() => {
+    if (isKarisik) {
+      const pair = getRandomCategoryPair();
+      return {
+        activeCat: pair.category,
+        left: pair.left,
+        right: pair.right,
+        deck: [] as GameItem[],
+      };
+    }
+    const deckSetup = getInitialDeck(rawItems);
+    return {
+      activeCat: category || CATEGORIES[0],
+      left: deckSetup.left,
+      right: deckSetup.right,
+      deck: deckSetup.deck,
+    };
+  }, [category, isKarisik, rawItems]);
 
-  // Deck & items initialized eagerly
-  const initialSetup = useMemo(() => getInitialDeck(rawItems), [rawItems]);
+  const [activeCategory, setActiveCategory] = useState<CategoryConfig>(initialSetup.activeCat);
   const [deck, setDeck] = useState<GameItem[]>(initialSetup.deck);
   const [leftItem, setLeftItem] = useState<GameItem | null>(initialSetup.left);
   const [rightItem, setRightItem] = useState<GameItem | null>(initialSetup.right);
+
+  // Game Mode: 'classic' (1 life), 'lives' (3 lives), 'time' (60s countdown)
+  const [mode, setMode] = useState<GameMode>('classic');
 
   // Score states
   const [score, setScore] = useState<number>(0);
@@ -124,12 +178,19 @@ export function GameClient({ categoryId }: GameClientProps) {
 
   // Restart / Reset game helper
   const restartWithMode = useCallback((targetMode: GameMode) => {
-    if (rawItems.length < 2) return;
-
-    const setup = getInitialDeck(rawItems);
-    setLeftItem(setup.left);
-    setRightItem(setup.right);
-    setDeck(setup.deck);
+    if (isKarisik) {
+      const pair = getRandomCategoryPair();
+      setActiveCategory(pair.category);
+      setLeftItem(pair.left);
+      setRightItem(pair.right);
+      setDeck([]);
+    } else {
+      if (rawItems.length < 2) return;
+      const setup = getInitialDeck(rawItems);
+      setLeftItem(setup.left);
+      setRightItem(setup.right);
+      setDeck(setup.deck);
+    }
 
     setScore(0);
     setStreak(0);
@@ -159,7 +220,32 @@ export function GameClient({ categoryId }: GameClientProps) {
     } else {
       setTimerActive(false);
     }
-  }, [categoryId, rawItems]);
+  }, [categoryId, isKarisik, rawItems]);
+
+  // Card Advance Helper (Balanced for single category and Karisik)
+  const advanceToNext = useCallback(() => {
+    if (isKarisik) {
+      const nextPair = getRandomCategoryPair(activeCategory.id);
+      setActiveCategory(nextPair.category);
+      setLeftItem(nextPair.left);
+      setRightItem(nextPair.right);
+    } else {
+      setLeftItem(rightItem);
+      if (deck.length > 0) {
+        setRightItem(deck[0]);
+        setDeck((prev) => prev.slice(1));
+      } else {
+        const freshDeck = [...rawItems]
+          .filter((i) => i.id !== rightItem?.id)
+          .sort(() => Math.random() - 0.5);
+        setRightItem(freshDeck[0]);
+        setDeck(freshDeck.slice(1));
+      }
+    }
+    setShowResult(false);
+    setLastGuessResult(null);
+    setIsTransitioning(false);
+  }, [activeCategory.id, deck, isKarisik, rawItems, rightItem]);
 
   // Handle Game Over & Save Stats
   const triggerGameOver = useCallback((finalScore: number, finalStreak: number) => {
@@ -207,13 +293,21 @@ export function GameClient({ categoryId }: GameClientProps) {
     if (usedSkip || showResult || isGameOver || isTransitioning || !leftItem) return;
     soundManager.playJoker();
     setUsedSkip(true);
-    if (deck.length > 0) {
-      setRightItem(deck[0]);
-      setDeck((prev) => prev.slice(1));
+
+    if (isKarisik) {
+      const pair = getRandomCategoryPair(activeCategory.id);
+      setActiveCategory(pair.category);
+      setLeftItem(pair.left);
+      setRightItem(pair.right);
     } else {
-      const freshDeck = [...rawItems].filter((i) => i.id !== rightItem?.id && i.id !== leftItem?.id).sort(() => Math.random() - 0.5);
-      setRightItem(freshDeck[0]);
-      setDeck(freshDeck.slice(1));
+      if (deck.length > 0) {
+        setRightItem(deck[0]);
+        setDeck((prev) => prev.slice(1));
+      } else {
+        const freshDeck = [...rawItems].filter((i) => i.id !== rightItem?.id && i.id !== leftItem?.id).sort(() => Math.random() - 0.5);
+        setRightItem(freshDeck[0]);
+        setDeck(freshDeck.slice(1));
+      }
     }
   };
 
@@ -302,20 +396,7 @@ export function GameClient({ categoryId }: GameClientProps) {
         // Slide card to next
         setIsTransitioning(true);
         setTimeout(() => {
-          setLeftItem(rightItem);
-          if (deck.length > 0) {
-            setRightItem(deck[0]);
-            setDeck((prev) => prev.slice(1));
-          } else {
-            const freshDeck = [...rawItems]
-              .filter((i) => i.id !== rightItem.id)
-              .sort(() => Math.random() - 0.5);
-            setRightItem(freshDeck[0]);
-            setDeck(freshDeck.slice(1));
-          }
-          setShowResult(false);
-          setLastGuessResult(null);
-          setIsTransitioning(false);
+          advanceToNext();
         }, 600);
 
       } else {
@@ -328,19 +409,7 @@ export function GameClient({ categoryId }: GameClientProps) {
           fireConfetti();
 
           setTimeout(() => {
-            setLeftItem(rightItem);
-            if (deck.length > 0) {
-              setRightItem(deck[0]);
-              setDeck((prev) => prev.slice(1));
-            } else {
-              const freshDeck = [...rawItems]
-                .filter((i) => i.id !== rightItem.id)
-                .sort(() => Math.random() - 0.5);
-              setRightItem(freshDeck[0]);
-              setDeck(freshDeck.slice(1));
-            }
-            setShowResult(false);
-            setLastGuessResult(null);
+            advanceToNext();
           }, 1200);
           return;
         }
@@ -358,44 +427,20 @@ export function GameClient({ categoryId }: GameClientProps) {
             triggerGameOver(score, 0);
           } else {
             setTimeout(() => {
-              setLeftItem(rightItem);
-              if (deck.length > 0) {
-                setRightItem(deck[0]);
-                setDeck((prev) => prev.slice(1));
-              } else {
-                const freshDeck = [...rawItems]
-                  .filter((i) => i.id !== rightItem.id)
-                  .sort(() => Math.random() - 0.5);
-                setRightItem(freshDeck[0]);
-                setDeck(freshDeck.slice(1));
-              }
-              setShowResult(false);
-              setLastGuessResult(null);
+              advanceToNext();
             }, 1000);
           }
         } else if (mode === 'time') {
           setTimeLeft((t) => Math.max(t - 5, 0));
           setTimeout(() => {
-            setLeftItem(rightItem);
-            if (deck.length > 0) {
-              setRightItem(deck[0]);
-              setDeck((prev) => prev.slice(1));
-            } else {
-              const freshDeck = [...rawItems]
-                .filter((i) => i.id !== rightItem.id)
-                .sort(() => Math.random() - 0.5);
-              setRightItem(freshDeck[0]);
-              setDeck(freshDeck.slice(1));
-            }
-            setShowResult(false);
-            setLastGuessResult(null);
+            advanceToNext();
           }, 800);
         } else {
           triggerGameOver(score, 0);
         }
       }
     }, 1100);
-  }, [categoryId, deck, highScore, isGameOver, isTransitioning, leftItem, lives, mode, rawItems, rightItem, score, shieldActive, showResult, streak, triggerGameOver]);
+  }, [advanceToNext, categoryId, highScore, isGameOver, isTransitioning, leftItem, lives, mode, rightItem, score, shieldActive, showResult, streak, triggerGameOver]);
 
   // Keyboard shortcut listener
   useEffect(() => {
@@ -432,7 +477,7 @@ export function GameClient({ categoryId }: GameClientProps) {
     }
   }, [challengeBeaten]);
 
-  if (!category || rawItems.length < 2) {
+  if (!category || (!isKarisik && rawItems.length < 2)) {
     return (
       <div className="h-[100dvh] bg-slate-900 text-white flex flex-col items-center justify-center p-6 text-center">
         <h2 className="text-xl md:text-2xl font-black mb-4">Bu kategori için yeterli veri bulunamadı.</h2>
@@ -457,8 +502,8 @@ export function GameClient({ categoryId }: GameClientProps) {
     );
   }
 
-  const higherBtnLabel = category.higherLabel || '▲ DAHA YÜKSEK';
-  const lowerBtnLabel = category.lowerLabel || '▼ DAHA DÜŞÜK';
+  const higherBtnLabel = activeCategory.higherLabel || '▲ DAHA YÜKSEK';
+  const lowerBtnLabel = activeCategory.lowerLabel || '▼ DAHA DÜŞÜK';
   const commentary = getGameOverCommentary(score);
   const shoutout = getStreakShoutout(streak);
 
@@ -579,8 +624,20 @@ export function GameClient({ categoryId }: GameClientProps) {
         </div>
       </header>
 
-      {/* Floating Center Notification Stack (Challenge & Streaks) */}
+      {/* Floating Center Notification Stack (Category Context, Challenge & Streaks) */}
       <div className="absolute top-14 sm:top-16 md:top-20 left-1/2 -translate-x-1/2 z-30 pointer-events-none flex flex-col items-center gap-1.5 w-max">
+        {/* Active Category Context Badge */}
+        {!isGameOver && (
+          <div className="flex items-center gap-1.5 sm:gap-2 bg-slate-900/95 backdrop-blur-md px-3 sm:px-4 py-1 sm:py-1.5 rounded-full border border-white/25 shadow-2xl text-[11px] sm:text-xs md:text-sm font-black text-amber-300">
+            <span className="text-sm">{activeCategory.icon}</span>
+            <span className="uppercase tracking-wider">
+              {isKarisik ? `Karışık: ${activeCategory.title}` : activeCategory.title}
+            </span>
+            <span className="text-white/30">&bull;</span>
+            <span className="text-slate-300 font-bold">{activeCategory.valueLabel}</span>
+          </div>
+        )}
+
         {challengeTarget !== null && !isGameOver && (
           <motion.div
             initial={{ scale: 0.8, opacity: 0, y: -10 }}
@@ -649,7 +706,7 @@ export function GameClient({ categoryId }: GameClientProps) {
         {/* Card Content in Crisp Glass Box */}
         <div className="relative z-10 max-w-md w-full flex flex-col items-center bg-slate-950/60 backdrop-blur-md p-3 sm:p-5 md:p-8 rounded-2xl sm:rounded-3xl border border-white/20 shadow-2xl">
           <span className="text-[10px] sm:text-xs font-black uppercase tracking-widest px-2.5 py-0.5 sm:py-1 rounded-full bg-white/20 text-slate-100 border border-white/25 mb-1.5 sm:mb-2.5">
-            {category.icon} {category.title}
+            {activeCategory.icon} {activeCategory.title}
           </span>
 
           <h2 className="text-xl sm:text-2xl md:text-4xl lg:text-5xl font-black tracking-tight text-white drop-shadow-[0_2px_8px_rgba(0,0,0,0.9)] mb-1 sm:mb-2 line-clamp-2">
@@ -657,11 +714,11 @@ export function GameClient({ categoryId }: GameClientProps) {
           </h2>
 
           <div className="text-[10px] sm:text-xs font-bold uppercase tracking-widest text-slate-300 mb-1">
-            {category.valueLabel}
+            {activeCategory.valueLabel}
           </div>
 
           <div className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-black font-mono text-emerald-400 drop-shadow-[0_0_20px_rgba(52,211,153,0.5)]">
-            {formatGameValue(leftItem, category.id)}
+            {formatGameValue(leftItem, activeCategory.id)}
           </div>
         </div>
       </section>
@@ -695,7 +752,7 @@ export function GameClient({ categoryId }: GameClientProps) {
           </h2>
 
           <div className="text-[10px] sm:text-xs font-bold uppercase tracking-widest text-slate-300 mb-1">
-            {category.valueLabel}
+            {activeCategory.valueLabel}
           </div>
 
           {!showResult ? (
@@ -725,7 +782,7 @@ export function GameClient({ categoryId }: GameClientProps) {
               <NumberTicker
                 value={rightItem.value}
                 unit={rightItem.unit}
-                categoryId={category.id}
+                categoryId={activeCategory.id}
                 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl text-amber-300 drop-shadow-[0_0_25px_rgba(251,191,36,0.6)] font-mono font-black"
               />
 
@@ -861,7 +918,7 @@ export function GameClient({ categoryId }: GameClientProps) {
                 </p>
                 <div className="mt-3 text-xs bg-slate-950/60 border border-white/10 rounded-xl p-2.5 text-slate-300">
                   <span className="font-bold text-white">{rightItem.name}</span>: {' '}
-                  <span className="text-amber-300 font-bold font-mono">{formatGameValue(rightItem, category.id)}</span> idi.
+                  <span className="text-amber-300 font-bold font-mono">{formatGameValue(rightItem, activeCategory.id)}</span> idi.
                 </div>
               </div>
 
