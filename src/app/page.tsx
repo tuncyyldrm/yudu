@@ -41,15 +41,10 @@ export default function HomePage() {
 
       {/* Top Navbar */}
       <header className="relative z-10 max-w-6xl mx-auto w-full flex justify-between items-center mb-6 sm:mb-10">
-        <div className="flex items-center gap-2 sm:gap-3">
-          <div className="flex items-center gap-2 bg-slate-800/90 backdrop-blur-md px-3 py-1.5 rounded-full border border-slate-700/80 shadow-md">
-            <Image src="/logo.png" alt="YÜDÜ Logo" width={20} height={20} className="w-5 h-5 object-contain" priority />
-            <span className="text-white text-xs font-black tracking-wider uppercase">
-              YÜDÜ V2
-            </span>
-          </div>
-          <span className="text-slate-400 text-xs font-bold hidden sm:inline">
-            10 Kategori &bull; 3 Mod &bull; PWA Destekli
+        <div className="flex items-center gap-2 bg-slate-800/90 backdrop-blur-md px-3 py-1.5 rounded-full border border-slate-700/80 shadow-md">
+          <Image src="/logo.png" alt="YÜDÜ Logo" width={20} height={20} className="w-5 h-5 object-contain" priority />
+          <span className="text-white text-xs font-black tracking-wider uppercase">
+            YÜDÜ
           </span>
         </div>
 
